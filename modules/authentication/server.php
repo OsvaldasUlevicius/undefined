@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "utils.php";
 
 $username = "";
 $errors = array(); 
@@ -25,6 +26,10 @@ if (isset($_POST["register"])) {
         if ($user["username"] === $username) {
         array_push($errors, "Username already exists.");
         }
+    }
+
+    foreach (checkPasswordStrength($password1, $password2) as $error) {
+        array_push($errors, $error);
     }
 
     if (count($errors) == 0) {
