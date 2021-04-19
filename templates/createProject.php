@@ -12,15 +12,16 @@
 <form method="POST" action="createProject.php">
     <div>
         <label for="title">Project title</label>
-        <input type="text" name="title" placeholder="Enter project title" maxlength="255" required>
+        <input id="title" type="text" name="title" placeholder="Enter project title" maxlength="255" required>
     </div>
     <div>
         <label for="description">Project description</label>
-        <input type="text" name="description" placeholder="Enter project description" maxlength="1000" required>
+        <input id="description" type="text" name="description" placeholder="Enter project description" maxlength="1000"
+               required>
     </div>
     <div>
         <label for="status">Project status</label>
-        <select name="status">
+        <select id="status" name="status">
             <option value="1">In progress</option>
             <option value="2">Done</option>
         </select>
