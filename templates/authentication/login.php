@@ -18,13 +18,13 @@
             ?>
         </p>
   	<?php endif ?>
-    <form method="POST" action="login.php"> 
+    <form method="POST" action="login.php" id="login-form"> 
         <?php include("../../modules/authentication/errors.php"); ?>
         <label for="username">Username</label>
-        <input type="email" name="username">
+        <input type="email" name="username" id="login-username">
         <label for="password">Password</label>
-        <input type="password" name="password">
-        <input type="submit" name="login" value="Login">
+        <input type="password" name="password" id="login-password">
+        <input type="submit" name="login" value="Login" id="login-submit">
         <a href="register.php">Sign up!</a>
     </form>
 </body>
