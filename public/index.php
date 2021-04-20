@@ -36,6 +36,7 @@
             <input type="submit" name="logout" value="logout">
         </form>
         <a href="../templates/createProject.php">Create Project</a>
+        <a href="../templates/projectList.php">Project List</a>
     <?php endif ?>
 </body>
 </html>
