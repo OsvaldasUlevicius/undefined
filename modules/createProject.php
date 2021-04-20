@@ -4,11 +4,18 @@ $db = mysqli_connect("localhost", "root", "", "undefined");
 
 if (isset($_POST["createProject"])) {
     $title = mysqli_real_escape_string($db, $_POST['title']);
-    $description = mysqli_real_escape_string($db, $_POST['description']);
-    $status = mysqli_real_escape_string($db, $_POST['status']);
+    $projectQuery = "SELECT * FROM projects WHERE title=\"" . $title . "\"";
+    $result = mysqli_query($db, $projectQuery);
+    $projectCount = mysqli_num_rows($result);
+    if ($projectCount == 0) {
+        $description = mysqli_real_escape_string($db, $_POST['description']);
+        $status = mysqli_real_escape_string($db, $_POST['status']);
 
-    $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '$status')";
-    mysqli_query($db, $query);
+        $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '$status')";
+        mysqli_query($db, $query);
+    } else {
+        $error = "Project with this name already exists";
+    }
 }
 
 ?>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
 </head>
 <body>
+<?php echo isset($error) ? $error : "" ?>
 <form method="POST" action="createProject.php">
     <div>
         <label for="title">Project title</label>
