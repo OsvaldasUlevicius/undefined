@@ -11,6 +11,7 @@ while ($row = $result->fetch_assoc()) {
     $tasksResult = mysqli_query($db, $tasksQuery);
     $row['tasksCount'] = 0;
     $row['notFinishedTasksCount'] = 0;
+    $row['status'] = ($row['status'] == 1 ? "In progress" : "Done");
 
     while ($task = $tasksResult->fetch_assoc()) {
         $row['tasksCount'] += 1;

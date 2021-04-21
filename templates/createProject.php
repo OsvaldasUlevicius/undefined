@@ -21,13 +21,6 @@
                required>
     </div>
     <div>
-        <label for="status">Project status</label>
-        <select id="status" name="status">
-            <option value="1">In progress</option>
-            <option value="2">Done</option>
-        </select>
-    </div>
-    <div>
         </br>
         <input type="submit" name="createProject" value="Create">
     </div>
