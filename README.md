@@ -10,6 +10,15 @@ Import the database from file (navigate to directory undefined/db, file name: un
 Clone this repository into htdocs folder (if using xampp/netbeans, the location is: xampp/htdocs/undefined
 ```
 
+### Importing dummy data
+
+```
+Go to the project "undefined" database in phpMyAdmin MySQL.
+Clink on "Import".
+Choose file "db/dummy_data.sql"
+Press "Go".
+```
+
 ### Usage
 
 Login or Create account
