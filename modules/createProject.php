@@ -9,9 +9,8 @@ if (isset($_POST["createProject"])) {
     $projectCount = mysqli_num_rows($result);
     if ($projectCount == 0) {
         $description = mysqli_real_escape_string($db, $_POST['description']);
-        $status = mysqli_real_escape_string($db, $_POST['status']);
 
-        $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '$status')";
+        $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '1')";
         mysqli_query($db, $query);
     } else {
         $error = "Project with this name already exists";
