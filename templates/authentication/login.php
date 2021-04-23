@@ -1,4 +1,7 @@
-<?php include('../../modules/authentication/server.php') ?>
+<?php 
+include("../../modules/utils.php");
+include('../../modules/authentication/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +13,11 @@
 </head>
 <body>
     <?php 
-        if (isset($_SESSION["success"])) : ?>
-        <p>
-            <?php 
-                echo $_SESSION["success"]; 
-                unset($_SESSION["success"]);
-            ?>
-        </p>
-  	<?php endif ?>
+        session_start();
+        include("../../modules/messages.php");
+    ?>
     <form method="POST" action="login.php" id="login-form"> 
-        <?php include("../../modules/authentication/errors.php"); ?>
+        <?php include("../../modules/errors.php"); ?>
         <label for="username">Username</label>
         <input type="email" name="username" id="login-username">
         <label for="password">Password</label>

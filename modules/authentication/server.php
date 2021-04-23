@@ -1,11 +1,8 @@
 <?php
-session_start();
 include "utils.php";
 
 $username = "";
 $errors = array(); 
-
-$db = mysqli_connect("localhost", "root", "", "undefined");
 
 if (isset($_POST["register"])) {
     $username = mysqli_real_escape_string($db, $_POST["username"]);
@@ -36,7 +33,8 @@ if (isset($_POST["register"])) {
         $password = password_hash($password1, PASSWORD_DEFAULT);
         $query = "INSERT INTO users (username, password) VALUES('$username', '$password')";
         mysqli_query($db, $query);
-        $_SESSION["success"] = "Registration successful! You can now log in.";
+        session_start();
+        $_SESSION["message"] = "Registration successful! You can now log in.";
         header("location: ../../templates/authentication/login.php");
     }
 }
@@ -59,8 +57,9 @@ if (isset($_POST["login"])) {
             $row = mysqli_fetch_array($results, MYSQLI_ASSOC);
             $passwordInDb = $row["password"];
             if (password_verify($password, $passwordInDb)){
+                session_start();
                 $_SESSION["username"] = $username;
-                $_SESSION["success"] = "You are now logged in";
+                $_SESSION["message"] = "You are now logged in";
                 header("location: ../../public/index.php");
             } else {
                 array_push($errors, "The username or password is incorrect.");

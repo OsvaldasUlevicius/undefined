@@ -1,4 +1,7 @@
-<?php include('../../modules/authentication/server.php') ?>
+<?php 
+include("../../modules/utils.php");
+include('../../modules/authentication/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 </head>
 <body>
     <form method="POST" action="register.php" id="register-form">
-        <?php include('../../modules/authentication/errors.php'); ?>
+        <?php include('../../modules/errors.php'); ?>
         <label for="username">Username</label>
         <input type="email" name="username" value="<?php echo $username; ?>" id="register-username">
         <label for="password1">Create password</label>
