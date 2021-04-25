@@ -1,3 +1,17 @@
 @import "reset.css";
 
 label, input { display: block; }
+
+table {
+    width:100%; 
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
