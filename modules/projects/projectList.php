@@ -3,9 +3,8 @@
 if (isset($_POST["projectId"])) {
     $projectId = mysqli_real_escape_string($db, $_POST["projectId"]);
 
-    $deleteProject = "DELETE FROM projects WHERE id='" . $projectId . "'";
-    $deleteProjectResult = mysqli_query($db, $deleteProject);
-    $deleteProjectResult;
+    $deleteProject = "DELETE FROM projects WHERE id='$projectId'";
+    mysqli_query($db, $deleteProject);
 }
 
 function getProjects($db) {
