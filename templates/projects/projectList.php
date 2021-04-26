@@ -22,7 +22,8 @@ include('../../modules/projects/projectList.php');
         <th>Not Finished Task Count</th>
         <th>Delete Project</th>
     </tr>
-    <?php foreach (getProjects($db) as $project): ?>
+    <?php $projectsInformation = getProjects($db); ?>
+    <?php foreach ($projectsInformation["projects"] as $project): ?>
         <tr>
             <td>
                 <a href="taskList.php?project_id=<?php echo $project["id"]; ?>">
@@ -42,5 +43,6 @@ include('../../modules/projects/projectList.php');
         </tr>
     <?php endforeach ?>
 </table>
+<?php include("../../modules/pagination_links.php"); ?>
 </body>
 </html>
