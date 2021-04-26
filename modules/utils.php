@@ -10,8 +10,10 @@ function checkIfLoggedIn($restrictAccess=true) {
     if (!isset($_SESSION["username"])) {
         if ($restrictAccess) {
             $_SESSION["message"] = "You must be logged in to view that page!";
+            header("location: ../../templates/authentication/login.php");
+        } else {
+            header("location: ../templates/authentication/login.php");
         }
-        header("location: ../../templates/authentication/login.php");
     }
 }
 
