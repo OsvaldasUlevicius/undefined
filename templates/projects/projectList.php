@@ -24,7 +24,8 @@ include('../../modules/projects/projectList.php');
         <th>Status</th>
         <th>Task Count</th>
         <th>Not Finished Task Count</th>
-        <th>Delete Project</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     <?php $projectsInformation = isFiltered($db);?>
     <?php foreach ($projectsInformation["projects"] as $project): ?>
@@ -38,6 +39,11 @@ include('../../modules/projects/projectList.php');
             <td><?php echo getStatus($project["status"], $db); ?></td>
             <td><?php echo  countProjectTasks($project["id"], $db); ?></td>
             <td><?php echo  countProjectTasks($project["id"], $db, $isFinished=true);; ?></td>
+            <td>
+                <a href="editProject.php?project_id=<?php echo $project["id"]; ?>">
+                    Edit
+                </a>
+            </td>
             <td>
                 <form method="POST" action="projectList.php">
                     <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
