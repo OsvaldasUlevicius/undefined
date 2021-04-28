@@ -1,17 +1,249 @@
 @import "reset.css";
 
-label, input { display: block; }
+input {
+    display: inline-block;
+}
 
-table {
-    width:100%; 
+* {
+    background-color: #E5E5E5;
+}
+
+.logo-top {
+    position: absolute;
+    text-align: center;
+    top: 4vh;
+    background: transparent;
+}
+
+.logo {
+    width: 110px;
+    background: transparent;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* table {
+    width: 100%;
     table-layout: fixed;
-}
+} */
 
-table, th, td {
-    border: 1px solid black;
-}
-table td {
+/* table, th, td {
+    border: 1px solid #B0EFE0;
+} */
+
+/* table td {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+} */
+
+h1,
+h2 {
+    font-family: 'Roboto', sans-serif;
+    line-height: 200%;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+#login-wrapper>h1,
+#login-wrapper>h2 {
+    color: #3D4E61;
+    background-color: #FFFFFF;
+}
+
+#login-register>h1,
+#login-register>h2 {
+    color: #FFFFFF;
+    background-color: #B0EFE0;
+}
+
+#register-wrapper>h1,
+#register-wrapper>h2 {
+    color: #3D4E61;
+    background-color: #FFFFFF;
+}
+
+#login-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 440px;
+    height: 368px;
+    margin: 25vh 0 20vh 0;
+    background-color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    border-radius: 0.4rem 0 0 0.4rem;
+}
+
+#login-register {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 440px;
+    height: 368px;
+    margin: 25vh 0 20vh 0;
+    background-color: #B0EFE0;
+    border: 2px solid #B0EFE0;
+    border-radius: 0 0.4rem 0.4rem 0;
+}
+
+#register-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 440px;
+    height: 460px;
+    margin: 25vh 0 5vh 0;
+    background-color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    border-radius: 0.4rem;
+}
+
+#login-form,
+#login-username,
+#login-password,
+#register-username,
+#register-password1,
+#register-password2,
+.input-container-1,
+.input-container-2,
+.submit-button,
+.register-button,
+.member-button,
+.member-login {
+    background-color: #FFFFFF;
+}
+
+::placeholder {
+    color: #BCBCBC;
+}
+
+input:autofill {
+    color: #BCBCBC;
+}
+
+#login-username,
+#login-password,
+#register-username,
+#register-password1,
+#register-password2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+    font-size: 16px;
+    color: #BCBCBC;
+    border: 2px solid #B0EFE0;
+    border-radius: 5px;
+    width: 260px;
+    margin: 12px 0 12px 0;
+}
+
+button,
+#login-submit,
+#register-submit {
+    /* align-self: center; */
+    font-weight: 700;
+    width: 106px;
+    height: 34px;
+    border-radius: 5px;
+    margin: 16px 0 5px 0;
+}
+
+#login-submit {
+    background-color: #B0EFE0;
+    color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    margin: 20px 0 20px 0;
+}
+
+#register-submit {
+    background-color: #B0EFE0;
+    color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    margin: 20px 0 20px 0;
+}
+
+#signup {
+    background-color: #FFFFFF;
+    color: #B0EFE0;
+    border: 2px solid #FFFFFF;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #B0EFE0;
+    background-color: #FFFFFF;
+}
+
+.input-container-1 {
+    position: relative;
+}
+
+.input-container-1>img {
+    position: absolute;
+    top: 20px;
+    left: 9px;
+    background-color: #FFFFFF;
+}
+
+.input-container-1>input {
+    padding-left: 50px;
+}
+
+.input-container-2 {
+    position: relative;
+}
+
+.input-container-2>img {
+    position: absolute;
+    top: 20px;
+    left: 9px;
+    background-color: #FFFFFF;
+}
+
+.input-container-2>input {
+    padding-left: 50px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg,
+.error {
+    display: flex;
+    background-color: #FFFFFF;
 }
