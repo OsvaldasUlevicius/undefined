@@ -13,7 +13,7 @@ include('../../modules/projects/projectList.php');
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFileLocation; ?>">
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="" method="GET">
         <input type="text" name="valueToSearch"/>
         <input type="submit" name="search" value="search"/>
     </form>

@@ -11,7 +11,7 @@ if (isset($_POST["projectId"])) {
 function getProjects($db, $isFiltered=false) {
     // Find how many projects there are
     if($isFiltered){
-        $valueToSearch = $_POST["valueToSearch"];
+        $valueToSearch = $_GET["valueToSearch"];
         $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects WHERE title LIKE '%$valueToSearch%'";
     }else{
         $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
@@ -69,7 +69,7 @@ function countProjectTasks($projectId, $db, $isFinished=false) {
 }
 
 function isFiltered($db){
-    if(isset($_POST["search"])){
+    if(isset($_GET["search"])){
         $projectsInformation = getProjects($db,$isFiltered=true);
     }else{
         $projectsInformation = getProjects($db);
