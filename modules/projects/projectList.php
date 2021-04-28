@@ -8,45 +8,15 @@ if (isset($_POST["projectId"])) {
     mysqli_query($db, $deleteProject);
 }
 
-function getProjects($db,$isFiltered) {
-    if($isFiltered = false){
-     // Find how many projects there are
-    $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
-    $countTotalProjectsResult = mysqli_query($db, $countTotalProjectsQuery);
-    $countProjects = mysqli_fetch_assoc($countTotalProjectsResult);
-    $countTotalProjects = $countProjects["COUNT(*)"];
-
-    // Get total pages necessary
-    $projectsPerPage = 5;
-    $totalPages = ceil($countTotalProjects / $projectsPerPage);
-
-    // Get the current page or set a default
-    if (isset($_GET["currentPage"]) && is_numeric($_GET["currentPage"])) {
-        $currentPage = (int) $_GET["currentPage"];
-    } else {
-        $currentPage = 1;
-    }
-
-    if ($currentPage > $totalPages) {
-        $currentPage = $totalPages;
-    }
-    if ($currentPage < 1) {
-        $currentPage = 1;
-    } 
-
-    // the offset of the list, based on current page 
-    $offset = ($currentPage - 1) * $projectsPerPage;
-
-    $getProjectsForThisPage = "SELECT * FROM projects LIMIT $offset, $projectsPerPage";
-    $paginatedProjects = mysqli_query($db, $getProjectsForThisPage);
-    return array(
-        "projects" => $paginatedProjects,
-        "currentPage" => $currentPage,
-        "totalPages" => $totalPages,
-        "offset" => $offset,
-    );} else {
+function getProjects($db, $isFiltered=false) {
+    // Find how many projects there are
+    if($isFiltered){
         $valueToSearch = $_POST["valueToSearch"];
         $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects WHERE title LIKE '%$valueToSearch%'";
+    }else{
+        $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
+    }
+ 
     $countTotalProjectsResult = mysqli_query($db, $countTotalProjectsQuery);
     $countProjects = mysqli_fetch_assoc($countTotalProjectsResult);
     $countTotalProjects = $countProjects["COUNT(*)"];
@@ -71,8 +41,13 @@ function getProjects($db,$isFiltered) {
 
     // the offset of the list, based on current page 
     $offset = ($currentPage - 1) * $projectsPerPage;
+    if($isFiltered){
+        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' LIMIT $offset, $projectsPerPage";
+    }else{
+         $getProjectsForThisPage = "SELECT * FROM projects LIMIT $offset, $projectsPerPage";
+    }
 
-    $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' LIMIT $offset, $projectsPerPage";
+   
     $paginatedProjects = mysqli_query($db, $getProjectsForThisPage);
     return array(
         "projects" => $paginatedProjects,
@@ -80,7 +55,6 @@ function getProjects($db,$isFiltered) {
         "totalPages" => $totalPages,
         "offset" => $offset,
     );
-}
 }
 
 function countProjectTasks($projectId, $db, $isFinished=false) {
@@ -93,7 +67,12 @@ function countProjectTasks($projectId, $db, $isFinished=false) {
     $taskCount = mysqli_fetch_assoc($taskCountResult);
     return $taskCount["COUNT(*)"] ;
 }
-if(isset($_POST["search"])){
-    $isFiltered = true;
-    echo"pastatyta";
+
+function isFiltered($db){
+    if(isset($_POST["search"])){
+        $projectsInformation = getProjects($db,$isFiltered=true);
+    }else{
+        $projectsInformation = getProjects($db);
+    }
+    return $projectsInformation;
 }

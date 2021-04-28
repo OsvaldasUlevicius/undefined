@@ -13,7 +13,7 @@ include('../../modules/projects/projectList.php');
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFileLocation; ?>">
 </head>
 <body>
-    <form action="projectListFilter.php" method="POST">
+    <form action="" method="POST">
         <input type="text" name="valueToSearch"/>
         <input type="submit" name="search" value="search"/>
     </form>
@@ -26,7 +26,7 @@ include('../../modules/projects/projectList.php');
         <th>Not Finished Task Count</th>
         <th>Delete Project</th>
     </tr>
-    <?php $projectsInformation = getProjects($db,$isfiltered=false); ?>
+    <?php $projectsInformation = isFiltered($db);?>
     <?php foreach ($projectsInformation["projects"] as $project): ?>
         <tr>
             <td>
