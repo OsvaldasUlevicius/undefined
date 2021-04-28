@@ -8,9 +8,15 @@ if (isset($_POST["projectId"])) {
     mysqli_query($db, $deleteProject);
 }
 
-function getProjects($db) {
-     // Find how many projects there are
-    $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
+function getProjects($db, $isFiltered=false) {
+    // Find how many projects there are
+    if($isFiltered){
+        $valueToSearch = $_GET["valueToSearch"];
+        $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects WHERE title LIKE '%$valueToSearch%'";
+    }else{
+        $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
+    }
+ 
     $countTotalProjectsResult = mysqli_query($db, $countTotalProjectsQuery);
     $countProjects = mysqli_fetch_assoc($countTotalProjectsResult);
     $countTotalProjects = $countProjects["COUNT(*)"];
@@ -35,8 +41,13 @@ function getProjects($db) {
 
     // the offset of the list, based on current page 
     $offset = ($currentPage - 1) * $projectsPerPage;
+    if($isFiltered){
+        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' LIMIT $offset, $projectsPerPage";
+    }else{
+         $getProjectsForThisPage = "SELECT * FROM projects LIMIT $offset, $projectsPerPage";
+    }
 
-    $getProjectsForThisPage = "SELECT * FROM projects LIMIT $offset, $projectsPerPage";
+   
     $paginatedProjects = mysqli_query($db, $getProjectsForThisPage);
     return array(
         "projects" => $paginatedProjects,
@@ -55,4 +66,13 @@ function countProjectTasks($projectId, $db, $isFinished=false) {
     $taskCountResult = mysqli_query($db, $countTasksQuery);
     $taskCount = mysqli_fetch_assoc($taskCountResult);
     return $taskCount["COUNT(*)"] ;
+}
+
+function isFiltered($db){
+    if(isset($_GET["search"])){
+        $projectsInformation = getProjects($db,$isFiltered=true);
+    }else{
+        $projectsInformation = getProjects($db);
+    }
+    return $projectsInformation;
 }
