@@ -13,6 +13,10 @@ include('../../modules/projects/projectList.php');
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFileLocation; ?>">
 </head>
 <body>
+    <form action="" method="GET">
+        <input type="text" name="valueToSearch"/>
+        <input type="submit" name="search" value="search"/>
+    </form>
 <table>
     <tr>
         <th>Title</th>
@@ -20,8 +24,10 @@ include('../../modules/projects/projectList.php');
         <th>Status</th>
         <th>Task Count</th>
         <th>Not Finished Task Count</th>
+        <th>Delete Project</th>
     </tr>
-    <?php foreach (getProjects($db) as $project): ?>
+    <?php $projectsInformation = isFiltered($db);?>
+    <?php foreach ($projectsInformation["projects"] as $project): ?>
         <tr>
             <td>
                 <a href="taskList.php?project_id=<?php echo $project["id"]; ?>">
@@ -32,8 +38,15 @@ include('../../modules/projects/projectList.php');
             <td><?php echo getStatus($project["status"], $db); ?></td>
             <td><?php echo  countProjectTasks($project["id"], $db); ?></td>
             <td><?php echo  countProjectTasks($project["id"], $db, $isFinished=true);; ?></td>
+            <td>
+                <form method="POST" action="projectList.php">
+                    <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
+                    <button type="submit" id="delete">DELETE</button>
+                </form>
+            </td>
         </tr>
     <?php endforeach ?>
 </table>
+<?php include("../../modules/pagination_links.php"); ?>
 </body>
 </html>
