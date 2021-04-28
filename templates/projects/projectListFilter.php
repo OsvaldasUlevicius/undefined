@@ -26,7 +26,7 @@ include('../../modules/projects/projectList.php');
         <th>Not Finished Task Count</th>
         <th>Delete Project</th>
     </tr>
-    <?php $projectsInformation = getProjects($db,$isfiltered=false); ?>
+    <?php $projectsInformation = getProjects($db,$isFiltered=true); ?>
     <?php foreach ($projectsInformation["projects"] as $project): ?>
         <tr>
             <td>
