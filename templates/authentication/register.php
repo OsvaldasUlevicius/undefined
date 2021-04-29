@@ -56,7 +56,7 @@ include('../../modules/authentication/server.php');
             </div>
 
             <div class="member-login">
-                <p>Already a member?  <a href="login.php">Login here</a></p>
+                <p id="member-login">Already a member?  <a href="login.php">Login here</a></p>
             </div>
 
             
