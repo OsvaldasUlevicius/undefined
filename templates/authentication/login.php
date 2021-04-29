@@ -37,14 +37,14 @@ include('../../modules/authentication/server.php');
             <div class="input-container-1">
                 <!-- <label for="username">Username</label> -->
                 <!-- <i class="far fa-envelope"></i> -->
-                <img class="input-img" src="../../public/img/mail.png" />
+                <img class="input-img" src="../../public/img/mail.svg" />
                 <input type="email" name="username" id="login-username" placeholder="E-mail">
             </div>
 
             <div class="input-container-2">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
-                <img class="input-img" src="../../public/img/key.png" />
+                <img class="input-img" src="../../public/img/key.svg" />
                 <input type="password" name="password" id="login-password" placeholder="Password">
             </div>
 
