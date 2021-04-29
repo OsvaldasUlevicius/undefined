@@ -28,7 +28,7 @@ include('../../modules/projects/projectList.php');
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <?php $projectsInformation = isFiltered($db);?>
+    <?php $projectsInformation = isFiltered($db); $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
     <?php foreach ($projectsInformation["projects"] as $project): ?>
         <tr>
             <td>
