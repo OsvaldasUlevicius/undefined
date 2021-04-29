@@ -16,6 +16,7 @@ include('../../modules/projects/projectList.php');
     <form action="" method="GET">
         <input type="text" name="valueToSearch"/>
         <input type="submit" name="search" value="search"/>
+        <input type="submit" name="csvProjects" value="Export to CSV"/>
     </form>
 <table>
     <tr>

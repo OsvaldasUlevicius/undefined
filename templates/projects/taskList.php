@@ -29,5 +29,8 @@ include('../../modules/projects/taskList.php');
         </tr>
     <?php endforeach ?>
 </table>
+    <form action="" method="GET">
+        <input type="submit" name="csvTasks" value="Export to CSV"/>
+    </form>
 </body>
 </html>
