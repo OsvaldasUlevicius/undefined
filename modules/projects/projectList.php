@@ -9,6 +9,7 @@ if (isset($_POST["projectId"])) {
 }
 
 function getProjects($db, $isFiltered=false) {
+    $errors = array();
     // Find how many projects there are
     if($isFiltered){
         $valueToSearch = $_GET["valueToSearch"];
@@ -20,6 +21,9 @@ function getProjects($db, $isFiltered=false) {
     $countTotalProjectsResult = mysqli_query($db, $countTotalProjectsQuery);
     $countProjects = mysqli_fetch_assoc($countTotalProjectsResult);
     $countTotalProjects = $countProjects["COUNT(*)"];
+    if($countTotalProjects == 0) {
+        array_push($errors, "Your search did not match any project titles");
+    }
 
     // Get total pages necessary
     $projectsPerPage = 5;
@@ -54,6 +58,7 @@ function getProjects($db, $isFiltered=false) {
         "currentPage" => $currentPage,
         "totalPages" => $totalPages,
         "offset" => $offset,
+        "errors" => $errors,
     );
 }
 
