@@ -4,42 +4,25 @@ input {
     display: inline-block;
 }
 
-* {
-    background-color: #E5E5E5;
-}
-
-.logo-top {
-    position: absolute;
-    text-align: center;
-    top: 4vh;
-    background: transparent;
-}
-
-.logo {
-    width: 110px;
-    background: transparent;
-}
-
 body {
+    background: linear-gradient(#e6e6e6, #ffffff);
+    min-height: 100%;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* table {
-    width: 100%;
-    table-layout: fixed;
-} */
-
-/* table, th, td {
-    border: 1px solid #B0EFE0;
-} */
-
-/* table td {
-    overflow: hidden;
-    text-overflow: ellipsis;
+.logo-top {
+    position: absolute;
     text-align: center;
-} */
+    top: 5vh;
+    background: transparent;
+}
+
+.logo {
+    max-width: 100px;
+}
 
 h1,
 h2 {
@@ -48,8 +31,9 @@ h2 {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 400;
+    margin: 20px 0 0 0;
 }
 
 h2 {
@@ -59,21 +43,15 @@ h2 {
 }
 
 #login-wrapper>h1,
-#login-wrapper>h2 {
+#login-wrapper>h2,
+#register-wrapper>h1,
+#register-wrapper>h2 {
     color: #3D4E61;
-    background-color: #FFFFFF;
 }
 
 #login-register>h1,
 #login-register>h2 {
     color: #FFFFFF;
-    background-color: #B0EFE0;
-}
-
-#register-wrapper>h1,
-#register-wrapper>h2 {
-    color: #3D4E61;
-    background-color: #FFFFFF;
 }
 
 #login-wrapper {
@@ -81,12 +59,13 @@ h2 {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 440px;
-    height: 368px;
+    min-width: 430px;
+    min-height: 368px;
     margin: 25vh 0 20vh 0;
     background-color: #FFFFFF;
     border: 2px solid #B0EFE0;
-    border-radius: 0.4rem 0 0 0.4rem;
+    border-radius: 0.3rem 0 0 0.3rem;
+    box-shadow: -3px 10px 7px 2px rgba(80, 80, 80, 0.1);
 }
 
 #login-register {
@@ -94,12 +73,13 @@ h2 {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 440px;
-    height: 368px;
+    min-width: 430px;
+    min-height: 368px;
     margin: 25vh 0 20vh 0;
     background-color: #B0EFE0;
     border: 2px solid #B0EFE0;
-    border-radius: 0 0.4rem 0.4rem 0;
+    border-radius: 0 0.3rem 0.3rem 0;
+    box-shadow: 3px 10px 7px 2px rgba(80, 80, 80, 0.1);
 }
 
 #register-wrapper {
@@ -107,82 +87,83 @@ h2 {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 440px;
-    height: 460px;
+    min-width: 400px;
+    min-height: 440px;
     margin: 25vh 0 5vh 0;
     background-color: #FFFFFF;
     border: 2px solid #B0EFE0;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 10px 7px 2px rgba(80, 80, 80, 0.1);
 }
 
-#login-form,
+input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+    font-size: 14px;
+    color: #BCBCBC;
+    border: 2px solid #B0EFE0;
+    border-radius: 0.3rem;
+    margin: 10px 0 12px 0;
+}
+
 #login-username,
-#login-password,
+#login-password {
+    width: 230px;
+}
+
 #register-username,
 #register-password1,
-#register-password2,
-.input-container-1,
-.input-container-2,
-.submit-button,
-.register-button,
-.member-button,
-.member-login {
-    background-color: #FFFFFF;
+#register-password2 {
+    width: 222px;
 }
 
 ::placeholder {
     color: #BCBCBC;
 }
 
-input:autofill {
-    color: #BCBCBC;
-}
+/* input:-webkit-autofill {
+    color: #BCBCBC !important;
+    background: none !important;
+} */
 
-#login-username,
-#login-password,
-#register-username,
-#register-password1,
-#register-password2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    line-height: 30px;
-    font-size: 16px;
-    color: #BCBCBC;
-    border: 2px solid #B0EFE0;
-    border-radius: 5px;
-    width: 260px;
-    margin: 12px 0 12px 0;
-}
-
-button,
+#signup,
 #login-submit,
 #register-submit {
-    /* align-self: center; */
     font-weight: 700;
-    width: 106px;
+    width: 100px;
     height: 34px;
-    border-radius: 5px;
-    margin: 16px 0 5px 0;
-}
-
-#login-submit {
-    background-color: #B0EFE0;
-    color: #FFFFFF;
-    border: 2px solid #B0EFE0;
-    margin: 20px 0 20px 0;
-}
-
-#register-submit {
-    background-color: #B0EFE0;
-    color: #FFFFFF;
-    border: 2px solid #B0EFE0;
-    margin: 20px 0 20px 0;
+    border-radius: 0.3rem;
 }
 
 #signup {
     background-color: #FFFFFF;
     color: #B0EFE0;
     border: 2px solid #FFFFFF;
+    margin: 4% 0 15% 0;
+}
+
+#login-submit {
+    background-color: #B0EFE0;
+    color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    padding: 0 0 3px 0;
+    margin: 20px 0 50px 0;
+}
+
+#register-submit {
+    background-color: #B0EFE0;
+    color: #FFFFFF;
+    border: 2px solid #B0EFE0;
+    padding: 0 0 3px 0;
+    margin: 20px 0 20px 0;
+}
+
+.submit-button,
+.register-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a:link,
@@ -194,56 +175,54 @@ a:active {
     background-color: #FFFFFF;
 }
 
-.input-container-1 {
-    position: relative;
+#login-submit:hover,
+#register-submit:hover,
+#signup:hover {
+    cursor: pointer;
 }
 
-.input-container-1>img {
-    position: absolute;
-    top: 20px;
-    left: 9px;
-    background-color: #FFFFFF;
-}
-
-.input-container-1>input {
-    padding-left: 50px;
-}
-
+.input-container-1,
 .input-container-2 {
     position: relative;
 }
 
+.input-container-1>img,
 .input-container-2>img {
     position: absolute;
-    top: 20px;
-    left: 9px;
+    top: 18px;
+    left: 8px;
     background-color: #FFFFFF;
 }
 
+.input-container-1>input,
 .input-container-2>input {
     padding-left: 50px;
 }
 
-.submit-button {
+.member-login {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.register-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.member-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 14px;
+    color: #687C94;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    padding: 10px 0 20px 0;
+    margin: 0 0 20px 0;
 }
 
 .msg,
 .error {
-    display: flex;
-    background-color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #BCBCBC;
+}
+
+.error {
+    color: #FFFFFF;
+    padding: 0 6px 0 6px;
+    line-height: 1.1rem;
+    background-color: red;
+    margin: 0 10px 10px 10px;
+    border-radius: 0.1rem;
 }

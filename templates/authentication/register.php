@@ -23,15 +23,16 @@ include('../../modules/authentication/server.php');
     <div id="register-wrapper">
 
         <h1>Register</h1>
-        <h2>Type your e-mail and password</h2>
+        <h2>Choose your username and password</h2>
+        <?php include('../../modules/errors.php'); ?>
 
         <form method="POST" action="register.php" id="register-form">
-            <?php include('../../modules/errors.php'); ?>
+            
 
             <div class="input-container-1">
                 <!-- <label for="username">Username</label> -->
                 <!-- <i class="far fa-envelope"></i> -->
-                <img class="input-img" src="../../public/img/mail.png" />
+                <img class="input-img" src="../../public/img/mail.svg" />
                 <input type="email" name="username" value="<?php echo $username; ?>" id="register-username"
                     placeholder="E-mail">
             </div>
@@ -39,14 +40,14 @@ include('../../modules/authentication/server.php');
             <div class="input-container-2">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
-                <img class="input-img" src="../../public/img/key.png" />
+                <img class="input-img" src="../../public/img/key.svg" />
                 <input type="password" name="password1" id="register-password1" placeholder="Create password">
             </div>
 
             <div class="input-container-2">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
-                <img class="input-img" src="../../public/img/key.png" />
+                <img class="input-img" src="../../public/img/key.svg" />
                 <input type="password" name="password2" id="register-password2" placeholder="Repeat new password">
             </div>
 
@@ -54,18 +55,11 @@ include('../../modules/authentication/server.php');
                 <input type="submit" name="register" value="Register" id="register-submit">
             </div>
 
-            <div class="member-button">
-                <p class="member-login">Already a member? <a href="login.php">Login here!</a></p>
+            <div class="member-login">
+                <p>Already a member?  <a href="login.php">Login here</a></p>
             </div>
 
-            <!-- <label for="username">Username</label>
-            <input type="email" name="username" value="<?php echo $username; ?>" id="register-username">
-            <label for="password1">Create password</label>
-            <input type="password" name="password1" id="register-password1">
-            <label for="password2">Repeat new password</label>
-            <input type="password" name="password2" id="register-password2">
-            <input type="submit" name="register" value="Sign Up" id="register-submit">
-            <a href="login.php">Log In!</a> -->
+            
     </div>
     </form>
 </body>
