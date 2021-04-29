@@ -1,6 +1,6 @@
 ![logo_transparent](/public/img/logo_transparent.png)
 
-undefined is an issue tracking product that allows agile project management. Our goal is to make work life simpler, more efficient and stress-free.
+undefined is an issue tracking product that allows agile project management. Our goal is to make work life simpler, more efficient and stress-free.  
 
 ### Installation
 
@@ -24,9 +24,15 @@ Press "Go".
 Login or Create account
 
 ![Login/Create account](/public/img/login.png)
-Format: ![login screen](http://github.com)
 
 Register
 
 ![Register](/public/img/register.png)
-Format: ![register](http://github.com)
+
+Create projects
+
+![Create projects](/public/img/create_projects.png)
+
+Manage tasks
+
+![manage tasks](/public/img/manage_tasks.png)
