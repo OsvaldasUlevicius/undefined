@@ -156,19 +156,23 @@ a:active {
 #login-submit:hover,
 #register-submit:hover {
     cursor: pointer;
-    background-color: #a6eddc;
-    border: 2px solid #a6eddc;
+    background-color: #95e6d2;
+    border: 2px solid #95e6d2;
     transform: scale(1.03) perspective(1px);
     transition-timing-function: ease-in;
 }
 
 #signup:hover,
-#signup:hover>a {
+#signup>a:hover {
     cursor: pointer;
     background-color: #ffffff;
     border: 2px solid #ffffff;
     transform: scale(1.03) perspective(1px);
     transition-timing-function: ease-in;
+}
+
+#member-login>a:hover {
+    color: #95e6d2;
 }
 
 .input-container-1,
@@ -204,19 +208,14 @@ a:active {
 .error {
     font-size: 12px;
     color: #FFFFFF;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     border-radius: 0.1rem;
+    padding: 0 10px 0 10px;
 }
 
-.error {
-    background-color: red;
-    padding: 0 6px 0 6px;
-    margin: 0 10px 10px 10px;
-}
+.error { background-color: red; }
 
-.msg {
-    background-color: #38cf68;
-}
+.msg { background-color: #38cf68; }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
