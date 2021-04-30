@@ -1,4 +1,5 @@
 @import "reset.css";
+*{box-sizing: border-box;}
 
 input { display: inline-block; }
 
@@ -209,11 +210,11 @@ a:active {
     font-size: 12px;
     color: #FFFFFF;
     line-height: 1.2rem;
-    border-radius: 0.1rem;
+    border-radius: 0.3rem;
     padding: 0 10px 0 10px;
 }
 
-.error { background-color: red; }
+.error { background-color: #C51B1B; }
 
 .msg { background-color: #38cf68; }
 
@@ -228,4 +229,174 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     -webkit-text-fill-color: #BCBCBC;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* projectlist */
+
+body.project-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+body.project-list::-webkit-scrollbar {
+    display: none;
+  }
+
+nav{
+    padding: 5px 20px;
+    width: 100%;
+    border-bottom: 1px solid #bcbcbc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #687C94;
+}
+
+nav img{
+    height: 30px;
+}
+nav .nav-form{
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+nav span{font-weight: bold; padding-right:10px;}
+
+nav #logout{
+    margin-top: 13px;
+    border: none;
+    padding: 0;
+    background: none;
+    font-weight: bold;
+    color: #687C94 ;
+}
+
+nav #logout:hover{
+    cursor: pointer;
+    color: #3D4E61;
+}
+
+.logo-in-page{
+    margin: 50px 0;
+}
+
+h1{
+    margin: 0;
+    color: #3D4E61;
+}
+
+.container-table{
+    color: #3D4E61;
+    width: 80%;
+    margin: 20px;
+    background-color: #ffffff;
+    border: 2px solid #B0EFE0;
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    position: relative;
+}
+
+.table-head{
+    width: 100%;
+    padding: 10px 30px;
+    border-bottom:1px solid #bcbcbc;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+h4{font-weight: bold;}
+.table-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.table-row{
+    width: 95%;
+    margin:10px;
+    border: 1px solid #B0EFE0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.project-name,.th.title{padding-left: 10px; width: 10%;}
+.project-description{width: 30%;}
+.th.status{padding-right: 19%;}
+.th.total{padding-left: 25%;}
+.th.description{margin-left: 5%;}
+
+.project-name a{
+    color: #3D4E61;
+    font-weight: 500;
+}
+
+
+.pagination-links,.edit-delete{display: flex;flex-direction: row;}
+
+span.status-box{
+    color: #fff;
+    padding: 5px;
+    border-radius: 0.3rem;
+}
+span.in-progres{background: #687C94;}
+span.completed{background: #B0EFE0;}
+#search-form{width: 100%;}
+#input-search{
+    padding-left: 20px;
+    width: 50%;
+}
+.btn{ 
+    background: none;
+    border: none;
+}
+.btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.btn:active{transform: scale(.98);}
+
+
+.bottom-btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#csv-form input{
+    color:#B0EFE0;
+    font-weight: 500;
+    border: 2px solid #B0EFE0;
+}
+
+#create-new-project-btn {
+    margin: 30px 0 20px 0 ;
+}
+
+#csv-form{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 85%;
+}
+
+#btn-search{
+    position: absolute;
+    top: 54%;
+    right: 26%;
 }
