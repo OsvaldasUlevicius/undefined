@@ -12,7 +12,7 @@ include('../../modules/projects/taskList.php');
     <title>Create new project</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFileLocation; ?>">
 </head>
-<body>
+<body style="flex-direction: column;">
 <table>
     <tr>
         <th>Title</th>
@@ -32,5 +32,6 @@ include('../../modules/projects/taskList.php');
     <form action="" method="GET">
         <input type="submit" name="csvTasks" value="Export to CSV"/>
     </form>
+    <a href="projectList.php">Back to Project list</a>
 </body>
 </html>
