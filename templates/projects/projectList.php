@@ -74,7 +74,7 @@ include('../../modules/projects/projectList.php');
 <div class="pagination-links">       
 <?php include("../../modules/pagination_links.php"); ?>
 </div>     
-<a class="btn" id="create-new-project-btn" href="../templates/projects/createProject.php"><img src="../../public/img/create-new-project-btn.png"></a>
+<a class="btn" id="create-new-project-btn" href="createProject.php"><img src="../../public/img/create-new-project-btn.png"></a>
 <form id="csv-form" action="" method="get">
 <input class="btn" type="submit" name="csvProjects" value="Export to CSV"/>
 </div>
