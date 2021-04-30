@@ -21,7 +21,7 @@ function logout() {
     if (isset($_GET["logout"])) {
         session_destroy();
         unset($_SESSION["username"]);
-        header("location: ../templates/authentication/login.php");
+        header("location: ../../templates/authentication/login.php");
     }
 }
 
@@ -37,4 +37,20 @@ function getStatus($statusId, $db, $isProject=true) {
     $status = mysqli_fetch_assoc($statusResult);
 
 	return $status["status"];
+}
+
+
+function truncateWords($input, $numwords, $padding=""){
+    $output = strtok($input, " \n");
+    while(--$numwords > 0) $output .= " " . strtok(" \n");
+    if($output != $input) $output .= $padding;
+    return $output;
+  }
+
+function checkStatus($status){
+    if($status == "vykdomas"){
+        echo("<span class='status-box in-progres'>Ongoing</span>");
+    }else{
+        echo("<span class='status-box completed'>Completed</span>");
+    }
 }
