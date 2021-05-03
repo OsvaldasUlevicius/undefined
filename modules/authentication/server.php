@@ -15,6 +15,8 @@ if (isset($_POST["register"])) {
         array_push($errors, "The passwords that you have entered do not match.");
     }
 
+    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) { array_push($errors, "Invalid e-mail format."); }
+
     $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);

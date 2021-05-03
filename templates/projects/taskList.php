@@ -30,6 +30,7 @@ include('../../modules/projects/taskList.php');
     <?php endforeach ?>
 </table>
     <form action="" method="GET">
+        <input value="<?php echo $_GET["project_id"]; ?>" type="hidden" name="projectId">
         <input type="submit" name="csvTasks" value="Export to CSV"/>
     </form>
     <a href="projectList.php">Back to Project list</a>
