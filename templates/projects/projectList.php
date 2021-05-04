@@ -58,12 +58,13 @@ include('../../modules/projects/projectList.php');
                     <p><?php echo  countProjectTasks($project["id"], $db, $isFinished=true);; ?></p>
                 </div>
                 <div class="status">
-                    <span><?php checkStatus(getStatus($project["status"], $db)); ?></span>
+                    <?php $projectStatus = getStatus($project["status"], $db); ?>
+                    <span class="status-box <?php echo strtolower($projectStatus);?>"><?php echo $projectStatus;?></span>
                 </div>
                 <div class="edit-delete">
                 <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
                     <img src="../../public/img/edit.png"></a>
-                    <form method="POST" action="projectList.php">
+                <form method="POST" action="projectList.php">
                     <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
                     <button class="btn" type="submit" id="delete"><img src="../../public/img/trash.png"></button>
                 </form>

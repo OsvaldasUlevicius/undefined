@@ -47,18 +47,9 @@ function getProjectName($projectId, $db) {
     return $project["title"];
 }
 
-
 function truncateWords($input, $numwords, $padding=""){
     $output = strtok($input, " \n");
     while(--$numwords > 0) $output .= " " . strtok(" \n");
     if($output != $input) $output .= $padding;
     return $output;
   }
-
-function checkStatus($status){
-    if($status == "vykdomas"){
-        echo("<span class='status-box in-progres'>Ongoing</span>");
-    }else{
-        echo("<span class='status-box completed'>Completed</span>");
-    }
-}
