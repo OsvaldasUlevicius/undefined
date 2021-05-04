@@ -28,8 +28,8 @@ include('../../modules/projects/editProject.php');
     <input onchange="onChange('description')" id="description" type="text" name="description" placeholder="Enter project description" maxlength="1000" value="<?php echo $project["description"]; ?>">
     <label for="status">Project status</label>
     <select id="status" name="status">
-        <option value="2" <?php echo ($project["status"] == 2 ? 'selected' : ''); ?>>Done</option>
-        <option value="1" <?php echo ($project["status"] == 1 ? 'selected' : ''); ?>>In progress</option>
+        <option value="2" <?php echo ($project["status"] == 2 ? 'selected' : ''); ?>>Completed</option>
+        <option value="1" <?php echo ($project["status"] == 1 ? 'selected' : ''); ?>>Ongoing</option>
     </select>
     <input type="submit" name="editProject" value="Save">
 </form>

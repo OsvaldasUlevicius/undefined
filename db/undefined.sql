@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 09:22 AM
+-- Generation Time: May 04, 2021 at 06:26 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -65,8 +65,8 @@ CREATE TABLE `project_statuses` (
 --
 
 INSERT INTO `project_statuses` (`id`, `status`) VALUES
-(2, 'užbaigtas'),
-(1, 'vykdomas');
+(2, 'Completed'),
+(1, 'Ongoing');
 
 -- --------------------------------------------------------
 
@@ -101,9 +101,9 @@ CREATE TABLE `task_priorities` (
 --
 
 INSERT INTO `task_priorities` (`id`, `priority`) VALUES
-(3, 'aukštas'),
-(2, 'vidutinis'),
-(1, 'žemas');
+(3, 'High'),
+(1, 'Low'),
+(2, 'Medium');
 
 -- --------------------------------------------------------
 
@@ -121,9 +121,9 @@ CREATE TABLE `task_statuses` (
 --
 
 INSERT INTO `task_statuses` (`id`, `status`) VALUES
-(2, 'daroma'),
-(3, 'padaryta'),
-(1, 'padaryti');
+(3, 'Completed'),
+(2, 'In Progress'),
+(1, 'TODO');
 
 -- --------------------------------------------------------
 

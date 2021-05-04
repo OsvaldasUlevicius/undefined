@@ -352,7 +352,7 @@ span.status-box{
     padding: 5px;
     border-radius: 0.3rem;
 }
-span.in-progres{background: #687C94;}
+span.ongoing{background: #687C94;}
 span.completed{background: #B0EFE0;}
 #search-form{width: 100%;}
 #input-search{
