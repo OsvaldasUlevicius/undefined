@@ -39,6 +39,14 @@ function getStatus($statusId, $db, $isProject=true) {
 	return $status["status"];
 }
 
+function getProjectName($projectId, $db) {
+    $projectQuery = "SELECT * FROM projects WHERE id='$projectId' LIMIT 1";
+    $projectResult = mysqli_query($db, $projectQuery);
+    $project = mysqli_fetch_assoc($projectResult);
+
+    return $project["title"];
+}
+
 
 function truncateWords($input, $numwords, $padding=""){
     $output = strtok($input, " \n");

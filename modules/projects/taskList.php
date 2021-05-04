@@ -14,53 +14,45 @@ function getPriority($priorityId, $db, $isTask=true) {
 
 	return $priority["priority"];
 }
-if(isset($_GET['csvTasks'])){
-// database record to be exported
-$db_record = 'tasks';
-// optional where query
-$where = 'WHERE 1 ORDER BY 1';
-// filename for export
-$csv_filename = 'db_export_'.$db_record.'_'.date('Y-m-d').'.csv';
-// database variables
-$hostname = "localhost";
-$user = "root";
-$password = "";
-$database = "undefined";
-$port = 3306;
 
-$conn = mysqli_connect($hostname, $user, $password, $database, $port);
-if (mysqli_connect_errno()) {
-    die("Failed to connect to MySQL: " . mysqli_connect_error());
-}
+if(isset($_GET["csvTasks"])){
+    // database record to be exported
+    $db_record = "tasks";
+    // filename for export
+    $csv_filename = $db_record."_".date('Y-m-d').".csv";
 
-// create empty variable to be filled with export data
-$csv_export = '';
+    // create empty variable to be filled with export data
+    $csv_export = "";
 
-// query to get data from database
-$query = mysqli_query($conn, "SELECT * FROM ".$db_record." ".$where);
-$field = mysqli_field_count($conn);
+    // query to get data from database
+    $query = mysqli_query($db, "SELECT * FROM ".$db_record." WHERE project=".$_GET["projectId"]);
+    // returns the number of columns for the most recent query
+    $field = mysqli_field_count($db);
 
-// create line with field names
-for($i = 0; $i < $field; $i++) {
-    $csv_export.= mysqli_fetch_field_direct($query, $i)->name.';';
-}
+    // add header to file
+    $csv_export.="Task ID; Project; Title; Description; Priority; Status;";
 
-// newline (seems to work both on Linux & Windows servers)
-$csv_export.= '
-';
-
-// loop through database query and fill export variable
-while($row = mysqli_fetch_array($query)) {
-    // create line with field values
-    for($i = 0; $i < $field; $i++) {
-        $csv_export.= '"'.$row[mysqli_fetch_field_direct($query, $i)->name].'";';
-    }
+    // newline (seems to work both on Linux & Windows servers)
     $csv_export.= '
-';
-}
+    ';
 
-// Export the data and prompt a csv file for download
-header("Content-type: text/x-csv");
-header("Content-Disposition: attachment; filename=".$csv_filename."");
-echo($csv_export);
+    foreach ($query as $result) {
+        $id = $result["id"];
+        $project = getProjectName($result["project"], $db);
+        $title = $result["title"];
+        $description = $result["description"];
+        $priority = getPriority($result["priority"], $db);
+        $status = getStatus($result["status"], $db, $isProject=false);
+
+        $csv_export.= "$id;$project;$title;$description;$priority;$status";
+        $csv_export.= '
+        ';
+    }
+
+
+    // Export the data and prompt a csv file for download
+    header("Content-type: text/x-csv");
+    header("Content-Disposition: attachment; filename=".$csv_filename."");
+    echo($csv_export);
+    exit();
 }
