@@ -11,6 +11,18 @@ include('../../modules/projects/taskList.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create new project</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFileLocation; ?>">
+    <style>
+        table {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
 </head>
 <body style="flex-direction: column;">
 <table>
@@ -33,6 +45,9 @@ include('../../modules/projects/taskList.php');
         <input value="<?php echo $_GET["project_id"]; ?>" type="hidden" name="projectId">
         <input type="submit" name="csvTasks" value="Export to CSV"/>
     </form>
+    <a class="btn" href="createTask.php?project_id=<?php echo $_GET["project_id"]; ?>">
+        Create task
+    </a>
     <a href="projectList.php">Back to Project list</a>
 </body>
 </html>
