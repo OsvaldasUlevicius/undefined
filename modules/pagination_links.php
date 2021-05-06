@@ -20,7 +20,7 @@ for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) {
       // if we're on current page...
       if ($x == $currentPage) {
          // 'highlight' it but don't make a link
-         echo " [<b>$x</b>] ";
+         echo " <b>$x</b> ";
       // if not current page...
       } else {
          // make it a link
