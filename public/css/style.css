@@ -282,6 +282,19 @@ nav #logout:hover{
     color: #3D4E61;
 }
 
+footer{
+    margin-top: 20px;
+    border-top: 1px solid #bcbcbc;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #687C94 ;
+}
+
+
+
 .logo-in-page{
     margin: 50px 0;
 }
@@ -306,38 +319,41 @@ h1{
     position: relative;
 }
 
+#title{grid-area: title;}
+#description{grid-area: description;}
+#task-count{grid-area: task-count;}
+#task-left{grid-area: task-left;}
+#status{grid-area: status;}
+
+
 .table-head{
     width: 100%;
     padding: 10px 30px;
     border-bottom:1px solid #bcbcbc;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.6fr 2.9fr 1fr 1.3fr 1.9fr;
+    grid-template-areas: "title description task-count task-left status";
+    margin-bottom: 20px;
 }
 h4{font-weight: bold;}
 .table-body{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap:20px;
 }
 .table-row{
-    width: 95%;
-    margin:10px;
     border: 1px solid #B0EFE0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    margin: 0 20px;
     padding: 5px;
+    display: grid;
+    grid-template-columns: 1.5fr 3.6fr 1fr 1fr 1.7fr 0.5fr;
+    grid-template-rows: auto;
+    align-items: center;
 }
 
-.project-name,.th.title{padding-left: 10px; width: 10%;}
-.project-description{width: 30%;}
-.th.status{padding-right: 19%;}
-.th.total{padding-left: 25%;}
-.th.description{margin-left: 5%;}
 
 .project-name a{
     color: #3D4E61;
@@ -347,17 +363,21 @@ h4{font-weight: bold;}
 
 .pagination-links,.edit-delete{display: flex;flex-direction: row;}
 
-span.status-box{
+.status-box{
     color: #fff;
-    padding: 5px;
+    padding: 10px;
     border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 }
-span.ongoing{background: #687C94;}
-span.completed{background: #B0EFE0;}
+.ongoing{background: #687C94;}
+.completed{background: #B0EFE0;}
 #search-form{width: 100%;}
 #input-search{
     padding-left: 20px;
-    width: 50%;
+    width: 100%;
 }
 .btn{ 
     background: none;
@@ -368,7 +388,7 @@ span.completed{background: #B0EFE0;}
     transform: scale(1.05);
 }
 .btn:active{transform: scale(.98);}
-
+#delete{margin-top: 1px;}
 
 .bottom-btns{
     width: 100%;
@@ -385,18 +405,26 @@ span.completed{background: #B0EFE0;}
 }
 
 #create-new-project-btn {
-    margin: 30px 0 20px 0 ;
+    margin: 30px 0 50px 0 ;
 }
 
 #csv-form{
-    width: 100%;
+    width: 105px;
     position: absolute;
-    bottom: 0;
-    left: 85%;
+    bottom: 10px;
+    right: 25px;
+}
+#search-form{
+    position: relative;
+     width: 50%;
+    }
+#btn-search{
+    
+    position: absolute;
+    top: 17px;
+    right: 10px;
 }
 
-#btn-search{
-    position: absolute;
-    top: 54%;
-    right: 26%;
+.pagination-links{
+    margin: 10px 0;
 }

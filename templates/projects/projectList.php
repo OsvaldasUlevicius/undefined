@@ -36,7 +36,7 @@ include('../../modules/projects/projectList.php');
         <div class="th title"><h4 id="title">Title</h4></div>
         <div class="th description"><h4 id="description">Description</h4></div>
         <div class="th total"><h4 id="task-count">Tasks total</h4></div>
-        <div class="th"><h4 id="task-left">Tasks left</h4></div>
+        <div class="th left"><h4 id="task-left">Tasks left</h4></div>
         <div class="th status"><h4 id="status">Status</h4></div>
     </div>
     <div class="table-body">
@@ -59,7 +59,7 @@ include('../../modules/projects/projectList.php');
                 </div>
                 <div class="status">
                     <?php $projectStatus = getStatus($project["status"], $db); ?>
-                    <span class="status-box <?php echo strtolower($projectStatus);?>"><?php echo $projectStatus;?></span>
+                    <div class="status-box <?php echo strtolower($projectStatus);?>"><?php echo $projectStatus;?></div>
                 </div>
                 <div class="edit-delete">
                 <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
@@ -80,5 +80,8 @@ include('../../modules/projects/projectList.php');
     <input class="btn" type="submit" name="csvProjects" value="Export to CSV"/>
 </form>
 </div>
+<footer>
+        <p>Project management system 2021 ©</p>
+</footer>
 </body>
 </html>
