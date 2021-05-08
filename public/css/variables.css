@@ -1,0 +1,16 @@
+:root {
+    font-size: 16px;
+    --background: linear-gradient(#e6e6e6, #ffffff);
+    --primary-color:#B0EFE0;
+    --secondary-color:#B0C2EF;
+    --font-color-dark:#3D4E61;
+    --font-color-normal: #687C94;
+    --font-color-light: #bcbcbc;
+    --background-for-task:#E1EDFB;
+    --err-color: #C51B1B;
+    --white:#fff;
+
+    --border-primary: 2px solid #b0efe0;
+    --nav-border: 1px solid #bcbcbc;
+    --border-radius: 0.3rem;
+  }
