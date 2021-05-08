@@ -1,0 +1,42 @@
+
+/* reset buttons styles */
+.btn {
+    background: none;
+    border: none;
+}
+  
+.btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+  /* add new project/task button */
+  .add-btn {
+    width: 50px;
+    height: 50px;
+    border: var(--border-primary);
+    border-radius: 50%;
+    position: relative;
+  }
+  .add-btn::before,
+  .add-btn::after {
+    content: '';
+    display: block;
+    background: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .add-btn::before {
+    width: 2px;
+    height: 20px;
+  }
+  
+  .add-btn::after {
+    width: 20px;
+    height: 2px;
+  }
+
+  .icon{font-size: 1.2rem; color: var(--font-color-light);}
