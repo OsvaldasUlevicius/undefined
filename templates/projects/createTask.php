@@ -19,7 +19,7 @@ include('../../modules/projects/createTask.php');
     </script>
 </head>
 <body>
-<form method="POST" action="createTask.php">
+<form method="POST" action="createTask.php?project_id=<?php echo $_GET["project_id"]; ?>">
     <?php include('../../modules/errors.php'); ?>
     <input value="<?php echo $_GET["project_id"]; ?>" type="hidden" name="projectId">
     <label for="title">Task title</label>

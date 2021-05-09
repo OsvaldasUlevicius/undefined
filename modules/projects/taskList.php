@@ -15,6 +15,12 @@ function getPriority($priorityId, $db, $isTask=true) {
 	return $priority["priority"];
 }
 
+if (isset($_POST["taskId"])) {
+    $taskId = mysqli_real_escape_string($db, $_POST["taskId"]);
+    $deleteTask = "DELETE FROM tasks WHERE id='$taskId'";
+    mysqli_query($db, $deleteTask);
+}
+
 if(isset($_GET["csvTasks"])){
     // database record to be exported
     $db_record = "tasks";
