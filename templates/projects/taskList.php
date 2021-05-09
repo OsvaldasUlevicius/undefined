@@ -31,6 +31,9 @@ include('../../modules/projects/taskList.php');
         <th>Description</th>
         <th>Priority</th>
         <th>Status</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        <th>Actions</th>
     </tr>
     <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
         <tr>
@@ -38,6 +41,14 @@ include('../../modules/projects/taskList.php');
             <td><?php echo $task["description"]; ?></td>
             <td><?php echo getPriority($task["priority"], $db); ?></td>
             <td><?php echo getStatus($task["status"], $db, $isProject=false); ?></td>
+            <td><?php echo $task["created_at"]; ?></td>
+            <td><?php echo $task["updated_at"]; ?></td>
+            <td>
+                <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
+                  <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
+                  <button type="submit" id="delete">Delete</button>
+                </form>
+            </td>
         </tr>
     <?php endforeach ?>
 </table>
