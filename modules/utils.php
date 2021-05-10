@@ -1,5 +1,6 @@
 <?php
 
+// $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
 $db = mysqli_connect("localhost", "root", "", "undefined");
 
 $cssFileLocation = "../../public/css/style.css";

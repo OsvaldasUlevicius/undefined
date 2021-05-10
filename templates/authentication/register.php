@@ -15,21 +15,22 @@ include('../../modules/authentication/server.php');
 </script>
 </head>
 
-<body>
+<body class="login-register-body">
+    
     <div class="logo-top">
         <img class="logo" src="../../public/img/logo-desktop.png" />
     </div>
 
     <div id="register-wrapper">
 
-        <h1>Register</h1>
+        <h1 class="log-reg-heading">Register</h1>
         <h2>Choose your username and password</h2>
         <?php include('../../modules/errors.php'); ?>
 
         <form method="POST" action="register.php" id="register-form">
             
 
-            <div class="input-container-1">
+            <div class="log-reg-input-container">
                 <!-- <label for="username">Username</label> -->
                 <!-- <i class="far fa-envelope"></i> -->
                 <img class="input-img" src="../../public/img/mail.svg" />
@@ -37,14 +38,14 @@ include('../../modules/authentication/server.php');
                     placeholder="E-mail">
             </div>
 
-            <div class="input-container-2">
+            <div class="log-reg-input-container">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
                 <img class="input-img" src="../../public/img/key.svg" />
                 <input type="password" name="password1" id="register-password1" placeholder="Create password">
             </div>
 
-            <div class="input-container-2">
+            <div class="log-reg-input-container">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
                 <img class="input-img" src="../../public/img/key.svg" />

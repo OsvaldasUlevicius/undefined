@@ -15,33 +15,35 @@ include('../../modules/authentication/server.php');
     <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"> -->
 </head>
 
-<body>
+<body class="login-register-body">
     
+
     <div class="logo-top">
         <img class="logo" src="../../public/img/logo-desktop.png" />
     </div>
 
-    <div id="login-wrapper">
+    <div class="auth-wrap">
+        <div id="login-wrapper">
 
-        <h1>Login</h1>
-        <h2>Type your username and password</h2>
+            <h1 class="log-reg-heading">Login</h1>
+            <h2>Type your username and password</h2>
 
-        <form method="POST" action="login.php" id="login-form">
+            <form method="POST" action="login.php" id="login-form">
 
         <?php 
             session_start();
             include("../../modules/messages.php");
             include("../../modules/errors.php");
         ?>
-    
-            <div class="input-container-1">
+
+            <div class="log-reg-input-container">
                 <!-- <label for="username">Username</label> -->
                 <!-- <i class="far fa-envelope"></i> -->
                 <img class="input-img" src="../../public/img/mail.svg" />
                 <input type="email" name="username" id="login-username" placeholder="E-mail">
             </div>
 
-            <div class="input-container-2">
+            <div class="log-reg-input-container">
                 <!-- <label for="password">Password</label> -->
                 <!-- <i class="fas fa-key"></i> -->
                 <img class="input-img" src="../../public/img/key.svg" />
@@ -52,15 +54,15 @@ include('../../modules/authentication/server.php');
                 <input type="submit" name="login" value="Log in" id="login-submit">
             </div>
 
-        </form>
-    </div>
+            </form>
+        </div>
 
-    <div id="login-register">
-        <h1>Register</h1>
-        <h2>Don't have an account? Create one!</h2>
-        <button id="signup"><a href="register.php">Register</a></button>
+        <div id="login-register">
+            <h1>Register</h1>
+            <h2>Don't have an account? Create one!</h2>
+            <a href="register.php"><button id="signup">Register</button></a>
+        </div>
     </div>
-
 
 </body>
 
