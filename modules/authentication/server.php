@@ -1,5 +1,6 @@
 <?php
 include "utils.php";
+include "sendEmail.php";
 
 $username = "";
 $errors = array(); 
@@ -32,11 +33,13 @@ if (isset($_POST["register"])) {
     }
 
     if (count($errors) == 0) {
+        $token = bin2hex(random_bytes(50)); // generate unique token
         $password = password_hash($password1, PASSWORD_DEFAULT);
-        $query = "INSERT INTO users (username, password) VALUES('$username', '$password')";
+        $query = "INSERT INTO users (username, password, token) VALUES('$username', '$password', '$token')";
         mysqli_query($db, $query);
         session_start();
-        $_SESSION["message"] = "Registration successful! You can now log in.";
+        sendVerificationEmail($username, $token);
+        $_SESSION["message"] = "Registration successful! Please veryify your e-mail before signing in.";
         header("location: ../../templates/authentication/login.php");
     }
 }
@@ -58,7 +61,9 @@ if (isset($_POST["login"])) {
         if (mysqli_num_rows($results) == 1) {
             $row = mysqli_fetch_array($results, MYSQLI_ASSOC);
             $passwordInDb = $row["password"];
-            if (password_verify($password, $passwordInDb)){
+            if($row["verified"] != 1) {
+                array_push($errors, "Please verify your e-mail before signing in.");
+            } else if (password_verify($password, $passwordInDb)){
                 session_start();
                 $_SESSION["username"] = $username;
                 $_SESSION["message"] = "You are now logged in";

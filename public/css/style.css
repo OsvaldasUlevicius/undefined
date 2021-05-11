@@ -61,6 +61,12 @@ h2 {
     box-shadow: -3px 10px 7px 2px rgba(80, 80, 80, 0.1);
 }
 
+#login-wrapper form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
 #login-register {
     display: flex;
     flex-flow: column wrap;
