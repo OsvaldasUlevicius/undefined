@@ -238,7 +238,8 @@ select:-webkit-autofill:focus {
 /* projectlist */
 
 
-body.project-list {
+body.project-list,
+body.eventlog {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -283,6 +284,9 @@ h1 {
 .table-row {
   grid-template-columns: 1fr 1.5fr repeat(2, 0.5fr) 1fr 0.5fr;
 }
+
+.eventlog .table-row,
+.eventlog .table-head { grid-template-columns:  repeat(5, 1fr); }
  
 .table-head {
   border-bottom: var(--nav-border);
@@ -373,6 +377,60 @@ a.project-name {
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* =========================================================
+   DELETE POPUP 
+========================================================= */
+
+.delete-popup {
+  display: none;
+  z-index: 1;
+  margin: 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.delete-message-container { margin: 0 5rem;}
+
+.delete-message {
+  display: inline-block;
+  background-color: #FFFFFF;
+  width: 362px;
+  height: 345px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.delete-popup button {
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  margin: auto;
+}
+
+.delete-message h4 { margin-top: 7rem; }
+.delete-message p { margin: 3rem 0; }
+
+.delete-message .button-primary { 
+  margin-bottom: 2rem;
+  line-height: 5rem;
+}
+
+.delete-message span {
+  color: #FF6187;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-message span:hover,
+.delete-message span:active { color: #FF2D5E; }
+
+/* =========================================================
+========================================================= */
   
 
 /* medias */
@@ -407,7 +465,8 @@ a.project-name {
     position: relative;
   }
   
-  .project-list h1 {
+  .project-list h1, 
+  .eventlog h1 {
     font-size: 24px;
   }
 }

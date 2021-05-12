@@ -1,8 +1,10 @@
 <?php
 
+
 $errors = array();
 
 if (isset($_POST["createProject"])) {
+
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $description = mysqli_real_escape_string($db, $_POST['description']);
 
@@ -19,9 +21,13 @@ if (isset($_POST["createProject"])) {
     if (count($errors) == 0) {
         $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '1')";
         mysqli_query($db, $query);
+
         $getNewlyCreatedProject = "SELECT * FROM projects WHERE title='$title' LIMIT 1";
         $newlyCreatedProject = mysqli_query($db, $getNewlyCreatedProject);
         $project = mysqli_fetch_assoc($newlyCreatedProject);
+
+        logObjectActions($project["id"], $db, "created project");
+
         header("location: ../../templates/projects/taskList.php?project_id=".$project["id"]);
     }
 }

@@ -1,7 +1,6 @@
 <?php 
 include("../../modules/utils.php");
 checkIfLoggedIn();
-logOut();
 include('../../modules/projects/projectList.php');
 ?>
 <!DOCTYPE html>

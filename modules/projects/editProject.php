@@ -19,6 +19,7 @@ if (isset($_POST["editProject"])) {
     if (empty($description)) { array_push($errors, "Description is required."); }
 
     if (count($errors) == 0) {
+        logObjectActions($projectId, $db, "edited project");
         $query = "UPDATE projects SET title= '$title', description = '$description', status = '$status' WHERE id='$projectId'";
         $res = mysqli_query($db, $query);
         header("location: ../../templates/projects/taskList.php?project_id=".$projectId);

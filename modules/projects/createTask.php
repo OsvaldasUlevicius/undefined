@@ -15,6 +15,12 @@ if (isset($_POST["createTask"])) {
     if (count($errors) == 0) {
         $query = "INSERT INTO tasks (project, title, description, priority, status, created_at, updated_at) VALUES('$project', '$title', '$description', '$priority', '$status', '$datetime', '$datetime')";
         mysqli_query($db, $query);
+
+        $getNewlyCreatedTask = "SELECT * FROM tasks WHERE title='$title' LIMIT 1";
+        $newlyCreatedTask = mysqli_query($db, $getNewlyCreatedTask);
+        $task = mysqli_fetch_assoc($newlyCreatedTask);
+        logObjectActions($task["id"], $db, "created task", $isProject=false);
+        
         header("location: ../../templates/projects/taskList.php?project_id=".$project);
     }
 }

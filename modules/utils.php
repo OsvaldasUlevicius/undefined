@@ -17,14 +17,6 @@ function checkIfLoggedIn($restrictAccess=true) {
     }
 }
 
-function logout() {
-    if (isset($_GET["logout"])) {
-        session_destroy();
-        unset($_SESSION["username"]);
-        header("location: ../../templates/authentication/login.php");
-    }
-}
-
 function getStatus($statusId, $db, $isProject=true) {
 
     if ($isProject) {
@@ -47,9 +39,48 @@ function getProjectName($projectId, $db) {
     return $project["title"];
 }
 
+function getUserName($userId, $db) {
+    $userQuery = "SELECT * FROM users WHERE id='$userId' LIMIT 1";
+    $userResult = mysqli_query($db, $userQuery);
+    $user = mysqli_fetch_assoc($userResult);
+
+    return $user["username"];
+}
+
+function getTaskName($taskId, $db) {
+    $taskQuery = "SELECT * FROM tasks WHERE id='$taskId' LIMIT 1";
+    $taskResult = mysqli_query($db, $taskQuery);
+    $task = mysqli_fetch_assoc($taskResult);
+
+    return $task["title"];
+}
+
+
 function truncateWords($input, $numwords, $padding=""){
     $output = strtok($input, " \n");
     while(--$numwords > 0) $output .= " " . strtok(" \n");
     if($output != $input) $output .= $padding;
     return $output;
-  }
+}
+
+function logObjectActions($objectId, $db, $event, $isProject=true) {
+    if ($isProject) {
+        $selectedField = "project_id";
+    } else {
+        $selectedField = "task_id";
+    }
+    $datetime = date_create()->format('Y-m-d H:i:s');
+    $userId = getCurrentUser($db);
+    $eventQuery = "INSERT INTO events (happened_at, event, user_id, ".$selectedField.") VALUES ('$datetime', '$event', '$userId', '$objectId')";
+    mysqli_query($db, $eventQuery);
+}
+
+function getCurrentUser($db) {
+    session_start();
+    $username = $_SESSION["username"];
+    $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+    $userId = $user["id"];
+    return $userId;
+}

@@ -34,4 +34,11 @@ function checkPasswordStrength($password1, $password2) {
 	return $passwordStrengthErrors;
 
 }
+
+function logUserActions($userId, $db, $event) {
+    $datetime = date_create()->format('Y-m-d H:i:s');
+    $eventQuery = "INSERT INTO events (happened_at, event, user_id) VALUES ('$datetime', '$event', '$userId')";
+    mysqli_query($db, $eventQuery);
+}
+
 ?>

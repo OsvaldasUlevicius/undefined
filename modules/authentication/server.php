@@ -35,6 +35,14 @@ if (isset($_POST["register"])) {
         $password = password_hash($password1, PASSWORD_DEFAULT);
         $query = "INSERT INTO users (username, password) VALUES('$username', '$password')";
         mysqli_query($db, $query);
+
+        $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+        $result = mysqli_query($db, $user_check_query);
+        $user = mysqli_fetch_assoc($result);
+        $userId = $user["id"];
+
+        logUserActions($userId, $db, "user registered");
+
         session_start();
         $_SESSION["message"] = "Registration successful! You can now log in.";
         header("location: ../../templates/authentication/login.php");
@@ -60,6 +68,9 @@ if (isset($_POST["login"])) {
             $passwordInDb = $row["password"];
             if (password_verify($password, $passwordInDb)){
                 session_start();
+
+                logUserActions($row["id"], $db, "user logged in");
+
                 $_SESSION["username"] = $username;
                 $_SESSION["message"] = "You are now logged in";
                 header("location: ../../public/index.php");
@@ -71,5 +82,19 @@ if (isset($_POST["login"])) {
         }
     }
   }
-  
-  ?>
+
+if (isset($_GET["logout"])) {
+    $username = ($_SESSION["username"]);
+    $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+    $userId = $user["id"];
+
+    logUserActions($userId, $db, "user logged out");
+
+    session_destroy();
+    unset($_SESSION["username"]);
+    header("location: ../../templates/authentication/login.php");
+}
+
+?>
