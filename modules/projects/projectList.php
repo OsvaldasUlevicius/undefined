@@ -1,7 +1,11 @@
 <?php
 
+// Delete Project
 if (isset($_POST["projectId"])) {
     $projectId = mysqli_real_escape_string($db, $_POST["projectId"]);
+
+    logObjectActions($projectId, $db, "deleted project");
+
     $deleteProjectTasks = "DELETE FROM tasks WHERE project='$projectId'";
     $deleteProject = "DELETE FROM projects WHERE id='$projectId'";
     mysqli_query($db, $deleteProjectTasks);

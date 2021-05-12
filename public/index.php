@@ -2,7 +2,6 @@
     include("../modules/utils.php");
     checkIfLoggedIn($restrictAccess=false);
     header("location: ../templates/projects/projectList.php");
-    logout();
 ?>
 <!DOCTYPE html>
 <html lang="en">
