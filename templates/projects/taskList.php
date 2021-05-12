@@ -43,7 +43,8 @@ include('../../modules/projects/taskList.php');
     </tr>
     <?php $filteredTasks = isFiltered($db,$_GET["project_id"])?>
     <?php
-    if (mysqli_fetch_assoc($filteredTasks) == 0){array_push($errors, "We didn't find any tasks following your search request.");};
+    $errors = array();
+    if (mysqli_fetch_assoc($filteredTasks) == 0){array_push($errors, "We didn't find any tasks following your search request.");include('../../modules/errors.php');};
     ?>
     <?php foreach ($filteredTasks as $task): ?>
         <tr>
