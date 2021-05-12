@@ -52,7 +52,7 @@ include('../../modules/admin/eventLog.php');
                 <?php elseif ($event["project_id"]): ?>
                     <p><?php echo getProjectName($event["project_id"], $db); ?></p>
                 <?php else : ?>
-                    <p><?php echo getUserName($event["user_id"], $db); ?></p>
+                    <p></p>
                 <?php endif ?>
 
                 <p><?php echo getUserName($event["user_id"], $db); ?></p>
