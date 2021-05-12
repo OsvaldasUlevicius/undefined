@@ -33,5 +33,6 @@ include('../../modules/projects/editProject.php');
     </select>
     <input type="submit" name="editProject" value="Save">
 </form>
+<a class="cancel-button" href="projectList.php">Cancel</a>
 </body>
 </html>
