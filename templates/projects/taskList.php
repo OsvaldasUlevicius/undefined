@@ -1,7 +1,9 @@
 <?php 
 include("../../modules/utils.php");
 checkIfLoggedIn();
+logOut();
 include('../../modules/projects/taskList.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,10 @@ include('../../modules/projects/taskList.php');
     </style>
 </head>
 <body style="flex-direction: column;">
+<form id="search-form" action="" method="POST">
+    <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>
+    <button id="btn-search" class="btn" type="submit" name="search" value="search"><i class="icon fas fa-search"></i></button>
+</form>
 <table>
     <tr>
         <th>Title</th>
@@ -35,7 +41,12 @@ include('../../modules/projects/taskList.php');
         <th>Updated at</th>
         <th>Actions</th>
     </tr>
-    <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+    <?php $filteredTasks = isFiltered($db,$_GET["project_id"])?>
+    <?php
+    $errors = array();
+    if (mysqli_fetch_assoc($filteredTasks) == 0){array_push($errors, "We didn't find any tasks following your search request.");include('../../modules/errors.php');};
+    ?>
+    <?php foreach ($filteredTasks as $task): ?>
         <tr>
             <td><?php echo $task["title"]; ?></td>
             <td><?php echo $task["description"]; ?></td>
