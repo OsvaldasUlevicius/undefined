@@ -1,7 +1,7 @@
 <nav>
 <ul class="other-links">
 <a href="#"><img src="../../public/img/logo-long.png" alt=""></a>
-    <li><a class="nav-link" href="">Home</a></li>
+    <li><a class="nav-link" href="../projects/projectList.php">Home</a></li>
     <li><a class="nav-link" href="">About us</a></li>
 </ul>
 <div class="nav-form">
