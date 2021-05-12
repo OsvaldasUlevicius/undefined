@@ -1,7 +1,6 @@
 <?php 
 include("../../modules/utils.php");
 checkIfLoggedIn();
-logOut();
 include('../../modules/projects/taskList.php');
 
 ?>
@@ -27,6 +26,8 @@ include('../../modules/projects/taskList.php');
     </style>
 </head>
 <body style="flex-direction: column;">
+<?php include("../header_footer/header.php");?>
+
 <form id="search-form" action="" method="POST">
     <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>
     <button id="btn-search" class="btn" type="submit" name="search" value="search"><i class="icon fas fa-search"></i></button>

@@ -26,6 +26,7 @@ include('../../modules/admin/eventLog.php');
 <div class="container-table">
     <div class="table-head">
         <h4>Event</h4>
+        <h4>Type</h4>
         <h4>Object</h4>
         <h4>User</h4>
         <h4>Date</h4>
@@ -35,13 +36,25 @@ include('../../modules/admin/eventLog.php');
         <?php foreach ($events["events"] as $event): ?>
             <div class="table-row">
                 <p><?php echo $event["event"] ?></p>
+
+                <!-- TYPE -->
                 <?php if ($event["task_id"]): ?>
-                    <p><?php echo $event["task_id"]; ?></p>
+                    <p>TASK</p>
+                <?php elseif ($event["project_id"]): ?>
+                    <p>PROJECT</p>
+                <?php else : ?>
+                    <p>USER</p>
+                <?php endif ?>
+
+                <!-- OBJECT -->
+                <?php if ($event["task_id"]): ?>
+                    <p><?php echo getTaskName($event["task_id"], $db); ?></p>
                 <?php elseif ($event["project_id"]): ?>
                     <p><?php echo getProjectName($event["project_id"], $db); ?></p>
                 <?php else : ?>
                     <p><?php echo getUserName($event["user_id"], $db); ?></p>
                 <?php endif ?>
+
                 <p><?php echo getUserName($event["user_id"], $db); ?></p>
                 <p><?php echo $event["happened_at"]; ?></p>
             </div>

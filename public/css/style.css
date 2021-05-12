@@ -286,7 +286,7 @@ h1 {
 }
 
 .eventlog .table-row,
-.eventlog .table-head { grid-template-columns:  repeat(4, 1fr); }
+.eventlog .table-head { grid-template-columns:  repeat(5, 1fr); }
  
 .table-head {
   border-bottom: var(--nav-border);
