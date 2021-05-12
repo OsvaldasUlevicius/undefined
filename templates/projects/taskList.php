@@ -34,6 +34,7 @@ include('../../modules/projects/taskList.php');
 </form>
 <table>
     <tr>
+        <th>Task Id</th>
         <th>Title</th>
         <th>Description</th>
         <th>Priority</th>
@@ -49,6 +50,7 @@ include('../../modules/projects/taskList.php');
     ?>
     <?php foreach ($filteredTasks as $task): ?>
         <tr>
+            <td><?php echo $task["id"]; ?></td>
             <td><?php echo $task["title"]; ?></td>
             <td><?php echo $task["description"]; ?></td>
             <td><?php echo getPriority($task["priority"], $db); ?></td>
@@ -56,6 +58,10 @@ include('../../modules/projects/taskList.php');
             <td><?php echo $task["created_at"]; ?></td>
             <td><?php echo $task["updated_at"]; ?></td>
             <td>
+                <form method="GET" action="editTask.php">
+                    <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
+                    <button type="submit" id="edit">Edit</button>
+                </form>
                 <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
                   <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
                   <button type="submit" id="delete">Delete</button>
