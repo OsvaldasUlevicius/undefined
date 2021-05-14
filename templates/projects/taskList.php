@@ -93,7 +93,7 @@ include('../../modules/projects/taskList.php');
             <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
                 <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
                 <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
-                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
+                    type="submit" id="delete" onClick="return confirm('Are you sure you want to delete this task?')"><i class=" icon trash far fa-trash-alt"></i></button>
             </form>
         </div>
 </div>
