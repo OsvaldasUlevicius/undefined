@@ -27,7 +27,7 @@ include('../../modules/projects/taskList.php');
         <img class="task-proj-logo" src="../../public/img/logo-text.png" />
     </div>
 
-    <h1 class="task-proj-heading"><?php echo getProjectName($_GET["project_id"], $db)?></h1>
+    <h1 class="task-proj-heading"><?php echo getObjectName("projects", $_GET["project_id"], "title", $db)?></h1>
     <form id="search-form" action="" method="POST">
         <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..." />
         <button id="btn-search" class="btn" type="submit" name="search" value="search"><i
@@ -49,11 +49,14 @@ include('../../modules/projects/taskList.php');
             <div class="table-body table-body-tasks" style="padding: 15px 15px; row-gap: 15px">
                 <div class="table-row" style="border:none">
                     <?php $currentProjectInfo=getProjectInfo($_GET["project_id"], $db)?>
-                    <a class="project-name">Project No 1</a>
-                    <p class="project-description">Create a project management system</p>
-                    <p class="tasks-count">3</p>
-                    <p class="tasks-left">1</p>
-                    <span class="status status-box ongoing">Ongoing</span>
+                    <a class="project-name"><?php echo $currentProjectInfo["title"]; ?></a>
+                    <p class="project-description"><?php echo $currentProjectInfo["description"]; ?></p>
+                    <p class="tasks-count"><?php echo  countProjectTasks($_GET["project_id"], $db); ?></p>
+                    <p class="tasks-left"><?php echo  countProjectTasks($_GET["project_id"], $db, $isFinished=true); ?></p>
+                    <?php $projectStatus = getStatus($currentProjectInfo["status"], $db); ?>
+                    <span
+                        class="status status-box <?php echo strtolower($projectStatus);?>"><?php echo $projectStatus;?>
+                    </span>
 
                     <div class="edit-delete">
                         <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
@@ -70,8 +73,32 @@ include('../../modules/projects/taskList.php');
 
                     <div class="tasks-to-do">
                         <div class="task-headers todo-header">
-                            <h2>TODO</h2>
+                        <h2>TODO</h2>
                         </div>
+
+                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+
+
+<div class="individual-task">
+    <span class="task-title"> <?php echo $task["title"]; ?> </span>
+    <p class="task-description"> <?php echo $task["description"]; ?> </p>
+    <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
+    <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> </span>
+    <span class="task-id">ID: <?php echo $task["id"]; ?> </p>
+
+
+        <a class="btn ind-task-edit" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
+            <i class="icon edit far fa-edit"></i></a>
+        <div>
+            <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
+                <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
+                <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
+                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
+            </form>
+        </div>
+</div>
+
+<?php endforeach ?>
 
                         <div class="tasks-bottom">
                             <a class="btn add-btn" id="create-new-task-btn"
@@ -81,7 +108,7 @@ include('../../modules/projects/taskList.php');
 
                     <div class="tasks-in-progress">
                         <div class="task-headers in-progress-header">
-                            <h2>IN PROGRESS
+                            <h2>IN PROGRESS</h2>
                         </div>
                     </div>
 
@@ -92,35 +119,6 @@ include('../../modules/projects/taskList.php');
                     </div>
 
                 </section>
-
-
-                <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-
-
-                <div class="individual-task">
-                    <span class="task-title"> <?php echo $task["title"]; ?> </span>
-                    <p class="task-description"> <?php echo $task["description"]; ?> </p>
-                    <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
-                    <span class="task-status"><?php echo getStatus($task["status"], $db, $isProject=false); ?> </span>
-                    <!-- <span class="status status-box <?php echo strtolower($taskStatus);?>"><?php echo $taskStatus;?>
-                    </span> -->
-                    <span class="task-created-date"><?php echo $task["created_at"]; ?> </span>
-                    <span class="task-updated-date"><?php echo $task["updated_at"]; ?> </span>
-                    <span class="task-id">ID: 12BDE</p>
-
-
-                        <a class="btn ind-task-edit" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-                            <i class="icon edit far fa-edit"></i></a>
-                        <div>
-                            <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
-                                <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
-                                <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
-                                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
-                            </form>
-                        </div>
-                </div>
-
-                <?php endforeach ?>
 
                 <form id="csv-form-tasks" action="" method="GET">
                     <input value="<?php echo $_GET["project_id"]; ?>" type="hidden" name="projectId">

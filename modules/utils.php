@@ -95,3 +95,14 @@ function getProjectInfo($projectId, $db) {
 
     return $project;
 }
+
+function countProjectTasks($projectId, $db, $isNotFinished=false) {
+    if ($isNotFinished) {
+        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId' AND status != 3";
+    } else {
+        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId'";
+    }
+    $taskCountResult = mysqli_query($db, $countTasksQuery);
+    $taskCount = mysqli_fetch_assoc($taskCountResult);
+    return $taskCount["COUNT(*)"] ;
+}

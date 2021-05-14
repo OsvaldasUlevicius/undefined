@@ -16,8 +16,9 @@ include('../../modules/admin/eventLog.php');
 <body class="eventlog">
 <?php include("../header_footer/header.php");?>
 <div class="logo-in-page">
-    <img class="logo" src="../../public/img/logo-desktop.png" />
-</div>
+        <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
+        <img class="task-proj-logo" src="../../public/img/logo-text.png" />
+    </div>
 <h1>Events</h1>
 <!-- <form id="search-form" action="" method="GET">
     <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>

@@ -4,8 +4,8 @@
         session_start();
     }
     if (isset($_SESSION["username"])) :
-        header("location: ../templates/projects/projectList.php");
+        header("location: templates/projects/projectList.php");
     else :
-        header("location: ../templates/authentication/login.php");
+        header("location: templates/authentication/login.php");
     endif 
 ?>

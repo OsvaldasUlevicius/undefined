@@ -45,7 +45,7 @@ include('../../modules/projects/projectList.php');
 
         <div class="table-body">
             
-            <?php $projectsInformation = isFiltered($db); $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
+            <?php $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
             <?php foreach ($projectsInformation["projects"] as $project): ?>
             
             <div class="table-row">
@@ -55,7 +55,7 @@ include('../../modules/projects/projectList.php');
 
                 <p class="project-description"><?php echo(truncateWords($project["description"],5,$padding="..."))?></p>
                 <p class="tasks-count"><?php echo  countProjectTasks($project["id"], $db); ?></p>
-                <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isFinished=true);; ?></p>
+                <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isFinished=true); ?></p>
 
                 <?php $projectStatus = getStatus($project["status"], $db); ?>
 
