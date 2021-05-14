@@ -71,34 +71,14 @@ include('../../modules/projects/taskList.php');
 
                 <section class="tasks-container">
 
-                    <div class="tasks-to-do">
+                    <div id="tasks-to-do" class="tasks-to-do dropbox">
                         <div class="task-headers todo-header">
                         <h2>TODO</h2>
                         </div>
 
                         <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-
-
-<div class="individual-task">
-    <span class="task-title"> <?php echo $task["title"]; ?> </span>
-    <p class="task-description"> <?php echo $task["description"]; ?> </p>
-    <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
-    <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> </span>
-    <span class="task-id">ID: <?php echo $task["id"]; ?> </p>
-
-
-        <a class="btn ind-task-edit" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-            <i class="icon edit far fa-edit"></i></a>
-        <div>
-            <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
-                <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
-                <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
-                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
-            </form>
-        </div>
-</div>
-
-<?php endforeach ?>
+                        <?php if($task["status"] == 1){include("../projects/taskCard.php");};?>
+                        <?php endforeach ?>
 
                         <div class="tasks-bottom">
                             <a class="btn add-btn" id="create-new-task-btn"
@@ -106,16 +86,22 @@ include('../../modules/projects/taskList.php');
                         </div>
                     </div>
 
-                    <div class="tasks-in-progress">
+                    <div id="tasks-in-progress" class="tasks-in-progress dropbox">
                         <div class="task-headers in-progress-header">
                             <h2>IN PROGRESS</h2>
                         </div>
+                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+                        <?php if($task["status"] == 2){include("taskCard.php");};?>
+                        <?php endforeach ?>
                     </div>
 
-                    <div class=" tasks-completed">
+                    <div id="tasks-completed" class="tasks-completed dropbox">
                         <div class="task-headers completed-header">
                             <h2>COMPLETED</h2>
                         </div>
+                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+                        <?php if($task["status"] == 3){include("taskCard.php");};?>
+                        <?php endforeach ?>
                     </div>
 
                 </section>
@@ -133,6 +119,28 @@ include('../../modules/projects/taskList.php');
 
         </div>
 
+        <script>
+        //drag n drop 
+        let dropEl = ""
+        for (const drag of document.querySelectorAll(".draggable")){
+            drag.addEventListener("dragstart", e => {
+                dropEl = e.target
+                return dropEl
+            })
+        }
+        for (const drop of document.querySelectorAll(".dropbox")){
+            //whent dragEl is over a dropzone
+            drop.addEventListener("dragover", e => {
+                e.preventDefault();
+            })
+            //when dragEL is dropped onto drop zone
+            drop.addEventListener("drop", e => {
+                e.preventDefault();
+                let dropzone = e.target.id
+                document.getElementById(dropzone).appendChild(dropEl)
+            })
+        }
+    </script>
 </body>
 
 </html>
