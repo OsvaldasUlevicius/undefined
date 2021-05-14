@@ -19,7 +19,7 @@ include('../../modules/admin/eventLog.php');
         <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
         <img class="task-proj-logo" src="../../public/img/logo-text.png" />
     </div>
-<h1>Events</h1>
+<h1 class="task-proj-heading">Events</h1>
 <!-- <form id="search-form" action="" method="GET">
     <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>
     <button id="btn-search" class="btn" type="submit" name="search" value="search"><i class="icon fas fa-search"></i></button>
