@@ -1,6 +1,5 @@
 <?php
 
-
 $errors = array();
 
 if (isset($_POST["createProject"])) {
@@ -8,9 +7,15 @@ if (isset($_POST["createProject"])) {
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $description = mysqli_real_escape_string($db, $_POST['description']);
 
-    if (empty($title)) { array_push($errors, "Title is required."); }
-    if (empty($description)) { array_push($errors, "Description is required."); }
+    // Check if both fields are filled in.
+    if (empty($title)) { 
+        array_push($errors, "Title is required.");
+    }
+    if (empty($description)) { 
+        array_push($errors, "Description is required.");
+    }
 
+    // Search if the entered project title is already taken.
     $findProjects = "SELECT COUNT(*) FROM projects WHERE title='$title'";
     $projectCountResult = mysqli_query($db, $findProjects);
     $projectCount = mysqli_fetch_assoc($projectCountResult);
@@ -22,12 +27,13 @@ if (isset($_POST["createProject"])) {
         $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '1')";
         mysqli_query($db, $query);
 
+        // Log project creation into event log.
         $getNewlyCreatedProject = "SELECT * FROM projects WHERE title='$title' LIMIT 1";
         $newlyCreatedProject = mysqli_query($db, $getNewlyCreatedProject);
         $project = mysqli_fetch_assoc($newlyCreatedProject);
+        logObjectActions($project["id"], $db, "created project ".$title);
 
-        logObjectActions($project["id"], $db, "created project");
-
+        // Redirect to the newly created project;
         header("location: ../../templates/projects/taskList.php?project_id=".$project["id"]);
     }
 }

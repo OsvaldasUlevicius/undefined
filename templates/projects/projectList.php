@@ -33,7 +33,7 @@ include('../../modules/projects/projectList.php');
         <div></div>
     </div>
     <div class="table-body">
-        <?php $projectsInformation = isFiltered($db); $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
+        <?php $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
         <?php foreach ($projectsInformation["projects"] as $project): ?>
             <div class="table-row">
                 <a class="project-name" href="taskList.php?project_id=<?php echo $project["id"]; ?>">
@@ -41,7 +41,7 @@ include('../../modules/projects/projectList.php');
                 </a>
                     <p class="project-description"><?php echo(truncateWords($project["description"],5,$padding="..."))?></p>
                     <p class="tasks-count"><?php echo  countProjectTasks($project["id"], $db); ?></p>
-                    <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isFinished=true);; ?></p>
+                    <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isNotFinished=true);; ?></p>
                     <?php $projectStatus = getStatus($project["status"], $db); ?>
                 <span class="status status-box <?php echo strtolower($projectStatus);?>"><?php echo $projectStatus;?></span>
                 <div class="edit-delete">

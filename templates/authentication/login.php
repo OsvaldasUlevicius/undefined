@@ -1,6 +1,6 @@
 <?php 
 include("../../modules/utils.php");
-include('../../modules/authentication/server.php');
+include('../../modules/authentication/authentication.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,10 @@ include('../../modules/authentication/server.php');
         <form method="POST" action="login.php" id="login-form">
 
         <?php 
-            session_start();
+            if(session_id() == '' || !isset($_SESSION)) {
+                // session isn't started
+                session_start();
+            }
             include("../../modules/messages.php");
             include("../../modules/errors.php");
         ?>

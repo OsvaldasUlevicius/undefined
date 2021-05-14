@@ -42,7 +42,6 @@ include('../../modules/projects/taskList.php');
         <th>Updated at</th>
         <th>Actions</th>
     </tr>
-    <?php $filteredTasks = isFiltered($db,$_GET["project_id"])?>
     <?php
     $errors = array();
     if (mysqli_fetch_assoc($filteredTasks) == 0){array_push($errors, "We didn't find any tasks following your search request.");include('../../modules/errors.php');};
