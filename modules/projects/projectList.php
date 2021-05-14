@@ -4,21 +4,31 @@
 if (isset($_POST["projectId"])) {
     $projectId = mysqli_real_escape_string($db, $_POST["projectId"]);
 
-    logObjectActions($projectId, $db, "deleted project");
+    // Log delete project into event log.
+    $projectName = getObjectName("projects", $projectId, "title", $db);
+    logObjectActions($projectId, $db, "deleted project ".$projectName);
 
+    # TODO LOG PROJECT TASKS DELETION ?
     $deleteProjectTasks = "DELETE FROM tasks WHERE project='$projectId'";
     $deleteProject = "DELETE FROM projects WHERE id='$projectId'";
     mysqli_query($db, $deleteProjectTasks);
     mysqli_query($db, $deleteProject);
 }
 
+if (isset($_GET["search"])) {
+    $projectsInformation = getProjects($db,$isFiltered=true);
+} else {
+    $projectsInformation = getProjects($db);
+}
+
 function getProjects($db, $isFiltered=false) {
     $errors = array();
-    // Find how many projects there are
-    if($isFiltered){
+
+    // Find how many projects there are.
+    if($isFiltered) {
         $valueToSearch = $_GET["valueToSearch"];
         $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects WHERE title LIKE '%$valueToSearch%'";
-    }else{
+    } else {
         $countTotalProjectsQuery = "SELECT COUNT(*) FROM projects";
     }
  
@@ -26,14 +36,14 @@ function getProjects($db, $isFiltered=false) {
     $countProjects = mysqli_fetch_assoc($countTotalProjectsResult);
     $countTotalProjects = $countProjects["COUNT(*)"];
     if($countTotalProjects == 0) {
-        array_push($errors, "Your search did not match any project titles");
+        array_push($errors, "Your search did not match any project titles.");
     }
 
-    // Get total pages necessary
+    // Get total pages necessary.
     $projectsPerPage = 5;
     $totalPages = ceil($countTotalProjects / $projectsPerPage);
 
-    // Get the current page or set a default
+    // Get the current page or set a default.
     if (isset($_GET["currentPage"]) && is_numeric($_GET["currentPage"])) {
         $currentPage = (int) $_GET["currentPage"];
     } else {
@@ -47,12 +57,12 @@ function getProjects($db, $isFiltered=false) {
         $currentPage = 1;
     } 
 
-    // the offset of the list, based on current page 
+    // the offset of the list, based on current page .
     $offset = ($currentPage - 1) * $projectsPerPage;
-    if($isFiltered){
-        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' LIMIT $offset, $projectsPerPage";
-    }else{
-         $getProjectsForThisPage = "SELECT * FROM projects LIMIT $offset, $projectsPerPage";
+    if ($isFiltered) {
+        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' ORDER BY ids LIMIT $offset, $projectsPerPage";
+    } else {
+        $getProjectsForThisPage = "SELECT * FROM projects ORDER BY id DESC LIMIT $offset, $projectsPerPage";
     }
 
    
@@ -64,26 +74,6 @@ function getProjects($db, $isFiltered=false) {
         "offset" => $offset,
         "errors" => $errors,
     );
-}
-
-function countProjectTasks($projectId, $db, $isFinished=false) {
-    if ($isFinished) {
-        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId' AND status != 3";
-    } else {
-        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId'";
-    }
-    $taskCountResult = mysqli_query($db, $countTasksQuery);
-    $taskCount = mysqli_fetch_assoc($taskCountResult);
-    return $taskCount["COUNT(*)"] ;
-}
-
-function isFiltered($db){
-    if(isset($_GET["search"])){
-        $projectsInformation = getProjects($db,$isFiltered=true);
-    }else{
-        $projectsInformation = getProjects($db);
-    }
-    return $projectsInformation;
 }
 
 if(isset($_GET["csvProjects"])){
@@ -113,7 +103,7 @@ if(isset($_GET["csvProjects"])){
         $description = $result["description"];
         $status = getStatus($result["status"], $db);
         $tasksTotal = countProjectTasks($result["id"], $db);
-        $tasksLeft = countProjectTasks($result["id"], $db, $isFinished=true);
+        $tasksLeft = countProjectTasks($result["id"], $db, $isNotFinished=true);
         
         $csv_export.= "$id;$title;$description;$status;$tasksTotal;$tasksLeft;";
         $csv_export.= '

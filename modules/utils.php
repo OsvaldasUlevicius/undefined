@@ -3,10 +3,15 @@
 // $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
 $db = mysqli_connect("localhost", "root", "", "undefined");
 
+date_default_timezone_set('Europe/Vilnius');
+
 $cssFileLocation = "../../public/css/style.css";
 
 function checkIfLoggedIn($restrictAccess=true) {
-    session_start();
+    if(session_id() == '' || !isset($_SESSION)) {
+        // session isn't started
+        session_start();
+    }
 
     if (!isset($_SESSION["username"])) {
         if ($restrictAccess) {
@@ -32,30 +37,15 @@ function getStatus($statusId, $db, $isProject=true) {
 	return $status["status"];
 }
 
-function getProjectName($projectId, $db) {
-    $projectQuery = "SELECT * FROM projects WHERE id='$projectId' LIMIT 1";
-    $projectResult = mysqli_query($db, $projectQuery);
-    $project = mysqli_fetch_assoc($projectResult);
-
-    return $project["title"];
+function getObjectName($table, $objectId, $nameField, $db) {
+    $objectQuery = "SELECT * FROM ".$table." WHERE id='$objectId' LIMIT 1";
+    $objectResult = mysqli_query($db, $objectQuery);
+    if (mysqli_num_rows($objectResult)==NULL) {
+        return "Object does not exist.";
+    } else {
+        return mysqli_fetch_assoc($objectResult)[$nameField];
+    }
 }
-
-function getUserName($userId, $db) {
-    $userQuery = "SELECT * FROM users WHERE id='$userId' LIMIT 1";
-    $userResult = mysqli_query($db, $userQuery);
-    $user = mysqli_fetch_assoc($userResult);
-
-    return $user["username"];
-}
-
-function getTaskName($taskId, $db) {
-    $taskQuery = "SELECT * FROM tasks WHERE id='$taskId' LIMIT 1";
-    $taskResult = mysqli_query($db, $taskQuery);
-    $task = mysqli_fetch_assoc($taskResult);
-
-    return $task["title"];
-}
-
 
 function truncateWords($input, $numwords, $padding=""){
     $output = strtok($input, " \n");
@@ -76,8 +66,20 @@ function logObjectActions($objectId, $db, $event, $isProject=true) {
     mysqli_query($db, $eventQuery);
 }
 
+function checkIfObjectExists($table, $objectId, $db) {
+    $objectQuery = "SELECT * FROM ".$table." WHERE id='$objectId' LIMIT 1";
+    $objectResult = mysqli_query($db, $objectQuery);
+    // TODO Find a better to return true...
+    if (mysqli_num_rows($objectResult)!=NULL) {
+        return True;
+    }
+}
+
 function getCurrentUser($db) {
-    session_start();
+    if(session_id() == '' || !isset($_SESSION)) {
+        // session isn't started
+        session_start();
+    }
     $username = $_SESSION["username"];
     $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
@@ -92,4 +94,15 @@ function getProjectInfo($projectId, $db) {
     $project = mysqli_fetch_assoc($projectResult);
 
     return $project;
+}
+
+function countProjectTasks($projectId, $db, $isNotFinished=false) {
+    if ($isNotFinished) {
+        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId' AND status != 3";
+    } else {
+        $countTasksQuery = "SELECT COUNT(*) FROM tasks WHERE project='$projectId'";
+    }
+    $taskCountResult = mysqli_query($db, $countTasksQuery);
+    $taskCount = mysqli_fetch_assoc($taskCountResult);
+    return $taskCount["COUNT(*)"] ;
 }

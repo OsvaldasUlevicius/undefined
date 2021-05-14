@@ -1,26 +1,11 @@
 <?php
 
-function getTasks($db, $projectId, $isFiltered=false) {
-    if($isFiltered){
-        $valueToSearch = $_POST["valueToSearch"];
-        $query = "SELECT * FROM `tasks` WHERE `project`=$projectId AND (`title` LIKE '%$valueToSearch%' OR `description` LIKE '%$valueToSearch%')";
-    }else{
-    $query = "SELECT * FROM tasks WHERE project ='$projectId'";}
-
-    return mysqli_query($db, $query);
-}
-
-function getPriority($priorityId, $db, $isTask=true) {
-    if ($isTask) {
-        $priorityQuery = "SELECT * FROM task_priorities WHERE id='$priorityId' LIMIT 1";
-    }
-    $priorityResult = mysqli_query($db, $priorityQuery);
-    $priority = mysqli_fetch_assoc($priorityResult);
-
-	return $priority["priority"];
-}
-
+// Delete task.
 if (isset($_POST["taskId"])) {
+    // Log delete task into event log.
+    $taskName = getObjectName("tasks", $_POST["taskId"], "title", $db);
+    logObjectActions($_POST["taskId"], $db, "deleted task ".$taskName);
+
     $taskId = mysqli_real_escape_string($db, $_POST["taskId"]);
     $deleteTask = "DELETE FROM tasks WHERE id='$taskId'";
     mysqli_query($db, $deleteTask);
@@ -49,7 +34,7 @@ if(isset($_GET["csvTasks"])){
 
     foreach ($query as $result) {
         $id = $result["id"];
-        $project = getProjectName($result["project"], $db);
+        $project = getObjectName("projects", $result["project"], "title", $db);
         $title = $result["title"];
         $description = $result["description"];
         $priority = getPriority($result["priority"], $db);
@@ -67,11 +52,27 @@ if(isset($_GET["csvTasks"])){
     echo($csv_export);
     exit();
 }
-function isFiltered($db,$projectId){
-    if(isset($_POST["search"])){
-        $tasks = getTasks($db,$projectId,$isFiltered=true);
-    }else{
-        $tasks = getTasks($db,$projectId);
+
+// Search tasks.
+if (isset($_POST["search"])) {
+    $filteredTasks = getTasks($db, $_GET["project_id"], $isFiltered=true);
+} else {
+    $filteredTasks = getTasks($db, $_GET["project_id"]);
+}
+
+function getTasks($db, $projectId, $isFiltered=false) {
+    if ($isFiltered) {
+        $valueToSearch = $_POST["valueToSearch"];
+        $query = "SELECT * FROM tasks WHERE project=$projectId AND (title LIKE '%$valueToSearch%' OR description LIKE '%$valueToSearch%')";
+    } else {
+        $query = "SELECT * FROM tasks WHERE project ='$projectId'";
     }
-    return $tasks;
+    return mysqli_query($db, $query);
+}
+
+function getPriority($priorityId, $db) {
+    $priorityQuery = "SELECT * FROM task_priorities WHERE id='$priorityId' LIMIT 1";
+    $priorityResult = mysqli_query($db, $priorityQuery);
+    $priority = mysqli_fetch_assoc($priorityResult);
+	return $priority["priority"];
 }

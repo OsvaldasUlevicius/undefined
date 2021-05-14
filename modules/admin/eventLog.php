@@ -38,10 +38,10 @@ function getEvents($db, $isFiltered=false) {
 
     // the offset of the list, based on current page 
     $offset = ($currentPage - 1) * $eventsPerPage;
-    if($isFiltered){
-        $getEventsForThisPage = "SELECT * FROM events WHERE event LIKE '%$valueToSearch%' LIMIT $offset, $eventsPerPage";
-    }else{
-         $getEventsForThisPage = "SELECT * FROM events LIMIT $offset, $eventsPerPage";
+    if ($isFiltered) {
+        $getEventsForThisPage = "SELECT * FROM events ORDER BY happened_at WHERE event LIKE '%$valueToSearch%' LIMIT $offset, $eventsPerPage";
+    } else{
+         $getEventsForThisPage = "SELECT * FROM events ORDER BY happened_at DESC LIMIT $offset, $eventsPerPage";
     }
 
    

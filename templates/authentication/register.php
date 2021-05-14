@@ -1,6 +1,6 @@
 <?php 
 include("../../modules/utils.php");
-include('../../modules/authentication/server.php');
+include('../../modules/authentication/authentication.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

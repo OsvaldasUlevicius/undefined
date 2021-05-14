@@ -1,5 +1,5 @@
 <?php
-include("../../modules/authentication/server.php");
+include("../../modules/authentication/authentication.php");
 
 ?>
 <nav>

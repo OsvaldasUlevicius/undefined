@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Vilnius');
+
 function checkPasswordStrength($password1, $password2) {
 
     $passwordStrengthErrors = array();

@@ -16,8 +16,9 @@ include('../../modules/admin/eventLog.php');
 <body class="eventlog">
 <?php include("../header_footer/header.php");?>
 <div class="logo-in-page">
-    <img class="logo" src="../../public/img/logo-desktop.png" />
-</div>
+        <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
+        <img class="task-proj-logo" src="../../public/img/logo-text.png" />
+    </div>
 <h1>Events</h1>
 <!-- <form id="search-form" action="" method="GET">
     <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>
@@ -27,7 +28,7 @@ include('../../modules/admin/eventLog.php');
     <div class="table-head">
         <h4>Event</h4>
         <h4>Type</h4>
-        <h4>Object</h4>
+        <h4>Object Id</h4>
         <h4>User</h4>
         <h4>Date</h4>
     </div>
@@ -48,14 +49,26 @@ include('../../modules/admin/eventLog.php');
 
                 <!-- OBJECT -->
                 <?php if ($event["task_id"]): ?>
-                    <p><?php echo getTaskName($event["task_id"], $db); ?></p>
-                <?php elseif ($event["project_id"]): ?>
-                    <p><?php echo getProjectName($event["project_id"], $db); ?></p>
-                <?php else : ?>
-                    <p></p>
-                <?php endif ?>
+                    <?php if (checkIfObjectExists("tasks", $event["task_id"], $db)): ?>
+                        <!-- TODO Add a link to edit task page -->
+                        <a href="#"><?php echo $event["task_id"]; ?></a>
+                    <?php else: ?>
+                        <p><?php echo $event["task_id"] ?> (Object does not exist)</p>
+                    <?php endif ?>
 
-                <p><?php echo getUserName($event["user_id"], $db); ?></p>
+                <?php elseif ($event["project_id"]): ?>
+                    <?php if (checkIfObjectExists("projects", $event["project_id"], $db)): ?>
+                        <a href="../projects/taskList.php?project_id=<?php echo $event["project_id"]; ?>"><?php echo $event["project_id"]; ?></a>
+                    <?php else: ?>
+                        <p><?php echo $event["project_id"] ?> (Object does not exist)</p>
+                    <?php endif ?>
+
+                <?php else : ?>
+                    <p>-</p>
+                <?php endif ?>
+                
+                <!-- TODO Clicking on username opens a filtered page of all projects/tasks created by that user -->
+                <p><?php echo getObjectName("users", $event["user_id"], "username", $db); ?></p>
                 <p><?php echo $event["happened_at"]; ?></p>
             </div>
             <?php endforeach ?>
