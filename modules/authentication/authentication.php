@@ -82,7 +82,7 @@ if (isset($_POST["login"])) {
                 logUserActions($row["id"], $db, "user logged in");
 
                 $_SESSION["username"] = $username;
-                header("location: ../../public/index.php");
+                header("location: ../../index.php");
             } else {
                 array_push($errors, "The username or password is incorrect.");
             }

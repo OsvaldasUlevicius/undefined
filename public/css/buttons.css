@@ -1,4 +1,3 @@
-
 /* reset buttons styles */
 .btn {
     background: none;
@@ -38,5 +37,42 @@
     width: 20px;
     height: 2px;
   }
+
+  .auth-btn {
+    font-weight: 700;
+    width: 112px;
+    height: 37px;
+    border-radius: var(--border-radius);
+  }
+
+  .btn-dark {
+    color: var(--white);
+    background-color: var(--primary-color);
+  }
+
+  .btn-light {
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: var(--white);
+    border: 2px solid var(--white);
+  }
+
+  .btn-dark:hover {
+    cursor: pointer;
+    background-color: var(--light-green-hover);
+    border: 2px solid var(--light-green-hover);
+    transform: scale(1.03) perspective(1px);
+    transition-timing-function: ease-in;
+  }
+
+  .btn-light:hover {
+    cursor: pointer;
+    background-color: var(--white);
+    border: 2px solid var(--white);
+    transform: scale(1.03) perspective(1px);
+    transition-timing-function: ease-in;
+  }
+
+
 
   .icon{font-size: 1.2rem; color: var(--font-color-light);}

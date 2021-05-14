@@ -1,16 +1,21 @@
 :root {
-    font-size: 16px;
-    --background: linear-gradient(#e6e6e6, #ffffff);
-    --primary-color:#B0EFE0;
-    --secondary-color:#B0C2EF;
-    --font-color-dark:#3D4E61;
-    --font-color-normal: #687C94;
-    --font-color-light: #bcbcbc;
-    --background-for-task:#E1EDFB;
-    --err-color: #C51B1B;
-    --white:#fff;
+  font-size: 16px;
+  --background: linear-gradient(#e6e6e6, #ffffff);
+  --primary-color:#A0D9CB;
+  --secondary-color:#B0C2EF;
+  --font-color-dark:#3D4E61;
+  --font-color-normal: #687C94;
+  --font-color-light: #bcbcbc;
+  --background-for-task:#E1EDFB;
+  --err-color: #C51B1B;
+  --warn: #F39090;
+  --conf-color: #38cf68;
+  --light-green-hover: #95e6d2;
+  --active: #B0EFE0;
+  --white:#fff;
 
-    --border-primary: 2px solid #b0efe0;
-    --nav-border: 1px solid #bcbcbc;
-    --border-radius: 0.3rem;
-  }
+  --border-primary: 2px solid var(--primary-color);
+  --border-thick: 4px solid var(--primary-color);
+  --nav-border: 1px solid #bcbcbc;
+  --border-radius: 0.3rem;
+}

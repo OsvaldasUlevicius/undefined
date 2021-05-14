@@ -1,5 +1,6 @@
 <?php
 
+// $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
 $db = mysqli_connect("localhost", "root", "", "undefined");
 
 date_default_timezone_set('Europe/Vilnius');
@@ -85,4 +86,12 @@ function getCurrentUser($db) {
     $user = mysqli_fetch_assoc($result);
     $userId = $user["id"];
     return $userId;
+}
+
+function getProjectInfo($projectId, $db) {
+    $projectQuery = "SELECT * FROM projects WHERE id='$projectId' LIMIT 1";
+    $projectResult = mysqli_query($db, $projectQuery);
+    $project = mysqli_fetch_assoc($projectResult);
+
+    return $project;
 }
