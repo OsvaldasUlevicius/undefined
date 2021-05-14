@@ -68,7 +68,7 @@ include('../../modules/projects/projectList.php');
                         <i class="icon edit far fa-edit"></i></a>
                     <form method="POST" action="projectList.php">
                         <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
-                        <button class="btn" type="submit" id="delete"><i
+                        <button class="btn" type="submit" id="delete" onClick="return confirm('Are you sure you want to delete this project?')"><i
                                 class=" icon trash far fa-trash-alt"></i></button>
                     </form>
 
