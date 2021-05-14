@@ -1,13 +1,18 @@
 nav {
-    padding: 5px 20px;
-    width: 100%;
-    border-bottom: 1px solid #bcbcbc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #687c94;
-  }
-.other-links{
+  padding: 5px 20px;
+  width: 100%;
+  border-bottom: 1px solid #bcbcbc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #687c94;
+}
+
+p {
+  color: var(--font-color-dark);
+}
+
+.other-links {
   display: flex;
   flex-direction: row;
   color: #000;
@@ -16,43 +21,55 @@ nav {
   align-items: center;
 }
 
-.other-links li a{color: var(--font-color-normal); font-weight: bold;}
-.other-links li a:hover{cursor: pointer; color: var(--font-color-dark);}
-nav img{
-    padding-left: 20px;
-    height: 30px;
+.other-links li a {
+  color: var(--font-color-dark);
+  font-weight: bold;
 }
-nav .nav-form{
-    display: flex;
-    align-items: center;
+
+.other-links li a:hover {
+  cursor: pointer;
+  color: var(--font-color-dark);
 }
+
+nav img {
+  padding: 0 30px 0 20px;
+  height: 30px;
+}
+
+/* .nav-link {} */
+
+nav .nav-form {
+  display: flex;
+  align-items: center;
+}
+
 nav span {
-    font-weight: bold;
-    padding-right: 10px;
-  }
+  font-weight: bold;
+  padding-right: 10px;
+}
 
 nav #logout {
-    margin: 0;
-    border: none;
-    padding: 0 0 0 15px;
-    background: none;
-    font-weight: bold;
-    color: #687c94;
-    font-size: 16px;
-  }
-
-nav #logout:hover{
-    cursor: pointer;
-    color: #3D4E61;
+  margin: 0;
+  border: none;
+  padding: 0 0 0 15px;
+  background: none;
+  font-weight: bold;
+  color: var(--font-color-dark);
+  font-size: 1rem;
 }
 
-footer{
-    margin-top: 20px;
-    border-top: 1px solid #bcbcbc;
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #687C94 ;
+nav #logout:hover {
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 20px;
+  border-top: 1px solid var(--font-color-light);
+  width: 100%;
+  height: 40px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 0 30px 0;
 }

@@ -73,7 +73,7 @@ if (isset($_POST["login"])) {
 
                 $_SESSION["username"] = $username;
                 $_SESSION["message"] = "You are now logged in";
-                header("location: ../../public/index.php");
+                header("location: ../../index.php");
             } else {
                 array_push($errors, "The username or password is incorrect.");
             }
