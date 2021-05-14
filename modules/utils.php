@@ -85,3 +85,11 @@ function getCurrentUser($db) {
     $userId = $user["id"];
     return $userId;
 }
+
+function getProjectInfo($projectId, $db) {
+    $projectQuery = "SELECT * FROM projects WHERE id='$projectId' LIMIT 1";
+    $projectResult = mysqli_query($db, $projectQuery);
+    $project = mysqli_fetch_assoc($projectResult);
+
+    return $project;
+}

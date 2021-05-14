@@ -16,51 +16,48 @@ include('../../modules/authentication/server.php');
 </head>
 
 <body class="login-register-body">
-    
 
-    <div class="logo-top">
-        <img class="logo" src="../../public/img/logo-desktop.png" />
-    </div>
+    <img class="logo-top" src="../../public/img/logo-desktop.png" />
 
     <div class="auth-wrap">
-        <div id="login-wrapper">
+        <div class="auth-wrapper" id="login-wrapper">
 
             <h1 class="log-reg-heading">Login</h1>
-            <h2>Type your username and password</h2>
+            <h2 class="log-reg-heading">Enter your username and password</h2>
 
             <form method="POST" action="login.php" id="login-form">
 
-        <?php 
+            <?php 
             session_start();
             include("../../modules/messages.php");
             include("../../modules/errors.php");
-        ?>
+            ?>
 
-            <div class="log-reg-input-container">
-                <!-- <label for="username">Username</label> -->
-                <!-- <i class="far fa-envelope"></i> -->
-                <img class="input-img" src="../../public/img/mail.svg" />
-                <input type="email" name="username" id="login-username" placeholder="E-mail">
-            </div>
+                <div class="log-reg-input-container">
+                    <!-- <label for="username">Username</label> -->
+                    <!-- <i class="far fa-envelope"></i> -->
+                    <img class="input-img" src="../../public/img/mail.svg" />
+                    <input class="auth-input" type="email" name="username" id="login-username" placeholder="E-mail">
+                </div>
 
-            <div class="log-reg-input-container">
-                <!-- <label for="password">Password</label> -->
-                <!-- <i class="fas fa-key"></i> -->
-                <img class="input-img" src="../../public/img/key.svg" />
-                <input type="password" name="password" id="login-password" placeholder="Password">
-            </div>
+                <div class="log-reg-input-container">
+                    <!-- <label for="password">Password</label> -->
+                    <!-- <i class="fas fa-key"></i> -->
+                    <img class="input-img" src="../../public/img/key.svg" />
+                    <input class="auth-input" type="password" name="password" id="login-password" placeholder="Password">
+                </div>
 
-            <div class="submit-button">
-                <input type="submit" name="login" value="Log in" id="login-submit">
-            </div>
+                <div class="submit-button">
+                    <input class="auth-btn btn-dark" type="submit" name="login" value="Log in" id="login-submit">
+                </div>
 
             </form>
         </div>
 
-        <div id="login-register">
-            <h1>Register</h1>
-            <h2>Don't have an account? Create one!</h2>
-            <a href="register.php"><button id="signup">Register</button></a>
+        <div class="auth-wrapper" id="login-register">
+            <h1 class="log-reg-heading">Register</h1>
+            <h2 class="log-reg-heading">Don't have an account? Create one!</h2>
+            <a href="register.php"><button class="auth-btn btn-light" id="signup">Register</button></a>
         </div>
     </div>
 

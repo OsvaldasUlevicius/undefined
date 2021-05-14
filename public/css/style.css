@@ -4,253 +4,206 @@
 @import "buttons.css";
 
 :root {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 input,
 button,
 a,
+#status,
+#priority,
 ::placeholder {
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
 }
 
-input { display: inline-block; }
-
 body {
-    background: var(--background);
-    min-height: 100vh;
-    background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
+  background: var(--background);
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  font-family: 'Roboto', sans-serif;
 }
 
 .login-register-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }  
-
-.logo-top {
-    position: absolute;
-    text-align: center;
-    top: 5vh;
-    z-index: -1;
-    /* display: block;
-    margin: 0 auto; */
-}
-
-.logo { max-width: 100px; }
-
-h1, h2 { line-height: 200%; }
-
-/* .log-reg-heading {
-    padding-bottom: 10px;
-} */
-
-h1 {
-    font-size: 2.25rem;
-    font-weight: 400;
-    margin: 20px 0 0 0;
-}
-
-h2 {
-    font-weight: 700;
-    margin: 0 0 20px 0;
-}
-
-#login-wrapper>h1,
-#login-wrapper>h2,
-#register-wrapper>h1,
-#register-wrapper>h2 { 
-    color: var(--font-color-dark); 
-}
-
-#login-register>h1,
-#login-register>h2 { 
-    color: var(--white); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-wrap {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    height: 100%;
-  }
-  
-  #login-wrapper,
-  #login-register,
-  #register-wrapper {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    border: var(--border-primary);
-  }
-  
-  #login-wrapper,
-  #login-register {
-    min-width: 442px;
-    min-height: 376px;
-  }
-  
-  #login-wrapper {
-    background-color: var(--white);
-    border-radius: 0.3rem 0 0 0.3rem;
-    box-shadow: -3px 10px 7px 2px rgba(80, 80, 80, 0.1);
-  }
-  
-  #login-register {
-    background-color: var(--primary-color);
-    border-radius: 0 0.3rem 0.3rem 0;
-    box-shadow: 3px 10px 7px 2px rgba(80, 80, 80, 0.1);
-  }
-  
-  #register-wrapper {
-    min-width: 400px;
-    min-height: 440px;
-    background-color: var(--white);
-    border: var(--border-primary);
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 7px 2px rgba(80, 80, 80, 0.1);
-  }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-top {
+  max-width: 100px;
+  margin-bottom: 2%;
+}
+
+.log-reg-heading {
+  color: var(--font-color-dark);
+  line-height: 200%;
+}
+
+h1.log-reg-heading {
+  font-size: 2.25rem;
+  font-weight: 400;
+  margin: 20px 0 0 0;
+}
+
+h2.log-reg-heading {
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+#login-register>h1,
+#login-register>h2 {
+  color: var(--white);
+}
+
+.auth-wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-primary);
+}
+
+#login-wrapper,
+#login-register {
+  min-width: 456px;
+  min-height: 382px;
+}
+
+#login-wrapper {
+  background-color: var(--white);
+  border-radius: 0.3rem 0 0 0.3rem;
+  box-shadow: -3px 10px 7px 2px rgba(80, 80, 80, 0.1);
+  margin-bottom: 8%;
+}
+
+#login-register {
+  background-color: var(--primary-color);
+  border-radius: 0 0.3rem 0.3rem 0;
+  box-shadow: 3px 10px 7px 2px rgba(80, 80, 80, 0.1);
+  margin-bottom: 8%;
+}
+
+#register-wrapper {
+  min-width: 458px;
+  min-height: 490px;
+  background-color: var(--white);
+  border: var(--border-primary);
+  box-shadow: 0 10px 7px 2px rgba(80, 80, 80, 0.1);
+  margin-bottom: 4%;
+}
 
 input {
-    font-weight: 400;
-    line-height: 30px;
-    font-size: 16px;
-    color: var(--font-color-light);
-    border: var(--border-primary);
-    border-radius: var(--border-radius);
-    margin: 8px 0 4px 0;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 1rem;
+  color: var(--font-color-light);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  margin: 8px 0 4px 0;
 }
 
-#login-username,
-#login-password { 
-    min-width: 320px; 
+.auth-input {
+  min-width: 320px;
 }
 
-#register-username,
-#register-password1,
-#register-password2 { 
-    min-width: 222px; 
+input:focus,
+#status:focus,
+#priority:focus {
+  outline: none;
 }
 
-input:focus { outline: none; }
-
-::placeholder { color: var(--font-color-light); }
-
-#signup,
-#login-submit,
-#register-submit {
-    font-weight: 700;
-    width: 100px;
-    height: 34px;
-    border-radius: var(--border-radius);
-}
-
-#signup {
-    background-color: var(--white);
-    color: var(--primary-color);
-    border: 2px solid var(--white);
-    margin: 4% 0 15% 0;
+::placeholder {
+  color: var(--font-color-light);
 }
 
 #login-submit {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: var(--border-primary);
-    padding: 0 0 3px 0;
-    margin: 20px 0 50px 0;
-}
-
-#register-submit {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: var(--border-primary);
-    padding: 0 0 3px 0;
-    margin: 20px 0 20px 0;
+  padding: 0 0 3px 0;
+  margin: 20px 0 50px 0;
 }
 
 .submit-button,
 .register-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup {
+  margin: 10% 0 20% 0;
+}
+
+#register-submit {
+  margin: 30px 0 20px 0;
 }
 
 a:link,
 a:visited,
 a:hover,
 a:active {
-    text-decoration: none;
-    color: var(--active);
-}
-
-#login-submit:hover,
-#register-submit:hover {
-    cursor: pointer;
-    background-color: var(--light-green-hover);
-    border: 2px solid var(--light-green-hover);
-    transform: scale(1.03) perspective(1px);
-    transition-timing-function: ease-in;
-}
-
-#signup:hover,
-#signup>a:hover {
-    cursor: pointer;
-    background-color: var(--white);
-    border: 2px solid var(--white);
-    transform: scale(1.03) perspective(1px);
-    transition-timing-function: ease-in;
+  text-decoration: none;
+  color: var(--active);
 }
 
 #member-login>a:hover {
-    color: var(--light-green-hover);
+  color: var(--light-green-hover);
 }
 
 .log-reg-input-container {
-    position: relative;
+  position: relative;
 }
 
 .log-reg-input-container>img {
-    position: absolute;
-    top: 16px;
-    left: 8px;
-    background-color: var(--white);
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  background-color: var(--white);
 }
 
 .log-reg-input-container>input {
-    padding-left: 50px;
+  padding-left: 50px;
 }
 
 .member-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    color: var(--font-color-normal);
-    font-weight: 700;
-    padding: 10px 0 20px 0;
-    margin: 0 0 20px 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--font-color-dark);
+  font-weight: 700;
+  padding: 10px 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 .msg,
 .error {
-    font-size: 14px;
-    color: var(--white);
-    line-height: 1.2rem;
-    border-radius: var(--border-radius);
-    padding: 0 10px 0 10px;
+  font-size: 14px;
+  color: var(--white);
+  line-height: 1.2rem;
+  border-radius: 0.1rem;
+  padding: 0 10px 0 10px;
 }
 
-.error { background-color: var(--err-color); }
+.error {
+  background-color: var(--err-color);
+}
 
-.msg { background-color: var(--conf-color); }
+.msg {
+  background-color: var(--conf-color);
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -261,8 +214,8 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-text-fill-color: var(--font-color-light);
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--font-color-light);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
@@ -276,16 +229,25 @@ body.eventlog {
   flex-direction: column;
   align-items: center;
 }
-  
+
 .logo-in-page {
   margin: 50px 0;
 }
-  
-h1 {
-  margin: 0;
+
+.task-proj-logo {
+  max-width: 120px;
+}
+
+.task-proj-heading {
+  margin: 20px 0 50px 0;
+  text-align: center;
   color: var(--font-color-dark);
 }
-  
+
+h1.task-proj-heading {
+  font-size: 2rem;
+}
+
 .container-table {
   color: var(--font-color-dark);
   width: 80%;
@@ -308,7 +270,8 @@ h1 {
 
 /*Create Project & Create Task */
 
-.create-table-head {
+.create-table-head,
+.edit-table-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
@@ -317,7 +280,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-.create-container-table {
+.create-container-table,
+.edit-container-table {
   color: var(--font-color-dark);
   width: 50%;
   margin: 20px auto;
@@ -330,13 +294,13 @@ h1 {
   position: relative;
   padding: 0 0 5% 0;
 }
-  
+
 .table-body,
 .table-head {
   padding: 15px 30px;
   width: 100%;
 }
-  
+
 .table-head,
 .table-row {
   grid-template-columns: 1fr 1.5fr repeat(2, 0.5fr) 1fr 0.5fr;
@@ -349,7 +313,7 @@ h1 {
   border-bottom: var(--nav-border);
   margin-bottom: 10px;
 }
-  
+
 .table-body {
   row-gap: 30px;
 }
@@ -359,29 +323,40 @@ h1 {
   padding: 5px;
   align-items: center;
 }
-.edit{color: var(--font-color-normal);}
-.trash{color:var(--err-color);}
- 
+
+.edit {
+  color: var(--font-color-normal);
+}
+
+.trash {
+  color: var(--err-color);
+}
+
 .th {
   justify-content: center;
   font-weight: bold;
+}
+
+#title, #description {
+  justify-content: left;
+  padding-left: 18px;
 }
 
 .tasks-left,
 .tasks-count {
   text-align: center;
 }
-  
+
 a.project-name {
   color: var(--font-color-dark);
-  font-weight: 500;
+  font-weight: 700;
 }
-  
+
 .edit-delete {
   display: flex;
   justify-content: flex-end;
 }
-  
+
 .status-box {
   color: var(--white);
   padding: 10px;
@@ -392,136 +367,87 @@ a.project-name {
   justify-self: center;
 }
 
-.status{text-align: center;}
- 
+.status {
+  text-align: center;
+}
+
 .ongoing {
   background: var(--font-color-dark);
 }
-  
+
 .completed {
   background: var(--primary-color);
 }
-  
+
 #search-form {
-  width: 50%;
+  min-width: 36%;
   position: relative;
 }
 
 #input-search {
-  padding-left: 20px;
+  padding: 2px 0 2px 20px;
   width: 100%;
 }
-  
+
 #csv-form input,
 #csv-form-tasks input,
 #create-project-btn,
-#create-task-btn {
+#create-task-btn,
+#edit-project-btn {
   color: var(--primary-color);
   font-weight: 500;
   border: var(--border-primary);
 }
-  
+
 #create-new-project-btn {
   margin: 30px 0 20px 0;
 }
-  
+
 #csv-form {
   position: absolute;
   bottom: 10px;
   right: 30px;
 }
-  
+
 #btn-search {
   position: absolute;
-  right: 0;
-  top: 50%;
+  right: 2%;
+  top: 55%;
   transform: translateY(-50%);
 }
 
-/* =========================================================
-   DELETE POPUP 
-========================================================= */
-
-.delete-popup {
-  display: none;
-  z-index: 1;
-  margin: 0;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.delete-message-container { margin: 0 5rem;}
-
-.delete-message {
-  display: inline-block;
-  background-color: #FFFFFF;
-  width: 362px;
-  height: 345px;
-  vertical-align: top;
-  text-align: center;
-}
-
-.delete-popup button {
-  outline: none;
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-  margin: auto;
-}
-
-.delete-message h4 { margin-top: 7rem; }
-.delete-message p { margin: 3rem 0; }
-
-.delete-message .button-primary { 
-  margin-bottom: 2rem;
-  line-height: 5rem;
-}
-
-.delete-message span {
-  color: #FF6187;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.delete-message span:hover,
-.delete-message span:active { color: #FF2D5E; }
-
-/* =========================================================
-========================================================= */
-  
 
 /* medias */
-  
+
 @media (max-width: 995px) {
+
   .project-description,
   .description {
     display: none;
   }
-  
+
   .table-head,
   .table-row {
     grid-template-columns: 1fr repeat(2, 0.5fr) 1fr 0.5fr;
   }
 }
-  
+
 @media (max-width: 680px) {
+
   .tasks-count,
   .tasks-left,
   .left,
   .total {
     display: none;
   }
- 
+
   .table-head,
   .table-row {
     grid-template-columns: 1fr 1fr 0.5fr;
   }
-  
+
   #search-form {
-    width: 80%;
+    max-width: 36%;
     position: relative;
   }
   
@@ -533,26 +459,206 @@ a.project-name {
 
 /* taskList */
 
-#back-to-projects a {
+#back-to-projects a,
+#back-to-tasks a {
   font-weight: 700;
   color: var(--font-color-normal);
 }
 
-/* .task-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr 1fr;
-  grid-template-rows: 20% 100px auto;
-} */
+#priority,
+#status {
+  border: none;
+}
 
 .task-wrapper {
   color: var(--font-color-dark);
-  width: 80%;
-  margin: 20px auto;
+  width: 92%;
+  margin: 18px -10px 80px -10px;
   background-color: var(--white);
-  border: var(--border-primary);
+  border: 1px solid var(--primary-color);
   border-radius: 1px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   position: relative;
+}
+
+.tasks-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tasks-to-do,
+.tasks-in-progress,
+.tasks-completed {
+  width: 340px;
+  height: 460px;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.task-headers {
+  width: 340px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-header {
+  background-color: var(--font-color-normal);
+}
+
+.in-progress-header {
+  background-color: var(--secondary-color);
+}
+
+.completed-header {
+  background-color: var(--primary-color);
+}
+
+.tasks-bottom {
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+.individual-task {
+  width: 340px;
+  height: 90px;
+  border: 1px solid var(--primary-color);
+}
+
+.task-created-date,
+.task-updated-date,
+.task-id {
+  color: var(--font-color-dark);
+  font-size: 0.6rem;
+}
+
+.task-title {
+  font-size: 12px;
+  grid-column-start: 3;
+}
+
+.individual-task {
+  padding: 10px;
+  position: relative;
+}
+
+.tasks-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tasks-to-do,
+.tasks-in-progress,
+.tasks-completed {
+  width: 340px;
+  height: 460px;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.task-headers {
+  width: 340px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-header {
+  background-color: var(--font-color-normal);
+}
+
+.in-progress-header {
+  background-color: var(--secondary-color);
+}
+
+.completed-header {
+  background-color: var(--primary-color);
+}
+
+.tasks-bottom {
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+.individual-task {
+  width: 340px;
+  height: 90px;
+  border: 1px solid var(--primary-color);
+}
+
+.task-created-date,
+.task-updated-date,
+.task-id {
+  color: var(--font-color-dark);
+  font-size: 0.6rem;
+}
+
+.task-title {
+  font-size: 12px;
+  grid-column-start: 3;
+}
+
+.individual-task {
+  padding: 10px;
+  position: relative;
+}
+
+.individual-task:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 48px solid var(--warn); /* + var(--secondary-color), var(--primary-color);*/
+  border-left: 76px solid white;
+  width: 0;
+}
+
+.task-title {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.task-description {
+  text-align: center;
+  padding: 10px;
+}
+
+.ind-task-edit {
+  position: absolute;
+  top: 60px;
+  right: 30px;
+}
+
+.ind-task-dlt {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+}
+
+.task-priority {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+.task-status {
+  position: absolute;
+  left: 400px;
+}
+
+#csv-form-tasks {
+  text-align: center;
+}
+
+.back-to-proj-tasks {
+  text-align: end;
 }
