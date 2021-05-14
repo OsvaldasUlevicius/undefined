@@ -1,7 +1,13 @@
 <?php
 $range = 3;
-$currentPage = $projectsInformation["currentPage"];
-$totalPages = $projectsInformation["totalPages"];
+if (isset($projectsInformation)) {
+   $currentPage = $projectsInformation["currentPage"];
+   $totalPages = $projectsInformation["totalPages"];
+} else {
+   $currentPage = $events["currentPage"];
+   $totalPages = $events["totalPages"];
+}
+
 
 // if not on page 1, don't show back links
 if ($currentPage > 1) {

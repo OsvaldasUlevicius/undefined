@@ -1,7 +1,12 @@
 <?php
 
-function getTasks($db, $projectId) {
-    $query = "SELECT * FROM tasks WHERE project ='$projectId'";
+function getTasks($db, $projectId, $isFiltered=false) {
+    if($isFiltered){
+        $valueToSearch = $_POST["valueToSearch"];
+        $query = "SELECT * FROM `tasks` WHERE `project`=$projectId AND (`title` LIKE '%$valueToSearch%' OR `description` LIKE '%$valueToSearch%')";
+    }else{
+    $query = "SELECT * FROM tasks WHERE project ='$projectId'";}
+
     return mysqli_query($db, $query);
 }
 
@@ -61,4 +66,12 @@ if(isset($_GET["csvTasks"])){
     header("Content-Disposition: attachment; filename=".$csv_filename."");
     echo($csv_export);
     exit();
+}
+function isFiltered($db,$projectId){
+    if(isset($_POST["search"])){
+        $tasks = getTasks($db,$projectId,$isFiltered=true);
+    }else{
+        $tasks = getTasks($db,$projectId);
+    }
+    return $tasks;
 }

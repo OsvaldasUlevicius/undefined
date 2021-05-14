@@ -2,6 +2,7 @@
 include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/taskList.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@ include('../../modules/projects/taskList.php');
     </div>
 
     <h1><?php echo getProjectName($_GET["project_id"], $db)?></h1>
-    <form id="search-form" action="" method="GET">
+    <form id="search-form" action="" method="POST">
         <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..." />
         <button id="btn-search" class="btn" type="submit" name="search" value="search"><i
                 class="icon fas fa-search"></i></button>
@@ -43,10 +44,15 @@ include('../../modules/projects/taskList.php');
 
 
     <div class="task-wrapper">
-
+        <?php $filteredTasks = isFiltered($db,$_GET["project_id"])?>
+        <?php
+        $errors = array();
+        if (mysqli_fetch_assoc($filteredTasks) == 0){array_push($errors, "We didn't find any tasks following your search request.");include('../../modules/errors.php');};
+        ?>
         <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
 
         <tr>
+            <td><?php echo $task["id"]; ?></td>
             <td><?php echo $task["title"]; ?></td>
             <td><?php echo $task["description"]; ?></td>
             <td><?php echo getPriority($task["priority"], $db); ?></td>
@@ -59,6 +65,10 @@ include('../../modules/projects/taskList.php');
                 <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
                 <i class="icon edit far fa-edit"></i></a> 
             <td>
+                <form method="GET" action="editTask.php">
+                    <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
+                    <button type="submit" id="edit">Edit</button>
+                </form>
                 <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
                     <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
                     <button class="btn" type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
