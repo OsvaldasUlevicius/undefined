@@ -372,7 +372,7 @@ a.project-name {
 }
 
 .ongoing {
-  background: var(--font-color-dark);
+  background: var(--font-color-normal);
 }
 
 .completed {
@@ -551,13 +551,14 @@ a.project-name {
 .tasks-container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .tasks-to-do,
 .tasks-in-progress,
 .tasks-completed {
-  width: 340px;
-  height: 460px;
+  min-width: 340px;
+  min-height: 460px;
   border: 1px solid var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -661,4 +662,8 @@ a.project-name {
 
 .back-to-proj-tasks {
   text-align: end;
+}
+
+#create-new-task-btn {
+  margin-top: 16px;
 }
