@@ -2,7 +2,8 @@
 include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/taskList.php');
-
+include('../../modules/projects/updateTaskStatus.php');
+include("../projects/taskCard.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,8 @@ include('../../modules/projects/taskList.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 </head>
 
 <body class="task-list">
@@ -71,13 +74,17 @@ include('../../modules/projects/taskList.php');
 
                 <section class="tasks-container">
 
-                    <div id="tasks-to-do" class="tasks-to-do dropbox">
+                    <div data-value="TODO" class="tasks-to-do dropbox" onMouseOver="drag();">
                         <div class="task-headers todo-header">
                         <h2>TODO</h2>
                         </div>
 
                         <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-                        <?php if($task["status"] == 1){include("../projects/taskCard.php");};?>
+                        <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "TODO") {
+                                include("taskCard.php");
+                            }
+                        ?>
                         <?php endforeach ?>
 
                         <div class="tasks-bottom">
@@ -86,21 +93,29 @@ include('../../modules/projects/taskList.php');
                         </div>
                     </div>
 
-                    <div id="tasks-in-progress" class="tasks-in-progress dropbox">
+                    <div data-value="In Progress" class="tasks-in-progress dropbox" onMouseOver="drag();">
                         <div class="task-headers in-progress-header">
                             <h2>IN PROGRESS</h2>
                         </div>
                         <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-                        <?php if($task["status"] == 2){include("taskCard.php");};?>
+                            <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "In Progress") {
+                                include("taskCard.php"); 
+                            }
+                            ?>
                         <?php endforeach ?>
                     </div>
 
-                    <div id="tasks-completed" class="tasks-completed dropbox">
+                    <div data-value="Completed" class="tasks-completed dropbox" onMouseOver="drag();">
                         <div class="task-headers completed-header">
                             <h2>COMPLETED</h2>
                         </div>
                         <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-                        <?php if($task["status"] == 3){include("taskCard.php");};?>
+                            <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "Completed") {
+                                include("taskCard.php"); 
+                            }
+                            ?>
                         <?php endforeach ?>
                     </div>
 
@@ -119,27 +134,45 @@ include('../../modules/projects/taskList.php');
 
         </div>
 
+        <!-- <style>
+            .dropper_hover {
+                background-color:#a0d9cb;
+            }
+        </style> -->
+
         <script>
-        //drag n drop 
-        let dropEl = ""
-        for (const drag of document.querySelectorAll(".draggable")){
-            drag.addEventListener("dragstart", e => {
-                dropEl = e.target
-                return dropEl
-            })
-        }
-        for (const drop of document.querySelectorAll(".dropbox")){
-            //whent dragEl is over a dropzone
-            drop.addEventListener("dragover", e => {
-                e.preventDefault();
-            })
-            //when dragEL is dropped onto drop zone
-            drop.addEventListener("drop", e => {
-                e.preventDefault();
-                let dropzone = e.target.id
-                document.getElementById(dropzone).appendChild(dropEl)
-            })
-        }
+        //initialize the drag and drop functions.
+        function drag() {
+
+            $(".dropbox .individual-task").draggable({
+                appendTo: "body",
+                // helper: "clone",
+                revert: "invalid",
+                cursor: "grab"
+            });
+
+            $(".dropbox").droppable({
+                activeClass: "dropbox-call",
+                hoverClass: "dropbox-hovered",
+                // accept: ":not(.ui-sortable-helper)",
+                drop: function (event, ui) {
+                    let task = ui.draggable.attr("id");
+                    let column = $(this).attr("data-value");
+                    $.ajax({
+                        url: "../../modules/projects/updateTaskStatus.php",
+                        type: "POST",
+                        data: {
+                            taskId: task,
+                            columnStatus: column
+                        },
+                        success: function (html) {
+                            location.reload();
+                        }
+                    });
+    }
+});
+
+}
     </script>
 </body>
 

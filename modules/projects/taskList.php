@@ -63,12 +63,14 @@ if (isset($_POST["search"])) {
 function getTasks($db, $projectId, $isFiltered=false) {
     if ($isFiltered) {
         $valueToSearch = $_POST["valueToSearch"];
+        // TODO order by when filtered
         $query = "SELECT * FROM tasks WHERE project=$projectId AND (title LIKE '%$valueToSearch%' OR description LIKE '%$valueToSearch%')";
     } else {
-        $query = "SELECT * FROM tasks WHERE project ='$projectId'";
+        $query = "SELECT * FROM tasks WHERE project ='$projectId' ORDER BY updated_at ";
     }
     return mysqli_query($db, $query);
 }
+
 
 function getPriority($priorityId, $db) {
     $priorityQuery = "SELECT * FROM task_priorities WHERE id='$priorityId' LIMIT 1";

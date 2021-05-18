@@ -1,4 +1,8 @@
-<div id="<?php echo $task["id"];?>" class="individual-task draggable" draggable="true">
+<?php 
+
+if (isset($task)) { ?>
+
+<div id="<?php echo $task["id"];?>" class="individual-task draggable">
     <span class="task-title"> <?php echo $task["title"]; ?> </span>
     <p class="task-description"> <?php echo $task["description"]; ?> </p>
     <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
@@ -16,3 +20,8 @@
             </form>
         </div>
 </div>
+
+<?php
+}
+
+?>
