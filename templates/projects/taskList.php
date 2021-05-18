@@ -29,6 +29,7 @@ include("../projects/taskCard.php");
         <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
         <img class="task-proj-logo" src="../../public/img/logo-text.png" />
     </div>
+    
 
     <h1 class="task-proj-heading"><?php echo getObjectName("projects", $_GET["project_id"], "title", $db)?></h1>
     <form id="search-form" action="" method="POST">
@@ -79,7 +80,7 @@ include("../projects/taskCard.php");
                         <h2>TODO</h2>
                         </div>
 
-                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+                        <?php foreach ($filteredTasks as $task): ?>
                         <?php 
                             if (getStatus($task["status"], $db, $isProject=false) == "TODO") {
                                 include("taskCard.php");
@@ -97,7 +98,7 @@ include("../projects/taskCard.php");
                         <div class="task-headers in-progress-header">
                             <h2>IN PROGRESS</h2>
                         </div>
-                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+                        <?php foreach ($filteredTasks as $task): ?>
                             <?php 
                             if (getStatus($task["status"], $db, $isProject=false) == "In Progress") {
                                 include("taskCard.php"); 
@@ -110,7 +111,7 @@ include("../projects/taskCard.php");
                         <div class="task-headers completed-header">
                             <h2>COMPLETED</h2>
                         </div>
-                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
+                        <?php foreach ($filteredTasks as $task): ?>
                             <?php 
                             if (getStatus($task["status"], $db, $isProject=false) == "Completed") {
                                 include("taskCard.php"); 
@@ -133,7 +134,8 @@ include("../projects/taskCard.php");
             </div>
 
         </div>
-
+    </div>
+    <?php include("../header_footer/footer.php");?>
         <!-- <style>
             .dropper_hover {
                 background-color:#a0d9cb;

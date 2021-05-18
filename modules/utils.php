@@ -47,12 +47,24 @@ function getObjectName($table, $objectId, $nameField, $db) {
     }
 }
 
-function truncateWords($input, $numwords, $padding=""){
-    $output = strtok($input, " \n");
-    while(--$numwords > 0) $output .= " " . strtok(" \n");
-    if($output != $input) $output .= $padding;
-    return $output;
+function truncateWords($input, $lenght, $padding=""){
+    // truncate by words $lenght mens count of words
+    if(str_word_count($input) > $lenght){
+        $output = strtok($input, " \n");
+        while(--$lenght > 0) $output .= " " . strtok(" \n");
+        if($output != $input) $output .= $padding;
+        return $output;
+        // truncate by letter $lenght means count of letters
+    }else if(strlen($input) > $lenght) {
+       return (strlen($input) > $lenght) ? substr($input, 0, $lenght - strlen($padding)) . $padding : $input;
+    }else { return $input;} 
 }
+
+
+
+
+
+
 
 function logObjectActions($objectId, $db, $event, $isProject=true) {
     if ($isProject) {
