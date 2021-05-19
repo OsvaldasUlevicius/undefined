@@ -50,10 +50,10 @@ include('../../modules/projects/projectList.php');
             
             <div class="table-row">
                 <a class="project-name" href="taskList.php?project_id=<?php echo $project["id"]; ?>">
-                    <?php echo(truncateWords( $project["title"], 3, $padding="..."))?>
+                    <?php echo truncate($project["title"], array("wordWidth" => 5, "characterWidth" => 30)); ?>
                 </a>
 
-                <p class="project-description"><?php echo(truncateWords($project["description"],5,$padding="..."))?></p>
+                <p class="project-description"><?php echo truncate($project["description"], array("wordWidth" => 10, "characterWidth" => 100)); ?></p>
                 <p class="tasks-count"><?php echo  countProjectTasks($project["id"], $db); ?></p>
                 <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isFinished=true); ?></p>
 

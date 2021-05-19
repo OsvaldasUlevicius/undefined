@@ -2,7 +2,8 @@
 include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/taskList.php');
-
+include('../../modules/projects/updateTaskStatus.php');
+include("../projects/taskCard.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,8 @@ include('../../modules/projects/taskList.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 </head>
 
 <body class="task-list">
@@ -26,6 +29,7 @@ include('../../modules/projects/taskList.php');
         <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
         <img class="task-proj-logo" src="../../public/img/logo-text.png" />
     </div>
+    
 
     <h1 class="task-proj-heading"><?php echo getObjectName("projects", $_GET["project_id"], "title", $db)?></h1>
     <form id="search-form" action="" method="POST">
@@ -71,34 +75,18 @@ include('../../modules/projects/taskList.php');
 
                 <section class="tasks-container">
 
-                    <div class="tasks-to-do">
+                    <div data-value="TODO" class="tasks-to-do dropbox" onMouseOver="drag();">
                         <div class="task-headers todo-header">
                         <h2>TODO</h2>
                         </div>
 
-                        <?php foreach (getTasks($db, $_GET["project_id"]) as $task): ?>
-
-
-<div class="individual-task">
-    <span class="task-title"> <?php echo $task["title"]; ?> </span>
-    <p class="task-description"> <?php echo $task["description"]; ?> </p>
-    <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
-    <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> </span>
-    <span class="task-id">ID: <?php echo $task["id"]; ?> </p>
-
-
-        <a class="btn ind-task-edit" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-            <i class="icon edit far fa-edit"></i></a>
-        <div>
-            <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
-                <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
-                <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
-                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
-            </form>
-        </div>
-</div>
-
-<?php endforeach ?>
+                        <?php foreach ($filteredTasks as $task): ?>
+                        <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "TODO") {
+                                include("taskCard.php");
+                            }
+                        ?>
+                        <?php endforeach ?>
 
                         <div class="tasks-bottom">
                             <a class="btn add-btn" id="create-new-task-btn"
@@ -106,16 +94,30 @@ include('../../modules/projects/taskList.php');
                         </div>
                     </div>
 
-                    <div class="tasks-in-progress">
+                    <div data-value="In Progress" class="tasks-in-progress dropbox" onMouseOver="drag();">
                         <div class="task-headers in-progress-header">
                             <h2>IN PROGRESS</h2>
                         </div>
+                        <?php foreach ($filteredTasks as $task): ?>
+                            <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "In Progress") {
+                                include("taskCard.php"); 
+                            }
+                            ?>
+                        <?php endforeach ?>
                     </div>
 
-                    <div class=" tasks-completed">
+                    <div data-value="Completed" class="tasks-completed dropbox" onMouseOver="drag();">
                         <div class="task-headers completed-header">
                             <h2>COMPLETED</h2>
                         </div>
+                        <?php foreach ($filteredTasks as $task): ?>
+                            <?php 
+                            if (getStatus($task["status"], $db, $isProject=false) == "Completed") {
+                                include("taskCard.php"); 
+                            }
+                            ?>
+                        <?php endforeach ?>
                     </div>
 
                 </section>
@@ -132,7 +134,48 @@ include('../../modules/projects/taskList.php');
             </div>
 
         </div>
+    </div>
+    <?php include("../header_footer/footer.php");?>
+        <!-- <style>
+            .dropper_hover {
+                background-color:#a0d9cb;
+            }
+        </style> -->
 
+        <script>
+        //initialize the drag and drop functions.
+        function drag() {
+
+            $(".dropbox .individual-task").draggable({
+                appendTo: "body",
+                // helper: "clone",
+                revert: "invalid",
+                cursor: "grab"
+            });
+
+            $(".dropbox").droppable({
+                activeClass: "dropbox-call",
+                hoverClass: "dropbox-hovered",
+                // accept: ":not(.ui-sortable-helper)",
+                drop: function (event, ui) {
+                    let task = ui.draggable.attr("id");
+                    let column = $(this).attr("data-value");
+                    $.ajax({
+                        url: "../../modules/projects/updateTaskStatus.php",
+                        type: "POST",
+                        data: {
+                            taskId: task,
+                            columnStatus: column
+                        },
+                        success: function (html) {
+                            location.reload();
+                        }
+                    });
+    }
+});
+
+}
+    </script>
 </body>
 
 </html>
