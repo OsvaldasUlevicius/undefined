@@ -47,24 +47,23 @@ function getObjectName($table, $objectId, $nameField, $db) {
     }
 }
 
-function truncateWords($input, $lenght, $padding=""){
-    // truncate by words $lenght mens count of words
-    if(str_word_count($input) > $lenght){
-        $output = strtok($input, " \n");
-        while(--$lenght > 0) $output .= " " . strtok(" \n");
-        if($output != $input) $output .= $padding;
-        return $output;
-        // truncate by letter $lenght means count of letters
-    }else if(strlen($input) > $lenght) {
-       return (strlen($input) > $lenght) ? substr($input, 0, $lenght - strlen($padding)) . $padding : $input;
-    }else { return $input;} 
+function truncate($str, $desiredWidth) {
+    $padding = "...";
+    if (isset($desiredWidth["wordWidth"])) {
+        if (str_word_count($str) > $desiredWidth["wordWidth"]) {
+            $output = strtok($str, " \n");
+            while(--$desiredWidth["wordWidth"] > 0) $output .= " " . strtok(" \n");
+            if($output != $str) $output .= $padding;
+            return $output;
+        }
+    }
+    if (isset($desiredWidth["characterWidth"])) {
+        if (strlen($str) > $desiredWidth["characterWidth"]) {
+            return (strlen($str) > $desiredWidth["characterWidth"]) ? substr($str, 0, $desiredWidth["characterWidth"] - strlen($padding)) . $padding : $str;
+        }
+    }
+    return $str;
 }
-
-
-
-
-
-
 
 function logObjectActions($objectId, $db, $event, $isProject=true) {
     if ($isProject) {

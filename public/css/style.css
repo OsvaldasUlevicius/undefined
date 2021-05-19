@@ -352,7 +352,7 @@ a.project-name {
   font-weight: 700;
 }
 a.project-name,.project-description {
-  line-break: anywhere;
+  word-break: break-word;
   padding-right: 10px;
 }
 
