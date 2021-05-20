@@ -677,3 +677,49 @@ a.project-name,.project-description {
 .dropbox-hovered { background-color: #d8f7f0; }
 
 .ui-draggable-dragging { background-color: #effcf9;}
+
+/* =========================================================
+   DELETE POPUP 
+========================================================= */
+
+.delete-popup {
+    background-color: #FFFFFF;
+    display: none;
+    z-index: 1;
+    margin: 0;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 724px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.delete-message {
+    display: flex;
+    background-color: #A0D9CB;
+    flex-direction: column;
+    width: 362px;
+    height: 345px;
+    text-align: center;
+    justify-content: center;
+}
+
+.delete-message h4 { margin-bottom: 30px; }
+.delete-message p { margin-bottom: 15px; }
+.delete-message form { margin-bottom: 5px; }
+
+.delete-message span {
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-message span:hover,
+.delete-message span:active { 
+    font-size: 17px;
+    transition-timing-function: ease-in;
+}

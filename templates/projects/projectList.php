@@ -16,6 +16,7 @@ include('../../modules/projects/projectList.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 <body class="project-list">
@@ -66,12 +67,7 @@ include('../../modules/projects/projectList.php');
                 <div class="edit-delete">
                     <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
                         <i class="icon edit far fa-edit"></i></a>
-                    <form method="POST" action="projectList.php">
-                        <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
-                        <button class="btn" type="submit" id="delete"><i
-                                class=" icon trash far fa-trash-alt"></i></button>
-                    </form>
-
+                        <i class="btn icon trash far fa-trash-alt" data-value="<?php echo $project["id"]; ?>"></i>
                 </div>
             </div>
             <?php endforeach ?>
@@ -87,6 +83,29 @@ include('../../modules/projects/projectList.php');
         </form>
     </div>
     <?php include("../header_footer/footer.php");?>
+    <?php include("deletePopup.php"); ?>
+
+    <script>
+        const showPopup = () => {
+            $(".delete-popup").css("display", "flex");
+            $(".delete-popup").siblings().css("opacity", "0.4");;
+        }
+
+        $(".trash").on("click", function() {
+            let project = $(this).attr("data-value");
+            $.ajax({
+                success: function () {
+                    $(".delete-popup input[type=hidden]").val(project);
+                    showPopup();
+                }
+            });
+        })
+
+        $(".delete-popup span").on("click", function() {
+            $(".delete-popup").hide();
+            $(".delete-popup").siblings().css("opacity", "");
+        })
+    </script>
 </body>
 
 </html>
