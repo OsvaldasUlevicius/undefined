@@ -463,10 +463,11 @@ a.project-name,.project-description {
 
 /* taskList */
 
-#back-to-projects a,
+#back-to-projects span,
 #back-to-tasks a {
   font-weight: 700;
   color: var(--font-color-normal);
+  cursor: pointer;
 }
 
 #priority,
@@ -722,4 +723,19 @@ a.project-name,.project-description {
 .delete-message span:active { 
     font-size: 17px;
     transition-timing-function: ease-in;
+}
+
+/* =========================================================
+   CREATE PROJECT FORM
+========================================================= */
+
+.create-project-form {
+    display: none;
+    z-index: 1;
+    margin: 0;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

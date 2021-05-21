@@ -1,5 +1,8 @@
 <?php
 
+$errors = array();
+$popupErrors = array();
+
 // Delete Project
 if (isset($_POST["projectId"])) {
     $projectId = mysqli_real_escape_string($db, $_POST["projectId"]);
@@ -15,14 +18,51 @@ if (isset($_POST["projectId"])) {
     mysqli_query($db, $deleteProject);
 }
 
+// Create Project
+if (isset($_POST["createProject"])) {
+
+    $title = mysqli_real_escape_string($db, $_POST['title']);
+    $description = mysqli_real_escape_string($db, $_POST['description']);
+
+    // Check if both fields are filled in.
+    if (empty($title)) { 
+        array_push($popupErrors, "Title is required.");
+    }
+    if (empty($description)) { 
+        array_push($popupErrors, "Description is required.");
+    }
+
+    // Search if the entered project title is already taken.
+    $findProjects = "SELECT COUNT(*) FROM projects WHERE title='$title'";
+    $projectCountResult = mysqli_query($db, $findProjects);
+    $projectCount = mysqli_fetch_assoc($projectCountResult);
+    if ($projectCount["COUNT(*)"] > 0) {
+        array_push($popupErrors, "Project with the selected title already exists.");
+    }
+
+    if (count($popupErrors) == 0) {
+        $query = "INSERT INTO projects (title, description, status) VALUES('$title', '$description', '1')";
+        mysqli_query($db, $query);
+
+        // Log project creation into event log.
+        $getNewlyCreatedProject = "SELECT * FROM projects WHERE title='$title' LIMIT 1";
+        $newlyCreatedProject = mysqli_query($db, $getNewlyCreatedProject);
+        $project = mysqli_fetch_assoc($newlyCreatedProject);
+        logObjectActions($project["id"], $db, "created project ".$title);
+
+        // Redirect to the newly created project;
+        header("location: ../../templates/projects/taskList.php?project_id=".$project["id"]);
+    }
+}
+
 if (isset($_GET["search"])) {
     $projectsInformation = getProjects($db,$isFiltered=true);
 } else {
-    $projectsInformation = getProjects($db);
+    $projectsInformation = getProjects($db, $isFiltered=false, $errors);
 }
 
-function getProjects($db, $isFiltered=false) {
-    $errors = array();
+function getProjects($db, $isFiltered=false, $errors = array()) {
+    // $errors = array();
 
     // Find how many projects there are.
     if($isFiltered) {

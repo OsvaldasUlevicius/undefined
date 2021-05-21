@@ -18,7 +18,7 @@ include("../projects/taskCard.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 </head>
 
@@ -142,40 +142,39 @@ include("../projects/taskCard.php");
             }
         </style> -->
 
-        <script>
-        //initialize the drag and drop functions.
-        function drag() {
+<script>
+//initialize the drag and drop functions.
+function drag() {
 
-            $(".dropbox .individual-task").draggable({
-                appendTo: "body",
-                // helper: "clone",
-                revert: "invalid",
-                cursor: "grab"
+    $(".dropbox .individual-task").draggable({
+        appendTo: "body",
+        // helper: "clone",
+        revert: "invalid",
+        cursor: "grab"
+    });
+
+    $(".dropbox").droppable({
+        activeClass: "dropbox-call",
+        hoverClass: "dropbox-hovered",
+        // accept: ":not(.ui-sortable-helper)",
+        drop: function (event, ui) {
+            let task = ui.draggable.attr("id");
+            let column = $(this).attr("data-value");
+            $.ajax({
+                url: "../../modules/projects/updateTaskStatus.php",
+                type: "POST",
+                data: {
+                    taskId: task,
+                    columnStatus: column
+                },
+                success: function (html) {
+                    location.reload();
+                }
             });
-
-            $(".dropbox").droppable({
-                activeClass: "dropbox-call",
-                hoverClass: "dropbox-hovered",
-                // accept: ":not(.ui-sortable-helper)",
-                drop: function (event, ui) {
-                    let task = ui.draggable.attr("id");
-                    let column = $(this).attr("data-value");
-                    $.ajax({
-                        url: "../../modules/projects/updateTaskStatus.php",
-                        type: "POST",
-                        data: {
-                            taskId: task,
-                            columnStatus: column
-                        },
-                        success: function (html) {
-                            location.reload();
-                        }
-                    });
-    }
-});
-
+        }
+    });
 }
-    </script>
+</script>
 </body>
 
 </html>

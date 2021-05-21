@@ -16,8 +16,8 @@ include('../../modules/projects/projectList.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-</head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
 
 <body class="project-list">
     <?php include("../header_footer/header.php");?>
@@ -45,6 +45,7 @@ include('../../modules/projects/projectList.php');
         </div>
 
         <div class="table-body">
+            <?php include('../../modules/errors.php'); ?>
             
             <?php $errors = $projectsInformation["errors"]; include('../../modules/errors.php');?>
             <?php foreach ($projectsInformation["projects"] as $project): ?>
@@ -77,34 +78,55 @@ include('../../modules/projects/projectList.php');
             <?php include("../../modules/pagination_links.php"); ?>
         </div>
 
-        <a class="btn add-btn" id="create-new-project-btn" href="createProject.php"></a>
+        <div class="btn add-btn" id="create-new-project-btn"></div>
         <form id="csv-form" action="projectList.php" method="GET">
             <input class="btn" type="submit" name="csvProjects" value="Export to CSV" />
         </form>
     </div>
     <?php include("../header_footer/footer.php");?>
     <?php include("deletePopup.php"); ?>
+    <?php include ("createProject.php"); ?>
 
     <script>
-        const showPopup = () => {
-            $(".delete-popup").css("display", "flex");
-            $(".delete-popup").siblings().css("opacity", "0.4");;
-        }
+        (function() {
+            const showPopup = ($popupForm) => {
+            $($popupForm).css("display", "flex");
+            $($popupForm).siblings().css("opacity", "0.4");;
+            }
+            const hidePopup = ($popupForm) => {
+                $($popupForm).hide();
+                $($popupForm).siblings().css("opacity", "");
+            }
 
-        $(".trash").on("click", function() {
-            let project = $(this).attr("data-value");
-            $.ajax({
-                success: function () {
-                    $(".delete-popup input[type=hidden]").val(project);
-                    showPopup();
-                }
-            });
-        })
+            $(".trash").on("click", function() {
+                let project = $(this).attr("data-value");
+                $.ajax({
+                    success: function () {
+                        $(".delete-popup input[type=hidden]").val(project);
+                        showPopup(".delete-popup");
+                    }
+                });
+            })
 
-        $(".delete-popup span").on("click", function() {
-            $(".delete-popup").hide();
-            $(".delete-popup").siblings().css("opacity", "");
-        })
+            $(".delete-popup span").on("click", function() {
+                hidePopup(".delete-popup");
+            })
+
+            $("#create-new-project-btn").on("click", function() {
+                showPopup(".create-project-form");
+            })
+
+            $("#back-to-projects span").on("click", function() {
+                hidePopup(".create-project-form");
+                $(".create-project-form div:first-of-type").empty();
+            })
+
+            if ($(".create-project-form div:first-of-type").hasClass("popup-errors")) {
+                showPopup(".create-project-form");
+            }
+
+            const trimInput = ($input) => $($input).trim();
+        })();
     </script>
 </body>
 
