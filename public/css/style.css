@@ -351,6 +351,10 @@ a.project-name {
   color: var(--font-color-dark);
   font-weight: 700;
 }
+a.project-name,.project-description {
+  word-break: break-word;
+  padding-right: 10px;
+}
 
 .edit-delete {
   display: flex;
@@ -385,7 +389,7 @@ a.project-name {
 }
 
 #input-search {
-  padding: 2px 0 2px 20px;
+  padding: 2px 35px 2px 20px;
   width: 100%;
 }
 
@@ -529,6 +533,7 @@ a.project-name {
   width: 340px;
   height: 90px;
   border: 1px solid var(--primary-color);
+  background-color: #FFFFFF;
 }
 
 .task-created-date,
@@ -619,7 +624,7 @@ a.project-name {
   top: 0;
   right: 0;
   border-top: 48px solid var(--warn); /* + var(--secondary-color), var(--primary-color);*/
-  border-left: 76px solid white;
+  border-left: 76px solid transparent;
   width: 0;
 }
 
@@ -667,3 +672,8 @@ a.project-name {
 #create-new-task-btn {
   margin-top: 16px;
 }
+
+.dropbox-call { background-color: #effcf9; }
+.dropbox-hovered { background-color: #d8f7f0; }
+
+.ui-draggable-dragging { background-color: #effcf9;}
