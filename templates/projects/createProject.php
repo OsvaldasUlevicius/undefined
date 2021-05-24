@@ -1,10 +1,10 @@
 <form method="POST" action="projectList.php" class="create-project-form">
 
-    <div 
+    <div class="errors 
         <?php if (!empty($popupErrors)) {
-            echo "class='popup-errors'";
+            echo "popup-errors";
         }
-        ?>
+        ?>"
     >
         <?php
         $errors = $popupErrors;

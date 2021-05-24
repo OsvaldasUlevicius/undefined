@@ -9,16 +9,20 @@ if (isset($task)) { ?>
     <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> </span>
     <span class="task-id">ID: <?php echo $task["id"]; ?> </p>
 
+        <?php $taskArray=array(
+            "taskId" => intval($task["id"]), 
+            "taskTitle" => $task["title"], 
+            "taskDescription" =>  $task["description"],
+            "taskPriority" => intval($task["priority"]),
+            "taskStatus" => intval($task["status"])
+            );
+        ?>
+        <span class="btn ind-task-edit" data-value='<?php echo json_encode($taskArray); ?>'>
+            <i class="icon edit far fa-edit"></i>
+        </span>
+        <?php $deletePopupInfo = array("objectType" => "task", "objectId" => intval($task["id"]), "returnPage" => "taskList.php?project_id=".$_GET["project_id"]); ?>
+        <i class="icon trash far fa-trash-alt ind-task-dlt btn" data-value='<?php echo json_encode($deletePopupInfo)?>' class="ind-task-dlt"></i>
 
-        <a class="btn ind-task-edit" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-            <i class="icon edit far fa-edit"></i></a>
-        <div>
-            <form method="POST" action="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>">
-                <input type="hidden" name="taskId" value="<?php echo  $task["id"]; ?>">
-                <button style="padding: 0 0 3px 3px; margin: 0 0 5px 0" class="btn ind-task-dlt"
-                    type="submit" id="delete"><i class=" icon trash far fa-trash-alt"></i></button>
-            </form>
-        </div>
 </div>
 
 <?php
