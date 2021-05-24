@@ -21,6 +21,12 @@ a,
   font-family: 'Roboto', sans-serif;
 }
 
+@media screen and (max-width: 600px) {
+  a {
+    font-size: 0.8rem;
+  }
+}
+
 body {
   background: var(--background);
   min-height: 100vh;
@@ -238,6 +244,15 @@ body.eventlog {
   max-width: 120px;
 }
 
+@media screen and (max-width: 600px) {
+  .logo-in-page {
+    margin: 12px 0;
+  }
+  .task-proj-logo {
+    width: 60px;
+  }
+}
+
 .task-proj-heading {
   margin: 20px 0 50px 0;
   text-align: center;
@@ -246,6 +261,16 @@ body.eventlog {
 
 h1.task-proj-heading {
   font-size: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .task-proj-heading {
+    margin: 10px 0 20px 0;
+  }
+
+  h1.task-proj-heading  {
+    font-size: 1rem !important;
+  }
 }
 
 .container-table {
@@ -358,7 +383,7 @@ a.project-name,.project-description {
 
 .edit-delete {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
 }
 
 .status-box {
@@ -447,7 +472,7 @@ a.project-name,.project-description {
 
   .table-head,
   .table-row {
-    grid-template-columns: 1fr 1fr 0.5fr;
+    grid-template-columns: 4fr 1.5fr 1fr;
   }
 
   #search-form {
@@ -458,6 +483,79 @@ a.project-name,.project-description {
   .project-list h1, 
   .eventlog h1 {
     font-size: 24px;
+  }
+
+  #input-search {
+    padding: 1px 16px 1px 10px;
+    width: 100%;
+    line-height: 20px;
+  }
+
+  #input-search::placeholder {
+    font-size: 0.7rem;
+  }
+
+  #search-form {
+    min-width: 65%;
+  }
+
+  #search-form .icon {
+    font-size: 0.7rem;
+  }
+
+  #title, #status {
+    font-size: 0.8rem;
+  }
+
+  .container-table {
+    width: 90%;
+  }
+
+  .edit-delete .icon {
+    font-size: 0.8rem;
+  }
+
+  .status-box {
+    min-width: 60px;
+    font-size: 0.6rem;
+    padding: 3px 1px;
+  }
+
+  .pagination-links a {
+    font-size: 0.6rem;
+    margin: 0 5px;
+  }
+
+  .pagination-links b {
+    font-size: 0.8rem;
+  }
+
+  #create-new-project-btn {
+    width: 32px;
+    height: 32px;
+    margin: 20px 0;
+  }
+
+  #csv-form .btn {
+    font-size: 0.6rem;
+    line-height: 1rem;
+  }
+
+  .table-row .project-name {
+    white-space: nowrap;
+    word-break: keep-all;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  footer p {
+    font-size: 0.6rem;
+  }
+  footer {
+    margin-top: 10px;
+    padding: 16px 0;
   }
 }
 
