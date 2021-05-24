@@ -65,7 +65,7 @@ if (isset($_POST["createProject"])) {
 }
 
 if (isset($_GET["search"])) {
-    $projectsInformation = getProjects($db,$isFiltered=true);
+    $projectsInformation = getProjects($db, $isFiltered=true);
 } else {
     $projectsInformation = getProjects($db, $isFiltered=false, $errors);
 }
@@ -109,7 +109,7 @@ function getProjects($db, $isFiltered=false, $errors = array()) {
     // the offset of the list, based on current page .
     $offset = ($currentPage - 1) * $projectsPerPage;
     if ($isFiltered) {
-        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' ORDER BY ids LIMIT $offset, $projectsPerPage";
+        $getProjectsForThisPage = "SELECT * FROM projects WHERE title LIKE '%$valueToSearch%' ORDER BY id LIMIT $offset, $projectsPerPage";
     } else {
         $getProjectsForThisPage = "SELECT * FROM projects ORDER BY id DESC LIMIT $offset, $projectsPerPage";
     }
