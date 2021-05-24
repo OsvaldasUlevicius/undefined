@@ -19,6 +19,14 @@ if (isset($_POST["createTask"])) {
         array_push($popupErrors, "Description is required."); 
     }
 
+    if (strlen($title) > 255) { 
+        array_push($popupErrors, "The title exceeds 255 character limit.");
+    }
+
+    if (strlen($description) > 1000) { 
+        array_push($popupErrors, "Description exceeds 1000 character limit.");
+    }
+
     if (count($popupErrors) == 0) {
         $datetime = date_create()->format('Y-m-d H:i:s');
         $createNewTaskQuery = "INSERT INTO tasks (project, title, description, priority, status, created_at, updated_at) VALUES('$project', '$title', '$description', '$priority', '$status', '$datetime', '$datetime')";

@@ -11,6 +11,14 @@ if (isset($_POST["editTask"])) {
     if (empty($title)) { array_push($popupErrors, "Title is required."); }
     if (empty($description)) { array_push($popupErrors, "Description is required."); }
 
+    if (strlen($title) > 255) { 
+        array_push($popupErrors, "The title exceeds 255 character limit.");
+    }
+
+    if (strlen($description) > 1000) { 
+        array_push($popupErrors, "Description exceeds 1000 character limit.");
+    }
+
     if (count($popupErrors) == 0) {
         $query = "UPDATE tasks SET title= '$title', description = '$description', priority = '$priority', status = '$status', updated_at = '$datetime'  WHERE id='$taskId'";
         $res = mysqli_query($db, $query);

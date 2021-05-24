@@ -17,9 +17,9 @@
 
         <input value="<?php echo $project["id"]; ?>" type="hidden" name="projectId">
         <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter project title"
-            maxlength="255" value="<?php echo $project["title"]; ?>">
+            value="<?php echo $project["title"]; ?>">
         <input onchange="trimInput('description')" id="description" type="text" name="description"
-            placeholder="Enter project description" maxlength="1000" value="<?php echo $project["description"]; ?>">
+            placeholder="Enter project description" value="<?php echo $project["description"]; ?>">
 
         <select id="status" name="status">
             <option value="2" <?php echo ($project["status"] == 2 ? 'selected' : ''); ?>>Completed</option>
