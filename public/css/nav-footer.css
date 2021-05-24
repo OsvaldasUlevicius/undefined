@@ -60,7 +60,8 @@ nav .nav-form {
 }
 
 @media screen and (max-width: 900px) {
-  .nav-form .nav-text {
+  .nav-form .nav-text,
+  .nav-form .nav-bold-text{
     display: none;
   }
 }
