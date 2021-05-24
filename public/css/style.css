@@ -824,10 +824,13 @@ a.project-name,.project-description {
 }
 
 /* =========================================================
-   CREATE PROJECT FORM
+   POPUPS
 ========================================================= */
 
-.create-project-form {
+.create-project-form,
+.edit-task-form,
+.create-task-form,
+.edit-project-form {
     display: none;
     z-index: 1;
     margin: 0;
@@ -837,3 +840,4 @@ a.project-name,.project-description {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+

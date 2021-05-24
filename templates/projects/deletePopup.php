@@ -5,9 +5,9 @@
         <p>Please note that all project information, including the tasks, will be erased too</p>
 
 
-        <form method="POST" action="projectList.php">
-            <input type="hidden" name="projectId">
-            <button class="auth-btn btn-light"  id="delete">
+        <form method="POST">
+            <input type="hidden">
+            <button class="auth-btn btn-light cancel-button"  id="delete">
                 Delete
             </button>
         </form>

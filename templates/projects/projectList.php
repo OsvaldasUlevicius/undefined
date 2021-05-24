@@ -2,6 +2,7 @@
 include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/projectList.php');
+include('../../modules/projects/editProject.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@ include('../../modules/projects/projectList.php');
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../../public/js/script.js" defer></script>
     </head>
 
 <body class="project-list">
@@ -66,9 +68,15 @@ include('../../modules/projects/projectList.php');
                 </span>
                 
                 <div class="edit-delete">
-                    <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-                        <i class="icon edit far fa-edit"></i></a>
-                        <i class="btn icon trash far fa-trash-alt" data-value="<?php echo $project["id"]; ?>"></i>
+                    <?php $editPopupInfo = array(
+                        "objectId" => intval(intval($project["id"])), 
+                        "returnPage" => "taskList.php?project_id=".$project["id"],
+                        "objectTitle" => $project["title"],
+                        "objectDescription" => $project["description"],
+                        "objectStatus" => $project["status"],); ?>
+                    <?php $deletePopupInfo = array("objectType" => "project", "objectId" => intval($project["id"]), "returnPage" => "projectList.php"); ?>
+                        <i class="btn icon edit far fa-edit edit-project" data-value='<?php echo json_encode($editPopupInfo); ?>'></i>
+                        <i class="btn icon trash far fa-trash-alt" data-value='<?php echo json_encode($deletePopupInfo); ?>'></i>
                 </div>
             </div>
             <?php endforeach ?>
@@ -84,50 +92,11 @@ include('../../modules/projects/projectList.php');
         </form>
     </div>
     <?php include("../header_footer/footer.php");?>
-    <?php include("deletePopup.php"); ?>
+    <?php 
+    include("deletePopup.php"); 
+    include("editProject.php");
+    ?>
     <?php include ("createProject.php"); ?>
 
-    <script>
-        (function() {
-            const showPopup = ($popupForm) => {
-            $($popupForm).css("display", "flex");
-            $($popupForm).siblings().css("opacity", "0.4");;
-            }
-            const hidePopup = ($popupForm) => {
-                $($popupForm).hide();
-                $($popupForm).siblings().css("opacity", "");
-            }
-
-            $(".trash").on("click", function() {
-                let project = $(this).attr("data-value");
-                $.ajax({
-                    success: function () {
-                        $(".delete-popup input[type=hidden]").val(project);
-                        showPopup(".delete-popup");
-                    }
-                });
-            })
-
-            $(".delete-popup span").on("click", function() {
-                hidePopup(".delete-popup");
-            })
-
-            $("#create-new-project-btn").on("click", function() {
-                showPopup(".create-project-form");
-            })
-
-            $("#back-to-projects span").on("click", function() {
-                hidePopup(".create-project-form");
-                $(".create-project-form div:first-of-type").empty();
-            })
-
-            if ($(".create-project-form div:first-of-type").hasClass("popup-errors")) {
-                showPopup(".create-project-form");
-            }
-
-            const trimInput = ($input) => $($input).trim();
-        })();
-    </script>
 </body>
-
 </html>

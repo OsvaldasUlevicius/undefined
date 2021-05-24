@@ -3,7 +3,10 @@ include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/taskList.php');
 include('../../modules/projects/updateTaskStatus.php');
-include("../projects/taskCard.php");
+include("taskCard.php");
+include('../../modules/projects/editTask.php');
+include('../../modules/projects/createTask.php');
+include('../../modules/projects/editProject.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +23,7 @@ include("../projects/taskCard.php");
         crossorigin="anonymous" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <script src="../../public/js/script.js" defer></script>
 </head>
 
 <body class="task-list">
@@ -63,12 +67,9 @@ include("../projects/taskCard.php");
                     </span>
 
                     <div class="edit-delete">
-                        <a class="btn" href="editProject.php?project_id=<?php echo $project["id"]; ?>">
-                            <i class="icon edit far fa-edit"></i></a>
-                        <form method="POST" action="projectList.php">
-                            <input type="hidden" name="projectId" value="<?php echo  $project["id"]; ?>">
-                            <button class="btn" type="submit" id="delete"><i
-                                    class=" icon trash far fa-trash-alt"></i></button>
+                        <i class="btn icon edit far fa-edit edit-project"></i>
+                        <?php $deleteProjectPopupInfo = array("objectType" => "project", "objectId" => intval($_GET["project_id"]), "returnPage" => "projectList.php"); ?>
+                        <i class="btn icon trash far fa-trash-alt" data-value='<?php echo json_encode($deleteProjectPopupInfo)?>'></i>
                         </form>
                     </div>
                 </div>
@@ -89,8 +90,7 @@ include("../projects/taskCard.php");
                         <?php endforeach ?>
 
                         <div class="tasks-bottom">
-                            <a class="btn add-btn" id="create-new-task-btn"
-                                href="createTask.php?project_id=<?php echo $_GET["project_id"]; ?>"></a>
+                            <div class="btn add-btn" id="create-new-task-btn"></div>
                         </div>
                     </div>
 
@@ -135,12 +135,14 @@ include("../projects/taskCard.php");
 
         </div>
     </div>
-    <?php include("../header_footer/footer.php");?>
-        <!-- <style>
-            .dropper_hover {
-                background-color:#a0d9cb;
-            }
-        </style> -->
+    <?php 
+        include("editTask.php");
+        include("createTask.php");
+        include("deletePopup.php");
+        include("editProject.php");
+        include("../header_footer/footer.php");
+    ?>
+
 
 <script>
 //initialize the drag and drop functions.
@@ -164,7 +166,7 @@ function drag() {
                 url: "../../modules/projects/updateTaskStatus.php",
                 type: "POST",
                 data: {
-                    taskId: task,
+                    task: task,
                     columnStatus: column
                 },
                 success: function (html) {
@@ -174,6 +176,7 @@ function drag() {
         }
     });
 }
+
 </script>
 </body>
 

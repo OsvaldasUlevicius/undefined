@@ -1,7 +1,5 @@
 <?php
 
-$errors = array();
-
 // Get current project information on editProject.php page.
 if (isset($_GET["project_id"])) {
     $projectId = mysqli_real_escape_string($db, $_GET["project_id"]);
@@ -11,6 +9,7 @@ if (isset($_GET["project_id"])) {
 }
 
 if (isset($_POST["editProject"])) {
+    $projectPopupErrors = array();
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $description = mysqli_real_escape_string($db, $_POST['description']);
     $status = mysqli_real_escape_string($db, $_POST['status']);
@@ -18,16 +17,16 @@ if (isset($_POST["editProject"])) {
 
     // Check that all required fields are filled in.
     if (empty($projectId)) {
-        array_push($errors, "Project has to be chosen.");
+        array_push($projectPopupErrors, "Project has to be chosen.");
     }
     if (empty($title)) { 
-        array_push($errors, "Title is required.");
+        array_push($projectPopupErrors, "Title is required.");
     }
     if (empty($description)) { 
-        array_push($errors, "Description is required.");
+        array_push($projectPopupErrors, "Description is required.");
     }
 
-    if (count($errors) == 0) {
+    if (count($projectPopupErrors) == 0) {
         // Log edit project into event log.
         // TODO Make it more sophisticated (old data -> new data)
         logObjectActions($projectId, $db, "edited project ".$title);

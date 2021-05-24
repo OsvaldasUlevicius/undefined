@@ -1,12 +1,12 @@
 <?php
 
 // Delete task.
-if (isset($_POST["taskId"])) {
+if (isset($_POST["delete-task-id"])) {
     // Log delete task into event log.
-    $taskName = getObjectName("tasks", $_POST["taskId"], "title", $db);
-    logObjectActions($_POST["taskId"], $db, "deleted task ".$taskName);
+    $taskName = getObjectName("tasks", $_POST["delete-task-id"], "title", $db);
+    logObjectActions($_POST["delete-task-id"], $db, "deleted task ".$taskName);
 
-    $taskId = mysqli_real_escape_string($db, $_POST["taskId"]);
+    $taskId = mysqli_real_escape_string($db, $_POST["delete-task-id"]);
     $deleteTask = "DELETE FROM tasks WHERE id='$taskId'";
     mysqli_query($db, $deleteTask);
 }
