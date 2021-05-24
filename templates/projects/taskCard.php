@@ -1,14 +1,21 @@
 <?php 
 
 if (isset($task)) { ?>
-
-<div id="<?php echo $task["id"];?>" class="individual-task draggable">
-    <span class="task-title"> <?php echo $task["title"]; ?> </span>
-    <p class="task-description"> <?php echo $task["description"]; ?> </p>
-    <span class="task-priority"><?php echo getPriority($task["priority"], $db); ?> </span>
-    <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> </span>
-    <span class="task-id">ID: <?php echo $task["id"]; ?> </p>
-
+<?php $taskPriority = getPriority($task["priority"], $db); ?>
+<div id="<?php echo $task["id"];?>" 
+    class="
+        individual-task 
+        draggable
+        <?php 
+            if ($taskPriority == "Medium") { echo "task-medium"; }
+            else if ($taskPriority == "Low") { echo "task-low"; }
+        ?>
+    ">
+    <span class="task-title"> <?php echo truncate($task["title"], array("wordWidth" => 4, "characterWidth" => 30)); ?> </span>
+    <p class="task-description"> <?php echo truncate($task["description"], array("wordWidth" => 4, "characterWidth" => 100)); ?> </p>
+    <span class="task-priority"><?php if ($taskPriority == "Medium") { echo "Med"; } else { echo $taskPriority; } ?> </span>
+    <span class="task-created-date">Date created: <?php echo $task["created_at"]; ?> <span class="task-id">ID: <?php echo $task["id"]; ?> </span></span>
+    
         <?php $taskArray=array(
             "taskId" => intval($task["id"]), 
             "taskTitle" => $task["title"], 

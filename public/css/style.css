@@ -257,6 +257,7 @@ body.eventlog {
   margin: 20px 0 50px 0;
   text-align: center;
   color: var(--font-color-dark);
+  max-width: 1000px;
 }
 
 h1.task-proj-heading {
@@ -596,7 +597,6 @@ a.project-name,.project-description {
 .tasks-in-progress,
 .tasks-completed {
   width: 340px;
-  height: 460px;
   border: 1px solid var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -633,6 +633,9 @@ a.project-name,.project-description {
   height: 90px;
   border: 1px solid var(--primary-color);
   background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .task-created-date,
@@ -648,7 +651,6 @@ a.project-name,.project-description {
 }
 
 .individual-task {
-  padding: 10px;
   position: relative;
 }
 
@@ -713,7 +715,7 @@ a.project-name,.project-description {
 }
 
 .individual-task {
-  padding: 10px;
+  padding: 0 10px;
   position: relative;
 }
 
@@ -727,14 +729,17 @@ a.project-name,.project-description {
   width: 0;
 }
 
-.task-title {
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+.task-medium:before {
+  border-top: 48px solid #B0C2EF; /* + var(--secondary-color), var(--primary-color);*/
 }
+
+.task-low:before {
+  border-top: 48px solid #A0D9CB; /* + var(--secondary-color), var(--primary-color);*/
+}
+
 
 .task-description {
   text-align: center;
-  padding: 10px;
 }
 
 .ind-task-edit {
@@ -775,7 +780,9 @@ a.project-name,.project-description {
 .dropbox-call { background-color: #effcf9; }
 .dropbox-hovered { background-color: #d8f7f0; }
 
-.ui-draggable-dragging { background-color: #effcf9;}
+.dropbox-hovered .individual-task { background-color: #d8f7f0;}
+
+.ui-draggable-dragging { background-color: #effcf9; z-index: 100;}
 
 /* =========================================================
    DELETE POPUP 
