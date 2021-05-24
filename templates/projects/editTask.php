@@ -23,9 +23,9 @@
     ><?php include('../../modules/errors.php'); ?></div>
     <input type="hidden" name="taskId" id="taskId">
     <label for="title">Task title</label>
-    <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter task title" maxlength="255">
+    <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter task title">
     <label for="description">Task description</label>
-    <input onchange="trimInput('description')" id="description" type="text" name="description" placeholder="Enter task description" maxlength="1000">
+    <input onchange="trimInput('description')" id="description" type="text" name="description" placeholder="Enter task description">
     <select id="priority" name="priority">
         <option value="1">Low</option>
         <option value="2">Medium</option>

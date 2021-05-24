@@ -26,6 +26,14 @@ if (isset($_POST["editProject"])) {
         array_push($projectPopupErrors, "Description is required.");
     }
 
+    if (strlen($title) > 255) { 
+        array_push($projectPopupErrors, "The title exceeds 255 character limit.");
+    }
+
+    if (strlen($description) > 1000) { 
+        array_push($projectPopupErrors, "Description exceeds 1000 character limit.");
+    }
+
     if (count($projectPopupErrors) == 0) {
         // Log edit project into event log.
         // TODO Make it more sophisticated (old data -> new data)

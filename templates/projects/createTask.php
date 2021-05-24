@@ -20,11 +20,10 @@
         
         <div class="create-table-head">
             <h4 class="th title">Task title</h4>
-            <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter task title"
-                maxlength="255">
+            <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter task title">
             <h4 class="th description">Task description</h4>
             <input onchange="trimInput('description')" id="description" type="text" name="description"
-                placeholder="Enter task description" maxlength="1000">
+                placeholder="Enter task description">
         </div>
         
         <select id="priority" name="priority">

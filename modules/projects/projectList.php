@@ -28,8 +28,17 @@ if (isset($_POST["createProject"])) {
     if (empty($title)) { 
         array_push($popupErrors, "Title is required.");
     }
+
+    if (strlen($title) > 255) { 
+        array_push($popupErrors, "The title exceeds 255 character limit.");
+    }
+
     if (empty($description)) { 
         array_push($popupErrors, "Description is required.");
+    }
+
+    if (strlen($description) > 1000) { 
+        array_push($popupErrors, "Description exceeds 1000 character limit.");
     }
 
     // Search if the entered project title is already taken.
