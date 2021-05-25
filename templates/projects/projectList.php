@@ -42,7 +42,7 @@ include('../../modules/projects/editProject.php');
             <h4 class="th description" id="description">Description</h4>
             <h4 class="th total" id="task-count">Tasks total</h4>
             <h4 class="th left" id="task-left">Tasks left</h4>
-            <h4 class="th status" id="status">Status</h4>
+            <h4 class="th status" id="status-top">Status</h4>
             <div></div>
         </div>
 
