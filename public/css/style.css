@@ -651,6 +651,7 @@ a.project-name,.project-description {
 }
 
 .tasks-container {
+  padding: 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -659,7 +660,7 @@ a.project-name,.project-description {
 .tasks-to-do,
 .tasks-in-progress,
 .tasks-completed {
-  min-width: 300px;
+  min-width: calc(100% / 3);
   min-height: 460px;
   border: 1px solid var(--primary-color);
   display: flex;
@@ -798,9 +799,7 @@ a.project-name,.project-description {
 .individual-task{width: 100%;}
 
 }
-@media(min-width: 1050px){
-  .tasks-container{flex-direction: row;}
-}
+
 
 /* =========================================================
    DELETE POPUP 
