@@ -582,28 +582,24 @@ a.project-name,.project-description {
   border: 1px solid var(--primary-color);
   border-radius: 1px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   position: relative;
 }
 
-.tasks-container {
-  display: flex;
-  justify-content: space-around;
-}
 
 .tasks-to-do,
 .tasks-in-progress,
 .tasks-completed {
-  width: 340px;
+  width: 300px;
   border: 1px solid var(--primary-color);
   display: flex;
   flex-direction: column;
 }
 
 .task-headers {
-  width: 340px;
+  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
@@ -629,7 +625,7 @@ a.project-name,.project-description {
 }
 
 .individual-task {
-  width: 340px;
+  width: 100%;
   height: 90px;
   border: 1px solid var(--primary-color);
   background-color: #FFFFFF;
@@ -656,14 +652,14 @@ a.project-name,.project-description {
 
 .tasks-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  flex-wrap: wrap;
 }
 
 .tasks-to-do,
 .tasks-in-progress,
 .tasks-completed {
-  min-width: 340px;
+  min-width: 300px;
   min-height: 460px;
   border: 1px solid var(--primary-color);
   display: flex;
@@ -671,7 +667,7 @@ a.project-name,.project-description {
 }
 
 .task-headers {
-  width: 340px;
+  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
@@ -697,7 +693,7 @@ a.project-name,.project-description {
 }
 
 .individual-task {
-  width: 340px;
+  width: 100%;
   height: 90px;
   border: 1px solid var(--primary-color);
 }
@@ -776,6 +772,7 @@ a.project-name,.project-description {
 #create-new-task-btn {
   margin-top: 16px;
 }
+.dropbox{width: 100%; margin: 0 10px;}
 
 .dropbox-call { background-color: #effcf9; }
 .dropbox-hovered { background-color: #d8f7f0; }
@@ -783,6 +780,27 @@ a.project-name,.project-description {
 .dropbox-hovered .individual-task { background-color: #d8f7f0;}
 
 .ui-draggable-dragging { background-color: #effcf9; z-index: 100;}
+
+@media (max-width: 1050px){
+.dropbox {
+  margin: 10px 0;
+}
+.task-wrapper {
+  width: 100%;
+  margin: 0;
+  border: none;
+}
+.table-body-tasks{
+  padding: 0 10px;
+  row-gap: 5px;
+}
+.tasks-container{margin: 0; border: none; flex-direction: column;}
+.individual-task{width: 100%;}
+
+}
+@media(min-width: 1050px){
+  .tasks-container{flex-direction: row;}
+}
 
 /* =========================================================
    DELETE POPUP 
@@ -802,6 +820,7 @@ a.project-name,.project-description {
     align-items: center;
     justify-content: space-between;
 }
+
 
 
 .delete-message {
@@ -848,3 +867,11 @@ a.project-name,.project-description {
     transform: translate(-50%, -50%);
 }
 
+@media (max-width: 1050px){
+  .delete-popup img{display: none;}
+  .delete-popup{
+    background-color: rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    width: 95%;
+  }
+}
