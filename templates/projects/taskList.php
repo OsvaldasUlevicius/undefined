@@ -54,7 +54,7 @@ include('../../modules/projects/editProject.php');
 
         <div class="task-wrapper">
 
-            <div class="table-body table-body-tasks" style="padding: 15px 15px; row-gap: 15px">
+            <div class="table-body table-body-tasks">
                 <div class="table-row" style="border:none">
                     <?php $currentProjectInfo=getProjectInfo($_GET["project_id"], $db)?>
                     <a class="project-name"><?php echo $currentProjectInfo["title"]; ?></a>
