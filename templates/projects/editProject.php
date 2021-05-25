@@ -1,13 +1,18 @@
 <form method="POST" action="taskList.php?project_id=<?php if (isset($_GET["project_id"])) { echo $_GET["project_id"]; }; ?>" class="edit-project-form">
 
-    <div 
-        <?php if (!empty($projectPopupErrors)): ?>
-            <?php 
-                $errors = $projectPopupErrors;
-            ?>
-            class="errors popup-errors" 
-        <?php endif ?>
-        ><?php include('../../modules/errors.php'); ?>
+
+    <div class="errors 
+        <?php if (!empty($projectPopupErrors)) {
+            echo "popup-errors";
+        }
+        ?>"
+    >
+        <?php
+        if (!empty($projectPopupErrors)) {
+            $errors = $projectPopupErrors;
+            include('../../modules/errors.php'); 
+        }
+        ?>
     </div>
 
     <div class="edit-container-table">
@@ -20,7 +25,7 @@
                 value="<?php echo $project["title"]; ?>">
                 <h2 class="create-edit-heading">Description</h2>
                 <textarea onchange="trimInput('description')" id="description" type="text" name="description"
-                placeholder="Enter project description" value="<?php echo $project["description"]; ?>">
+                placeholder="Enter project description" value="<?php echo $project["description"]; ?>"></textarea>
             </div>
         </div>
     

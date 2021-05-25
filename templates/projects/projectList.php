@@ -97,6 +97,7 @@ include('../../modules/projects/editProject.php');
     <?php include("../header_footer/footer.php");?>
     <?php 
     include("deletePopup.php"); 
+    include("createProject.php");
     include("editProject.php");
     ?>
     <?php include ("createProject.php"); ?>

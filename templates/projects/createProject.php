@@ -1,18 +1,18 @@
 <form method="POST" action="projectList.php" class="create-project-form">
 
-    <div class="errors 
-        <?php if (!empty($popupErrors)) {
-            echo "popup-errors";
-        }
-        ?>"
-    >
-        <?php
-        $errors = $popupErrors;
-        include('../../modules/errors.php'); 
-        ?>
-    </div>
-
     <div class="create-container-table" id="projects-create">
+
+        <div class="errors 
+            <?php if (!empty($popupErrors)) {
+                echo "popup-errors";
+            }
+            ?>"
+        >
+            <?php
+            $errors = $popupErrors;
+            include('../../modules/errors.php'); 
+            ?>
+        </div>
 
         <div class="create-edit-input-container">
             <h2 class="create-edit-heading">Project name</h2>

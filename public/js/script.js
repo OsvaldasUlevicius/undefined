@@ -85,14 +85,14 @@ $("#create-new-project-btn").on("click", function() {
 })
 
 // Show create new project popup after reloading the page with wrongly submitted form AND show errors.
-if ($(".create-project-form div:first-of-type").hasClass("popup-errors")) {
+if ($(".create-project-form .errors").hasClass("popup-errors")) {
     showPopup(".create-project-form");
 }
 
 // Hide create new project popup upon pressing AND clean popup errors.
 $("#back-to-projects span").on("click", function() {
     hidePopup(".create-project-form");
-    $(".create-project-form .errors").empty();
+    $(".errors").empty();
 })
 
 /* =========================================================
