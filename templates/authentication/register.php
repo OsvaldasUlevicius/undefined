@@ -36,14 +36,16 @@ include('../../modules/authentication/authentication.php');
                         placeholder="E-mail">
                 </div>
 
-                <div class="log-reg-input-container">
+                <div class="log-reg-input-container tooltip">
+                    <span class="tooltiptext">Password must be between 8 and 30 characters<br>Password must contain at least one number digit (0 - 9)<br>Password must contain at least one lowercase letter (a - z)<br>Password must contain at least one uppercase, or capital, letter (A - Z)<br>Password must contain at least one special character ($, #, @, !,%,^,&,*, etc.)</span>
                     <!-- <label for="password">Password</label> -->
                     <!-- <i class="fas fa-key"></i> -->
                     <img class="input-img" src="../../public/img/key.svg" />
                     <input class="auth-input" type="password" name="password1" id="register-password1" placeholder="Create password">
                 </div>
 
-                <div class="log-reg-input-container">
+                <div class="log-reg-input-container tooltip">
+                    <span class="tooltiptext">Passwords must match</span>
                     <!-- <label for="password">Password</label> -->
                     <!-- <i class="fas fa-key"></i> -->
                     <img class="input-img" src="../../public/img/key.svg" />

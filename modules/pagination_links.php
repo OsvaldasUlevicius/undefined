@@ -12,11 +12,11 @@ if (isset($projectsInformation)) {
 // if not on page 1, don't show back links
 if ($currentPage > 1) {
    // show << link to go back to page 1
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentPage=1'><<</a> ";
+   echo " <a class='tooltip' href='{$_SERVER['PHP_SELF']}?currentPage=1'><span class='tooltiptext'>First page</span><<</a> ";
    // get previous page num
    $prevpage = $currentPage - 1;
    // show < link to go back to 1 page
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentPage=$prevpage'><</a> ";
+   echo " <a class='tooltip' href='{$_SERVER['PHP_SELF']}?currentPage=$prevpage'><span class='tooltiptext'>Previous page</span><</a> ";
 } // end if 
 
 // loop to show links to range of pages around current page
@@ -26,7 +26,7 @@ for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) {
       // if we're on current page...
       if ($x == $currentPage) {
          // 'highlight' it but don't make a link
-         echo " <b>$x</b> ";
+         echo " <b class='tooltip'><span class='tooltiptext'>Current page</span>$x</b> ";
       // if not current page...
       } else {
          // make it a link
@@ -40,9 +40,9 @@ if ($currentPage != $totalPages) {
    // get next page
    $nextpage = $currentPage + 1;
     // echo forward link for next page 
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentPage=$nextpage'>></a> ";
+   echo " <a class='tooltip' href='{$_SERVER['PHP_SELF']}?currentPage=$nextpage'><span class='tooltiptext'>Next page</span>></a> ";
    // echo forward link for lastpage
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentPage=$totalPages'>>></a> ";
+   echo " <a class='tooltip' href='{$_SERVER['PHP_SELF']}?currentPage=$totalPages'><span class='tooltiptext'>Last page</span>>></a> ";
 } // end if
 /****** end build pagination links ******/
 ?>

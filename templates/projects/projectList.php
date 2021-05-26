@@ -53,11 +53,14 @@ include('../../modules/projects/editProject.php');
             <?php foreach ($projectsInformation["projects"] as $project): ?>
             
             <div class="table-row">
-                <a class="project-name" href="taskList.php?project_id=<?php echo $project["id"]; ?>">
+                <a class="project-name tooltip" href="taskList.php?project_id=<?php echo $project["id"]; ?>">
+                    <span class="tooltiptext"><?php echo $project["title"];?></span>
                     <?php echo truncate($project["title"], array("wordWidth" => 5, "characterWidth" => 30)); ?>
                 </a>
 
-                <p class="project-description"><?php echo truncate($project["description"], array("wordWidth" => 10, "characterWidth" => 100)); ?></p>
+                <p class="project-description tooltip"><?php echo truncate($project["description"], array("wordWidth" => 10, "characterWidth" => 100)); ?>
+                <span class="tooltiptext"><?php echo $project["description"]; ?></span>
+            </p>
                 <p class="tasks-count"><?php echo  countProjectTasks($project["id"], $db); ?></p>
                 <p class="tasks-left"><?php echo  countProjectTasks($project["id"], $db, $isFinished=true); ?></p>
 
@@ -86,7 +89,7 @@ include('../../modules/projects/editProject.php');
             <?php include("../../modules/pagination_links.php"); ?>
         </div>
 
-        <div class="btn add-btn" id="create-new-project-btn"></div>
+        <div class="btn add-btn tooltip" id="create-new-project-btn"><span class="tooltiptext">Create new project</span></div>
         <form id="csv-form" action="projectList.php" method="GET">
             <input class="btn" type="submit" name="csvProjects" value="Export to CSV" />
         </form>
@@ -97,6 +100,18 @@ include('../../modules/projects/editProject.php');
     include("editProject.php");
     ?>
     <?php include ("createProject.php"); ?>
+    <script>
+       const rows = document.querySelectorAll(".table-row");
+       rows.forEach(row => {
+        row.addEventListener("click", (e)=>{
+            if(e.path[1].classList.contains("edit-delete")){}
+            else{
+                window.location = e.path[1].firstElementChild.href
+            }
+            
+        })
+       });
+    </script>
 
 </body>
 </html>
