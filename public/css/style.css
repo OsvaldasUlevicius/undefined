@@ -292,7 +292,7 @@ body.eventlog {
 }
 
 .task-proj-logo {
-  max-width: 120px;
+  max-width: 150px;
 }
 
 @media screen and (max-width: 600px) {
@@ -1047,4 +1047,57 @@ h2.delete-heading {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+
+/* logo animation */
+#ety1BNsZobT3 {
+  animation: ety1BNsZobT3_c_o 3000ms linear 1 normal forwards
+}
+
+@keyframes ety1BNsZobT3_c_o {
+  0% {
+      opacity: 0
+  }
+
+  100% {
+      opacity: 1
+  }
+}
+
+#ety1BNsZobT8_to {
+  animation: ety1BNsZobT8_to__to 3000ms linear 1 normal forwards
+}
+
+@keyframes ety1BNsZobT8_to__to {
+  0% {
+      transform: translate(91.173761px, 176.596403px)
+  }
+
+  23.333333% {
+      transform: translate(91.173761px, 176.596403px)
+  }
+
+  100% {
+      transform: translate(181.375000px, 112.500000px)
+  }
+}
+
+#ety1BNsZobT8 {
+  animation: ety1BNsZobT8_c_o 3000ms linear 1 normal forwards
+}
+
+@keyframes ety1BNsZobT8_c_o {
+  0% {
+      opacity: 0
+  }
+
+  16.666667% {
+      opacity: 0;
+      animation-timing-function: cubic-bezier(0.420000, 0, 1, 1)
+  }
+
+  100% {
+      opacity: 1
+  }
 }

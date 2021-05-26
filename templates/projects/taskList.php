@@ -29,10 +29,7 @@ include('../../modules/projects/editProject.php');
 <body class="task-list">
     <?php include("../header_footer/header.php");?>
 
-    <div class="logo-in-page">
-        <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
-        <img class="task-proj-logo" src="../../public/img/logo-text.png" />
-    </div>
+    <?php include("logo.php");?>
     
 
     <h1 class="task-proj-heading"><?php echo getObjectName("projects", $_GET["project_id"], "title", $db)?></h1>
