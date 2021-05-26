@@ -24,10 +24,7 @@ include('../../modules/projects/editProject.php');
 <body class="project-list">
     <?php include("../header_footer/header.php");?>
 
-    <div class="logo-in-page">
-        <img class="task-proj-logo" src="../../public/img/logo-img.png" /><br><br>
-        <img class="task-proj-logo" src="../../public/img/logo-text.png" />
-    </div>
+    <?php include("logo.php");?>
 
     <h1 class="task-proj-heading">Choose a project or create a new one</h1>
 

@@ -17,7 +17,7 @@ include('../../modules/authentication/authentication.php');
 
 <body class="login-register-body">
 
-    <img class="logo-top" src="../../public/img/logo-desktop.png" />
+    <?php include("../projects/logo.php");?>
 
     <div class="auth-wrap">
         <div class="auth-wrapper" id="login-wrapper">
