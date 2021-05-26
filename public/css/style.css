@@ -453,6 +453,19 @@ a.project-name,.project-description {
 
 @media (max-width: 995px) {
 
+  .auth-wrap {
+    flex-direction: column;
+  }
+
+  #login-wrapper {
+    margin-bottom: 0%;
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+
+  #login-register {
+    border-radius: 0 0 0.3rem 0.3rem;
+  }
+
   .project-description,
   .description {
     display: none;
@@ -467,6 +480,39 @@ a.project-name,.project-description {
 }
 
 @media (max-width: 680px) {
+  #register-wrapper {
+    min-width: auto;
+   }
+
+   .auth-input {
+    min-width: auto;
+   }
+
+   #login-wrapper, #login-register {
+    min-width: auto;
+   }
+
+  .auth-wrap {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .auth-wrapper {
+    width: 100%;
+  }
+
+  #login-wrapper {
+    margin-bottom: 0%;
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+
+  #register-wrapper {
+    width: 100%;
+  }
+
+  #login-register {
+    border-radius: 0 0 0.3rem 0.3rem;
+  }
 
   .tasks-count,
   .tasks-left,
