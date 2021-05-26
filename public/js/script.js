@@ -55,8 +55,8 @@ $(".edit-project").on("click", function() {
             success: function () {
                 $(".edit-project-form").attr("action", $object.returnPage);
                 $(".edit-project-form input[type=hidden]").val($object.objectId);
-                $(".edit-project-form #title").val($object.objectTitle);
-                $(".edit-project-form #description").val($object.objectDescription);
+                $(".edit-project-form #edit-project-title").val($object.objectTitle);
+                $(".edit-project-form #edit-project-description").val($object.objectDescription);
                 $(".edit-project-form #status").val($object.objectStatus);
             }
         });
@@ -71,7 +71,7 @@ $(".edit-project-form .cancel-button").on("click", function() {
 })
 
 // Show edit project popup after reloading the page with wrongly submitted form AND show errors.
-if ($(".edit-project-form div:first-of-type").hasClass("popup-errors")) {
+if ($(".edit-project-form .errors").hasClass("popup-errors")) {
     showPopup(".edit-project-form");
 }
 
@@ -104,8 +104,8 @@ const setEditTaskFormFields = ($task) => {
     $.ajax({
         success: function () {
             $(".edit-task-form #taskId").val($task.taskId);
-            $(".edit-task-form #title").val($task.taskTitle);
-            $(".edit-task-form #description").val($task.taskDescription);
+            $(".edit-task-form #edit-task-title").val($task.taskTitle);
+            $(".edit-task-form #edit-task-description").val($task.taskDescription);
             $(".edit-task-form #priority").val($task.taskPriority);
             $(".edit-task-form #status").val($task.taskStatus);
             showPopup(".edit-task-form");
@@ -122,12 +122,12 @@ $(".ind-task-edit").on("click", function() {
 // Hide edit task popup upon clicking cancel AND clean popup errors.
 $(".edit-task-form .cancel-button").on("click", function() {
     hidePopup(".edit-task-form");
-    $(".edit-task-form div:first-of-type").empty();
+    $(".edit-task-form .errors").empty();
 })
 
 // Show edit task popup after reloading the page with wrongly submitted form AND show errors.
-if ($(".edit-task-form div:first-of-type").hasClass("popup-errors")) {
-    let $task = JSON.parse($(".edit-task-form div:first-of-type").attr("data-value"));
+if ($(".edit-task-form .errors").hasClass("popup-errors")) {
+    let $task = JSON.parse($(".edit-task-form .errors").attr("data-value"));
     setEditTaskFormFields($task);
 }
 
@@ -137,12 +137,12 @@ $("#create-new-task-btn").on("click", function() {
 })
 
 // Show create new task popup after reloading the page with wrongly submitted form AND show errors.
-if ($(".create-task-form div:first-of-type").hasClass("popup-errors")) {
+if ($(".create-task-form .errors").hasClass("popup-errors")) {
     showPopup(".create-task-form");
 }
 
 // Hide create new task popup upon pressing AND clean popup errors.
-$("#back-to-tasks").on("click", function() {
+$(".create-task-form .cancel-btn").on("click", function() {
     hidePopup(".create-task-form");
     $(".create-task-form .errors").empty();
 })

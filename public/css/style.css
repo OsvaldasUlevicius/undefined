@@ -82,6 +82,7 @@ h2.create-edit-heading {
   min-width: 300px;
   max-width: 300px;
   margin-bottom: 20px;
+  max-height: 60vh;
 }
 
 .priority-container,

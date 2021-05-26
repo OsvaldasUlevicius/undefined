@@ -1,60 +1,29 @@
 <form method="POST" action="taskList.php?project_id=<?php if (isset($_GET["project_id"])) { echo $_GET["project_id"]; }; ?>" class="edit-project-form">
 
-<<<<<<< HEAD
-
-    <div class="errors 
-        <?php if (!empty($projectPopupErrors)) {
-            echo "popup-errors";
-        }
-        ?>"
-    >
-        <?php
-        if (!empty($projectPopupErrors)) {
-            $errors = $projectPopupErrors;
-            include('../../modules/errors.php'); 
-        }
-        ?>
-    </div>
-
     <div class="edit-container-table">
+
+        <div class="errors 
+            <?php if (!empty($projectPopupErrors)) {
+                echo "popup-errors";
+            }
+            ?>"
+        >
+            <?php
+            if (!empty($projectPopupErrors)) {
+                $errors = $projectPopupErrors;
+                include('../../modules/errors.php'); 
+            }
+            ?>
+        </div>
 
         <div class="create-edit-input-container">
                 <h2 class="create-edit-heading">Project name</h2>
                 <input value="<?php echo $project["id"]; ?>" type="hidden" name="projectId">
-                <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter project title"
+                <input onchange="trimInput('title')" id="edit-project-title" type="text" name="title" placeholder="Enter project title"
             value="<?php echo $project["title"]; ?>">
                 <h2 class="create-edit-heading">Description</h2>
-                <textarea onchange="trimInput('description')" id="description" type="text" name="description"
-            placeholder="Enter project description" value="<?php echo $project["description"]; ?>"></textarea>
-=======
-
-    <div class="errors 
-        <?php if (!empty($projectPopupErrors)) {
-            echo "popup-errors";
-        }
-        ?>"
-    >
-        <?php
-        if (!empty($projectPopupErrors)) {
-            $errors = $projectPopupErrors;
-            include('../../modules/errors.php'); 
-        }
-        ?>
-    </div>
-
-    <div class="edit-container-table">
-
-        <div class="create-edit-input-container">
-            <div class="edit-table-head">
-                <h2 class="create-edit-heading">Project name</h2>
-                <input value="<?php echo $project["id"]; ?>" type="hidden" name="projectId">
-                <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter project title"
-                value="<?php echo $project["title"]; ?>">
-                <h2 class="create-edit-heading">Description</h2>
-                <textarea onchange="trimInput('description')" id="description" type="text" name="description"
-                placeholder="Enter project description" value="<?php echo $project["description"]; ?>"></textarea>
-            </div>
->>>>>>> a4723655741cbdc43a1b7a776ca5995a09ddafe9
+                <textarea onchange="trimInput('description')" id="edit-project-description" type="text" name="description"
+            placeholder="Enter project description"><?php echo $project["description"]; ?></textarea>
         </div>
     
         <div class="status-container">
@@ -66,7 +35,7 @@
         </div>
 
         <div class="cancel-complete">
-            <div id="back-to-projects" class="btn cancel-btn cancel-button"><span class="cancel-button">Cancel</span></div>
+            <div id="back-to-projects edit-project-back" class="btn cancel-btn cancel-button"><span class="cancel-button">Cancel</span></div>
             <input class="btn" type="submit" name="editProject" id="edit-project-btn" value="Save">
         </div>
     </div>

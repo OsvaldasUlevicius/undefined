@@ -2,13 +2,8 @@
 
 if (isset($_REQUEST["task"])) {
     # TODO remove connection to DB from here.
-<<<<<<< HEAD
-    $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
-    // $db = mysqli_connect("localhost", "root", "", "undefined");
-=======
     // $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
     $db = mysqli_connect("localhost", "root", "", "undefined");
->>>>>>> a4723655741cbdc43a1b7a776ca5995a09ddafe9
 
     $task = $_REQUEST["task"];
     $columnStatus = $_REQUEST["columnStatus"];
