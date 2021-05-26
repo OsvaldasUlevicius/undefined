@@ -45,7 +45,7 @@ include('../../modules/authentication/authentication.php');
                 </div>
 
                 <div class="log-reg-input-container tooltip">
-                    <span class="tooltiptext">Password must be same as the first one</span>
+                    <span class="tooltiptext">Passwords must match</span>
                     <!-- <label for="password">Password</label> -->
                     <!-- <i class="fas fa-key"></i> -->
                     <img class="input-img" src="../../public/img/key.svg" />

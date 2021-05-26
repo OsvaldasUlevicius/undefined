@@ -100,6 +100,18 @@ include('../../modules/projects/editProject.php');
     include("editProject.php");
     ?>
     <?php include ("createProject.php"); ?>
+    <script>
+       const rows = document.querySelectorAll(".table-row");
+       rows.forEach(row => {
+        row.addEventListener("click", (e)=>{
+            if(e.path[1].classList.contains("edit-delete")){}
+            else{
+                window.location = e.path[1].firstElementChild.href
+            }
+            
+        })
+       });
+    </script>
 
 </body>
 </html>

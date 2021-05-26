@@ -446,6 +446,8 @@ a.project-name,.project-description {
   transform: translateY(-50%);
 }
 
+.project-list .table-row:hover{cursor:pointer;}
+
 
 /* medias */
 
