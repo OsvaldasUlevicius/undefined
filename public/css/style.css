@@ -480,6 +480,17 @@ a.project-name,.project-description {
 }
 
 @media (max-width: 680px) {
+  #register-wrapper {
+    min-width: auto;
+   }
+
+   .auth-input {
+    min-width: auto;
+   }
+
+   #login-wrapper, #login-register {
+    min-width: auto;
+   }
 
   .auth-wrap {
     flex-direction: column;
