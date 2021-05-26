@@ -18,15 +18,13 @@
     <div class="edit-container-table">
 
         <div class="create-edit-input-container">
-            <div class="edit-table-head">
                 <h2 class="create-edit-heading">Project name</h2>
                 <input value="<?php echo $project["id"]; ?>" type="hidden" name="projectId">
                 <input onchange="trimInput('title')" id="title" type="text" name="title" placeholder="Enter project title"
-                value="<?php echo $project["title"]; ?>">
+            value="<?php echo $project["title"]; ?>">
                 <h2 class="create-edit-heading">Description</h2>
                 <textarea onchange="trimInput('description')" id="description" type="text" name="description"
-                placeholder="Enter project description" value="<?php echo $project["description"]; ?>"></textarea>
-            </div>
+            placeholder="Enter project description" value="<?php echo $project["description"]; ?>"></textarea>
         </div>
     
         <div class="status-container">

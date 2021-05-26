@@ -942,18 +942,20 @@ a.project-name,.project-description {
     top: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 724px;
+    width: 732px;
     align-items: center;
     justify-content: space-between;
 }
 
-
+.delete-popup img {
+  padding-left: 30px;
+}
 
 .delete-message {
     display: flex;
     background-color: #A0D9CB;
     flex-direction: column;
-    width: 362px;
+    width: 380px;
     height: 345px;
     text-align: center;
     justify-content: center;
@@ -991,6 +993,20 @@ a.project-name,.project-description {
     top: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+#delete {
+  margin-bottom: 6px;
+}
+
+.delete-heading {
+  padding: 14px;
+}
+
+h2.delete-heading {
+  color: var(--font-color-dark);
+  font-weight: 700;
+  line-height: 1.3rem;
 }
 
 @media (max-width: 1050px){
