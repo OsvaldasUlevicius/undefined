@@ -341,7 +341,7 @@ h1.task-proj-heading {
 }
 
 .table-body {
-  row-gap: 30px;
+  row-gap: 10px;
 }
 
 .table-row {
@@ -460,6 +460,8 @@ a.project-name,.project-description {
   .table-row {
     grid-template-columns: 1fr repeat(2, 0.5fr) 1fr 0.5fr;
   }
+  .eventlog .table-row{grid-template-columns: 1fr;} 
+.eventlog.eventlog.table-head{display: none;}
 }
 
 @media (max-width: 680px) {
@@ -558,6 +560,10 @@ a.project-name,.project-description {
     margin-top: 10px;
     padding: 16px 0;
   }
+  .eventlog.table-row,
+  .eventlog.table-head{
+    grid-template-columns: 1fr;
+  } 
 }
 
 /* taskList */
@@ -873,4 +879,34 @@ a.project-name,.project-description {
     justify-content: center;
     width: 95%;
   }
+}
+
+/* toooooooltips */
+.tooltip {
+  position: relative;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: left;
+  border-radius: var(--border-radius);
+  padding: 10px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 0;
+  margin-left: -60px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

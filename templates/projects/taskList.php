@@ -90,7 +90,7 @@ include('../../modules/projects/editProject.php');
                         <?php endforeach ?>
 
                         <div class="tasks-bottom">
-                            <div class="btn add-btn" id="create-new-task-btn"></div>
+                            <div class="btn add-btn tooltip" id="create-new-task-btn"><span class="tooltiptext">Create new task</span></div>
                         </div>
                     </div>
 
