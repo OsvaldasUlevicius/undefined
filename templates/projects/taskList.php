@@ -41,13 +41,18 @@ include('../../modules/projects/editProject.php');
         <button id="btn-search" class="btn" type="submit" name="search" value="search"><i
                 class="icon fas fa-search"></i></button>
     </form>
+
+    <div id="back-to-projects-top" class="back-to-proj-tasks">
+        <a href="projectList.php">Back to projects</a>
+    </div>
+
     <div class="container-table">
         <div class="table-head">
             <h4 class="th title" id="title">Project name</h4>
             <h4 class="th description" id="description">Description</h4>
             <h4 class="th total" id="task-count">Tasks total</h4>
             <h4 class="th left" id="task-left">Tasks left</h4>
-            <h4 class="th status" id="status">Status</h4>
+            <h4 class="th status" id="status-top">Status</h4>
             <div></div>
         </div>
 

@@ -46,5 +46,5 @@ if (isset($_POST["createTask"])) {
         // Redirect to the task project;
     }
     header("location: ../../templates/projects/taskList.php?project_id=".$project);
-
+    exit();
 }
