@@ -72,11 +72,9 @@ function logObjectActions($objectId, $db, $event, $isProject=true) {
         $selectedField = "task_id";
     }
     $datetime = date_create()->format('Y-m-d H:i:s');
-    // $userId = getCurrentUser($db);
+    $userId = getCurrentUser($db);
     $eventQuery = "INSERT INTO events (happened_at, event, user_id, ".$selectedField.") VALUES ('$datetime', '$event', '$userId', '$objectId')";
     mysqli_query($db, $eventQuery);
-    header("location: ../templates/authentication/login.php");
-
 }
 
 function checkIfObjectExists($table, $objectId, $db) {
