@@ -64,9 +64,9 @@ function getTasks($db, $projectId, $isFiltered=false) {
     if ($isFiltered) {
         $valueToSearch = $_POST["valueToSearch"];
         // TODO order by when filtered
-        $query = "SELECT * FROM tasks WHERE project=$projectId AND (title LIKE '%$valueToSearch%' OR id LIKE '%$valueToSearch%')";
+        $query = "SELECT * FROM tasks WHERE project=$projectId AND (title LIKE '%$valueToSearch%' OR id LIKE '%$valueToSearch%') ORDER BY updated_at DESC";
     } else {
-        $query = "SELECT * FROM tasks WHERE project ='$projectId' ORDER BY updated_at ";
+        $query = "SELECT * FROM tasks WHERE project ='$projectId' ORDER BY updated_at DESC";
     }
     return mysqli_query($db, $query);
 }
