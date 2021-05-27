@@ -50,7 +50,7 @@
         </div>
 
         <div class="cancel-complete">
-            <div id="back-to-tasks edit-task-back" class="btn cancel-btn cancel-button"><span>Cancel</span></div>
+            <div id="edit-task-back" class="btn cancel-btn cancel-button"><span>Cancel</span></div>
             <input id="create-task-btn" class="btn" type="submit" name="editTask" value="Save">
         </div>
     </div>

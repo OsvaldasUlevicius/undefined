@@ -47,10 +47,7 @@ include('../../modules/admin/eventLog.php');
                 <!-- OBJECT -->
                 <?php if ($event["task_id"]): ?>
                     <?php if (checkIfObjectExists("tasks", $event["task_id"], $db)): ?>
-                        <!-- TODO Add a link to edit task page -->
-                        <a href="#"><?php echo $event["task_id"]; ?></a>
-                    <?php else: ?>
-                        <p><?php echo $event["task_id"] ?> (Object does not exist)</p>
+                        <p><?php echo $event["task_id"] ?></p>
                     <?php endif ?>
 
                 <?php elseif ($event["project_id"]): ?>

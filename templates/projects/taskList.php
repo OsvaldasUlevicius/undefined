@@ -2,11 +2,11 @@
 include("../../modules/utils.php");
 checkIfLoggedIn();
 include('../../modules/projects/taskList.php');
-include('../../modules/projects/updateTaskStatus.php');
 include("taskCard.php");
 include('../../modules/projects/editTask.php');
 include('../../modules/projects/createTask.php');
 include('../../modules/projects/editProject.php');
+include('../../modules/projects/updateTaskStatus.php');
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +38,10 @@ include('../../modules/projects/editProject.php');
         <button id="btn-search" class="btn" type="submit" name="search" value="search"><i
                 class="icon fas fa-search"></i></button>
     </form>
+
+    <?php if (isset($_POST["search"])): ?>
+        <a href="taskList.php?project_id=<?php echo $_GET["project_id"]; ?>" style="color: var(--font-color-dark); font-weight: 700;">Show all</a>
+    <?php endif ?>
 
     <div id="back-to-projects-top" class="back-to-proj-tasks">
         <a href="projectList.php">Back to projects</a>

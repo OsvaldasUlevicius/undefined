@@ -33,6 +33,10 @@ include('../../modules/projects/editProject.php');
         <button id="btn-search" class="btn" type="submit" name="search" value="search"><i class="icon fas fa-search"></i></button>
     </form>
 
+    <?php if (isset($_GET["search"])): ?>
+        <a href="projectList.php" style="color: var(--font-color-dark); font-weight: 700;">Show all</a>
+    <?php endif ?>
+
     <div class="container-table">
         <div class="table-head">
             <h4 class="th title" id="title">Project name</h4>
@@ -97,7 +101,6 @@ include('../../modules/projects/editProject.php');
     include("createProject.php");
     include("editProject.php");
     ?>
-    <?php include ("createProject.php"); ?>
     <script>
        const rows = document.querySelectorAll(".table-row");
        rows.forEach(row => {

@@ -90,7 +90,7 @@ if ($(".create-project-form .errors").hasClass("popup-errors")) {
 }
 
 // Hide create new project popup upon pressing AND clean popup errors.
-$("#back-to-projects span").on("click", function() {
+$("#create-project-back span").on("click", function() {
     hidePopup(".create-project-form");
     $(".errors").empty();
 })

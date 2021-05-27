@@ -23,7 +23,7 @@
         </div>
 
     <div class="cancel-complete">
-        <div id="back-to-projects create-project-back" class="btn cancel-btn cancel-button"><span>Cancel</span></div>
+        <div id="create-project-back" class="btn cancel-btn cancel-button"><span>Cancel</span></div>
         <input class="btn" id="create-project-btn" type="submit" name="createProject" value="Complete">
     </div>
  </div>
