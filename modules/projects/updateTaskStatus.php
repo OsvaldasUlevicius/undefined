@@ -3,6 +3,7 @@
 if (isset($_REQUEST["task"])) {
     # TODO remove connection to DB from here.
     // $db = mysqli_connect("localhost", "skaite_admin", "Robotukai123,", "skaite_undefined");
+
     $db = mysqli_connect("localhost", "root", "", "undefined");
 
     $task = $_REQUEST["task"];
@@ -16,11 +17,14 @@ if (isset($_REQUEST["task"])) {
     $currentTaskStatus = "SELECT * FROM tasks WHERE id='$task' LIMIT 1;";
     $currentStatusIdResult = mysqli_query($db, $currentTaskStatus);
     $currentStatusId = mysqli_fetch_assoc($currentStatusIdResult)["status"];
-
+    
     // Change tasks tatus.
     if ($columnStatusId != $currentStatusId) {
         $datetime = date_create()->format('Y-m-d H:i:s');
         $query = "UPDATE tasks SET status= '$columnStatusId', updated_at = '$datetime' WHERE id='$task'";
         mysqli_query($db, $query);
+        $previousStatus = getStatus($currentStatusId, $db, $isProject=true);
+        $newStatus = getStatus($columnStatusId, $db, $isProject=true);
+        logObjectActions($task, $db, "Changed task (ID ".$task.") status from ".$previousStatus." to ".$newStatus, $isProject=false);
     }
 }

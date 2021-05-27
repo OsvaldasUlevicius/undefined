@@ -468,6 +468,7 @@ a.project-name,.project-description {
 #search-form {
   min-width: 36%;
   position: relative;
+  margin-bottom: 10px;
 }
 
 #input-search {

@@ -35,7 +35,7 @@
         </div>
 
         <div class="cancel-complete">
-            <div id="back-to-projects edit-project-back" class="btn cancel-btn cancel-button"><span class="cancel-button">Cancel</span></div>
+            <div id="edit-project-back" class="btn cancel-btn cancel-button"><span class="cancel-button">Cancel</span></div>
             <input class="btn" type="submit" name="editProject" id="edit-project-btn" value="Save">
         </div>
     </div>

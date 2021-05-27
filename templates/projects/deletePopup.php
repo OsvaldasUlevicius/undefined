@@ -13,6 +13,6 @@
             </button>
         </form>
 
-        <span>Cancel</span>
+        <span id="cancel-telete">Cancel</span>
     </div>
 </div>

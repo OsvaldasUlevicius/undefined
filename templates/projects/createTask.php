@@ -45,7 +45,7 @@
         </div>
         
         <div class="cancel-complete">
-            <div id="back-to-tasks create-task-back" class="btn cancel-btn"><span>Cancel</span></div>
+            <div id="create-task-back" class="btn cancel-btn"><span>Cancel</span></div>
             <input id="create-task-btn" class="btn" type="submit" name="createTask" value="Complete">
         </div>
     </div>
