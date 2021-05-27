@@ -1035,9 +1035,9 @@ h2.delete-heading {
   padding: 10px 10px;
   position: absolute;
   z-index: 1;
-  bottom: 150%;
-  left: 0;
-  margin-left: -60px;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -100px;
   font-weight: 400;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;

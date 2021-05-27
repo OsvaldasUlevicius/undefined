@@ -39,7 +39,6 @@ p {
 }
 
 nav img {
-  padding: 0 30px 0 20px;
   height: 30px;
 }
 
@@ -53,9 +52,6 @@ nav .nav-form {
 @media screen and (max-width: 600px) {
   .nav-form {
     font-size: 0.9rem;
-  }
-  nav img {
-    padding: 0;
   }
 }
 
@@ -81,14 +77,20 @@ nav #logout {
   font-size: 1rem;
 }
 
-@media screen and (max-width: 600px) {
-  nav #logout {
-    font-size: 0.9rem;
-  }
-}
+
 
 nav #logout:hover {
   cursor: pointer;
+}
+
+.nav-logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.nav-logo-text{
+  height: 15px;
 }
 
 footer {
@@ -101,4 +103,12 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 26px 0 30px 0;
+}
+@media screen and (max-width: 600px) {
+  nav #logout {
+    font-size: 0.9rem;
+  }
+  .nav-logo-text{
+    display: none;
+  }
 }
