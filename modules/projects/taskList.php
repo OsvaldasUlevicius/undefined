@@ -26,7 +26,7 @@ if(isset($_GET["csvTasks"])){
     $field = mysqli_field_count($db);
 
     // add header to file
-    $csv_export.="Task ID; Project; Title; Description; Priority; Status;";
+    $csv_export.="Task ID; Project; Title; Description; Priority; Status; Date Created; Date Updated";
 
     // newline (seems to work both on Linux & Windows servers)
     $csv_export.= '
@@ -39,8 +39,10 @@ if(isset($_GET["csvTasks"])){
         $description = $result["description"];
         $priority = getPriority($result["priority"], $db);
         $status = getStatus($result["status"], $db, $isProject=false);
+        $dateCreated = $result["created_at"];
+        $dateUpdated = $result["updated_at"];
 
-        $csv_export.= "$id;$project;$title;$description;$priority;$status";
+        $csv_export.= "$id;$project;$title;$description;$priority;$status;$dateCreated;$dateUpdated";
         $csv_export.= '
         ';
     }

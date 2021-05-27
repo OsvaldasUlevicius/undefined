@@ -21,7 +21,7 @@ include('../../modules/admin/eventLog.php');
     <input id="input-search" type="text" name="valueToSearch" placeholder="Type a keyword to search..."/>
     <button id="btn-search" class="btn" type="submit" name="search" value="search"><i class="icon fas fa-search"></i></button>
 </form> -->
-<div class="container-table">
+<div class="container-table" style="word-break:break-all;">
     <div class="table-head">
         <h4>Event</h4>
         <h4>Type</h4>
@@ -32,8 +32,8 @@ include('../../modules/admin/eventLog.php');
     <div class="table-body">
         <?php $events = getEvents($db); ?>
         <?php foreach ($events["events"] as $event): ?>
-            <div class="table-row">
-                <p><?php echo $event["event"] ?></p>
+            <div class="table-row" style="line-height: 25px;">
+                <p style="padding-right: 20px;"><?php echo $event["event"] ?></p>
 
                 <!-- TYPE -->
                 <?php if ($event["task_id"]): ?>
@@ -54,7 +54,7 @@ include('../../modules/admin/eventLog.php');
                     <?php if (checkIfObjectExists("projects", $event["project_id"], $db)): ?>
                         <a href="../projects/taskList.php?project_id=<?php echo $event["project_id"]; ?>"><?php echo $event["project_id"]; ?></a>
                     <?php else: ?>
-                        <p><?php echo $event["project_id"] ?> (Object does not exist)</p>
+                        <p style="padding-right: 25px;"><?php echo $event["project_id"] ?> (Object does not exist)</p>
                     <?php endif ?>
 
                 <?php else : ?>

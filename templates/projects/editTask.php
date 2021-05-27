@@ -28,7 +28,8 @@
             <h2 class="create-edit-heading">Task title</h2>
             <input onchange="trimInput('title')" id="edit-task-title" type="text" name="title" placeholder="Enter task title">
             <h2 class="create-edit-heading">Task description</h2>
-            <input onchange="trimInput('description')" id="edit-task-description" type="text" name="description" placeholder="Enter task description">
+            <textarea onchange="trimInput('description')" id="edit-task-description" type="text" name="description"
+            placeholder="Enter task description"></textarea>
         </div>
     
         <div class="priority-container">
