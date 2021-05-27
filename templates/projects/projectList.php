@@ -103,10 +103,11 @@ include('../../modules/projects/editProject.php');
        rows.forEach(row => {
         row.addEventListener("click", (e)=>{
             if(e.path[1].classList.contains("edit-delete")){}
-            else{
+            else if(e.path[1].classList.contains("table-row")){
                 window.location = e.path[1].firstElementChild.href
+            }else if(e.path[1].classList.contains("table-body")){
+                window.location = e.path[0].firstElementChild.href
             }
-            
         })
        });
     </script>
