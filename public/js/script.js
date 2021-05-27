@@ -27,9 +27,11 @@ $(".trash").on("click", function() {
             $(".delete-popup form").attr("action", object.returnPage);
             if (object.objectType == "project") {
                 $(".delete-popup form input[type=hidden]").attr("name", "projectId");
+                $(".delete-popup .delete-message h2").text("Are you sure you want to delete the project?");
+                $(".delete-popup .delete-message p").text("Please note that all project information, including the tasks, will be erased too");
             } else if (object.objectType == "task") {
                 $(".delete-popup form input[type=hidden]").attr("name", "delete-task-id");
-                $(".delete-popup .delete-message h4").text("Are you sure you want to delete the task?");
+                $(".delete-popup .delete-message h2").text("Are you sure you want to delete the task?");
                 $(".delete-popup .delete-message p").text("");
             }
             $(".delete-popup input[type=hidden]").val(object.objectId);
