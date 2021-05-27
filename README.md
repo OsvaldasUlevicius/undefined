@@ -25,14 +25,24 @@ Login or Create account
 
 ![Login/Create account](/public/img/login.png)
 
-Register
+#### Register
 
 ![Register](/public/img/register.png)
 
-Create projects
+#### Create projects
+
+Create and manage projects in an easy to use interface. 
 
 ![Create projects](/public/img/create_projects.png)
 
-Manage tasks
+#### Manage tasks
+
+Add and edit tasks, set priorities and use an easy drag and drop task status interface.
 
 ![manage tasks](/public/img/manage_tasks.png)
+
+#### Manage and access your data
+
+Export a CSV file whenever you need it, review recent events in event log window and be in control of your personal data.
+
+![event log](/public/img/event_log.png)

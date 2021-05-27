@@ -17,15 +17,9 @@ p {
   flex-direction: row;
   color: #000;
   width: 20%;
-  min-width: 350px;
+  min-width: 300px;
   align-items: center;
-  justify-content: space-evenly;
-}
-
-@media screen and (max-width: 600px) {
-  .other-links {
-    min-width: 200px;
-  }
+  justify-content: space-between;
 }
 
 .other-links li a {
@@ -50,6 +44,12 @@ nav .nav-form {
 }
 
 @media screen and (max-width: 600px) {
+  .other-links {
+    min-width: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .nav-form {
     font-size: 0.9rem;
   }
@@ -61,6 +61,7 @@ nav .nav-form {
     display: none;
   }
 }
+
 
 nav .nav-bold-text {
   font-weight: bold;

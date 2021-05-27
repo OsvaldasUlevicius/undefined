@@ -1,6 +1,6 @@
 <form method="POST" action="taskList.php?project_id=<?php echo $task["project"]; ?>" class="edit-task-form">
 
-    <div class="edit-container-table">
+    <div class="create-container-table">
 
         <div class="errors 
             <?php if (!empty($popupErrors)) {
