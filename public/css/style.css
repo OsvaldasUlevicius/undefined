@@ -955,7 +955,7 @@ a.project-name,
   z-index: 100;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .dropbox {
     margin: 10px 0;
   }
@@ -964,6 +964,11 @@ a.project-name,
     width: 100%;
     margin: 0;
     border: none;
+
+    transition: all .25s linear; 
+    -o-transition: all .25s linear; 
+    -moz-transition: all .25s linear; 
+    -webkit-transition: all .25s linear; 
   }
 
   .table-body-tasks {
@@ -974,11 +979,31 @@ a.project-name,
   .tasks-container {
     margin: 0;
     border: none;
-    flex-direction: column;
+    width: 100%;
+
+    transition: all .25s linear; 
+    -o-transition: all .25s linear; 
+    -moz-transition: all .25s linear; 
+    -webkit-transition: all .25s linear; 
+  }
+
+  .tasks-container .edit-delete {
+    width: 30%;
   }
 
   .individual-task {
     width: 100%;
+  }
+
+  .tasks-container {
+    flex-wrap: wrap;
+    width: 60%;
+    margin: auto;
+
+    transition: all .25s linear; 
+    -o-transition: all .25s linear; 
+    -moz-transition: all .25s linear; 
+    -webkit-transition: all .25s linear; 
   }
 
 }
